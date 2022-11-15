@@ -12,6 +12,8 @@
 		8B857E3C29239A9C00ABD4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E3B29239A9C00ABD4A0 /* Assets.xcassets */; };
 		8B857E3F29239A9C00ABD4A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E3D29239A9C00ABD4A0 /* LaunchScreen.storyboard */; };
 		8B857E4729239DC300ABD4A0 /* FirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E4629239DC300ABD4A0 /* FirstController.swift */; };
+		8B857E4D2923B7E200ABD4A0 /* Rubik-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E4C2923B7E200ABD4A0 /* Rubik-SemiBold.ttf */; };
+		8B857E532923BB8000ABD4A0 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E522923BB8000ABD4A0 /* Rubik-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		8B857E3E29239A9C00ABD4A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B857E4029239A9C00ABD4A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B857E4629239DC300ABD4A0 /* FirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstController.swift; sourceTree = "<group>"; };
+		8B857E4C2923B7E200ABD4A0 /* Rubik-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Rubik-SemiBold.ttf"; path = "WeatherForecast/Fount/Rubik-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
+		8B857E522923BB8000ABD4A0 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		8B857E3129239A9B00ABD4A0 /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				8B857E502923BAE200ABD4A0 /* Fount */,
 				8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */,
 				8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */,
 				8B857E4629239DC300ABD4A0 /* FirstController.swift */,
@@ -62,6 +67,15 @@
 				8B857E4029239A9C00ABD4A0 /* Info.plist */,
 			);
 			path = WeatherForecast;
+			sourceTree = "<group>";
+		};
+		8B857E502923BAE200ABD4A0 /* Fount */ = {
+			isa = PBXGroup;
+			children = (
+				8B857E4C2923B7E200ABD4A0 /* Rubik-SemiBold.ttf */,
+				8B857E522923BB8000ABD4A0 /* Rubik-Regular.ttf */,
+			);
+			path = Fount;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,6 +137,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B857E3F29239A9C00ABD4A0 /* LaunchScreen.storyboard in Resources */,
+				8B857E532923BB8000ABD4A0 /* Rubik-Regular.ttf in Resources */,
+				8B857E4D2923B7E200ABD4A0 /* Rubik-SemiBold.ttf in Resources */,
 				8B857E3C29239A9C00ABD4A0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
