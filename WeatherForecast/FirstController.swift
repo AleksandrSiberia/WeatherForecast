@@ -13,7 +13,7 @@ class FirstController: UIViewController {
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
- //      scrollView.contentOffset.y = 1000
+
         return scrollView
     }()
 
@@ -70,24 +70,59 @@ class FirstController: UIViewController {
 
 
     private lazy var buttonAllowIdentifyLocation: UIButton = {
-        var buttonAllowIdentifyLocation = UIButton()
+
+        let action = UIAction() { action in
+            print("allow")
+        }
+
+        var buttonAllowIdentifyLocation = UIButton(primaryAction: action)
+
+        buttonAllowIdentifyLocation.translatesAutoresizingMaskIntoConstraints = false
+        buttonAllowIdentifyLocation.backgroundColor = UIColor(named: "#F26E11")
+        buttonAllowIdentifyLocation.setTitle("ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА", for: .normal)
+        buttonAllowIdentifyLocation.setTitleColor(.white, for: .normal)
+        buttonAllowIdentifyLocation.layer.cornerRadius = 12
+        buttonAllowIdentifyLocation.titleLabel?.adjustsFontSizeToFitWidth = true
+        buttonAllowIdentifyLocation.titleLabel?.font = UIFont(name: "Rubik-Medium", size: 12)
+        buttonAllowIdentifyLocation.titleLabel?.textColor = .white
+
         return buttonAllowIdentifyLocation
     }()
+
+
 
 
     private lazy var buttonDisallowIdentifyLocation: UIButton = {
-        var buttonAllowIdentifyLocation = UIButton()
-        return buttonAllowIdentifyLocation
+
+        let action = UIAction() { action in
+            print("disallow")
+        }
+
+        var buttonDisallowIdentifyLocation = UIButton(primaryAction: action)
+
+        buttonDisallowIdentifyLocation.translatesAutoresizingMaskIntoConstraints = false
+        buttonDisallowIdentifyLocation.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+        buttonDisallowIdentifyLocation.setTitle("НЕТ, Я БУДУ ДОБАВЛЯТЬ ЛОКАЦИИ", for: .normal)
+        buttonDisallowIdentifyLocation.setTitleColor(.white, for: .normal)
+        buttonDisallowIdentifyLocation.layer.cornerRadius = 12
+        buttonDisallowIdentifyLocation.titleLabel?.adjustsFontSizeToFitWidth = true
+        buttonDisallowIdentifyLocation.titleLabel?.font = UIFont(name: "Rubik-Regular", size: 16)
+        buttonDisallowIdentifyLocation.titleLabel?.textColor = .white
+
+
+        return buttonDisallowIdentifyLocation
     }()
+
 
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+
         self.view.addSubview(self.scrollView)
 
-        [self.imageViewBanner, self.labelLetLocation, self.labelAnnotation, self.labelAnnotationStopLocation].forEach {self.scrollView.addSubview($0) }
+        [self.imageViewBanner, self.labelLetLocation, self.labelAnnotation, self.labelAnnotationStopLocation, self.buttonAllowIdentifyLocation, self.buttonDisallowIdentifyLocation].forEach { self.scrollView.addSubview($0) }
 
         setupLayoutConstrains()
     }
@@ -120,9 +155,13 @@ class FirstController: UIViewController {
             self.labelAnnotationStopLocation.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
             self.labelAnnotationStopLocation.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
 
+            self.buttonAllowIdentifyLocation.topAnchor.constraint(equalTo: self.labelAnnotationStopLocation.bottomAnchor, constant: 44),
+            self.buttonAllowIdentifyLocation.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 17),
+            self.buttonAllowIdentifyLocation.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -17),
 
-
-   //         self.labelAnnotationStopLocation.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor)
+            self.buttonDisallowIdentifyLocation.topAnchor.constraint(equalTo: self.buttonAllowIdentifyLocation.bottomAnchor, constant: 25),
+            self.buttonDisallowIdentifyLocation.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -17),
+            self.buttonDisallowIdentifyLocation.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: -77)
 
         ])
     }
