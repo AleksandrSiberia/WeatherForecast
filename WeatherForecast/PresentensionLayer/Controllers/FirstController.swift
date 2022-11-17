@@ -6,18 +6,27 @@
 //
 
 import UIKit
+import CoreLocation
 
 class FirstController: UIViewController {
 
-    var locationService: LocationService!
+
+    var locationService: LocationService! {
+        
+        didSet {
+            print("🥨")
+            if self.locationService.authorizationStatus == .authorizedWhenInUse {
+                print("🧀")
+            }
+        }
+    }
+
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-
         return scrollView
     }()
-
 
 
 
@@ -73,8 +82,10 @@ class FirstController: UIViewController {
     private lazy var buttonAllowIdentifyLocation: UIButton = {
 
         let action = UIAction() { action in
-            print("allow")
-            self.locationService.locationManager.requestWhenInUseAuthorization()
+            print("📲")
+            self.locationService.requestPermission()
+
+           
 
         }
 
