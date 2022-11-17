@@ -9,6 +9,7 @@ import UIKit
 
 class FirstController: UIViewController {
 
+    var locationService: LocationService!
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -73,6 +74,8 @@ class FirstController: UIViewController {
 
         let action = UIAction() { action in
             print("allow")
+            self.locationService.locationManager.requestWhenInUseAuthorization()
+
         }
 
         var buttonAllowIdentifyLocation = UIButton(primaryAction: action)
@@ -109,7 +112,6 @@ class FirstController: UIViewController {
         buttonDisallowIdentifyLocation.titleLabel?.font = UIFont(name: "Rubik-Regular", size: 16)
         buttonDisallowIdentifyLocation.titleLabel?.textColor = .white
 
-
         return buttonDisallowIdentifyLocation
     }()
 
@@ -118,7 +120,6 @@ class FirstController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
 
         self.view.addSubview(self.scrollView)
 

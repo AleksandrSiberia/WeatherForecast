@@ -10,6 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    var rootCoordinator: CoordinatorProtocol?
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -18,14 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window = UIWindow(windowScene: scene)
 
-        let controller = FirstController()
-        
-        controller.view.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
-        controller.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+        self.rootCoordinator = RootCoordinator()
 
-        let navController = UINavigationController(rootViewController: controller)
-
-        self.window?.rootViewController = navController
+        self.window?.rootViewController = self.rootCoordinator?.startCoordinator()
 
         self.window?.makeKeyAndVisible()
 

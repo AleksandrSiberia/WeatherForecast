@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8B55D9DD2924F37200574A7F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B55D9DC2924F37200574A7F /* Rubik-Medium.ttf */; };
+		8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9DF2924FB6600574A7F /* LocationService.swift */; };
+		8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E12925018D00574A7F /* RootCoordinator.swift */; };
+		8B55D9E6292506BC00574A7F /* AssemblyFirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */; };
+		8B55D9E8292509A300574A7F /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E7292509A300574A7F /* CoordinatorProtocol.swift */; };
 		8B857E3329239A9B00ABD4A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */; };
 		8B857E3529239A9B00ABD4A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */; };
 		8B857E3C29239A9C00ABD4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E3B29239A9C00ABD4A0 /* Assets.xcassets */; };
@@ -19,6 +23,10 @@
 
 /* Begin PBXFileReference section */
 		8B55D9DC2924F37200574A7F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		8B55D9DF2924FB6600574A7F /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		8B55D9E12925018D00574A7F /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
+		8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyFirstController.swift; sourceTree = "<group>"; };
+		8B55D9E7292509A300574A7F /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		8B857E2F29239A9B00ABD4A0 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +49,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B55D9DE2924FB1B00574A7F /* ServiceLayer */ = {
+			isa = PBXGroup;
+			children = (
+				8B55D9DF2924FB6600574A7F /* LocationService.swift */,
+			);
+			path = ServiceLayer;
+			sourceTree = "<group>";
+		};
+		8B55D9E3292501A200574A7F /* AppLayer */ = {
+			isa = PBXGroup;
+			children = (
+				8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */,
+				8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */,
+			);
+			path = AppLayer;
+			sourceTree = "<group>";
+		};
+		8B55D9E42925020400574A7F /* PresentensionLayer */ = {
+			isa = PBXGroup;
+			children = (
+				8B55D9E7292509A300574A7F /* CoordinatorProtocol.swift */,
+				8B55D9E12925018D00574A7F /* RootCoordinator.swift */,
+				8B857E4629239DC300ABD4A0 /* FirstController.swift */,
+				8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */,
+			);
+			path = PresentensionLayer;
+			sourceTree = "<group>";
+		};
 		8B857E2629239A9B00ABD4A0 = {
 			isa = PBXGroup;
 			children = (
@@ -60,10 +96,10 @@
 		8B857E3129239A9B00ABD4A0 /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
+				8B55D9DE2924FB1B00574A7F /* ServiceLayer */,
+				8B55D9E3292501A200574A7F /* AppLayer */,
+				8B55D9E42925020400574A7F /* PresentensionLayer */,
 				8B857E502923BAE200ABD4A0 /* Fount */,
-				8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */,
-				8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */,
-				8B857E4629239DC300ABD4A0 /* FirstController.swift */,
 				8B857E3B29239A9C00ABD4A0 /* Assets.xcassets */,
 				8B857E3D29239A9C00ABD4A0 /* LaunchScreen.storyboard */,
 				8B857E4029239A9C00ABD4A0 /* Info.plist */,
@@ -155,7 +191,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B857E3329239A9B00ABD4A0 /* AppDelegate.swift in Sources */,
+				8B55D9E8292509A300574A7F /* CoordinatorProtocol.swift in Sources */,
 				8B857E3529239A9B00ABD4A0 /* SceneDelegate.swift in Sources */,
+				8B55D9E6292506BC00574A7F /* AssemblyFirstController.swift in Sources */,
+				8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */,
+				8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */,
 				8B857E4729239DC300ABD4A0 /* FirstController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
