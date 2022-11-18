@@ -10,7 +10,7 @@ import UIKit
 
 class AssemblyFirstController {
 
-    static func setFirstController(locationService: LocationService?, coordinator: RootCoordinator?) -> FirstController {
+    static func setFirstController(locationService: LocationService?) -> FirstController {
 
         let controller = FirstController()
 

@@ -13,9 +13,6 @@ import UIKit
 class RootCoordinator: CoordinatorProtocol {
   
 
-  
-
-
 
     private let locationService = LocationService()
 
@@ -29,7 +26,7 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.locationService.coordinator = self
 
-        self.firstController = AssemblyFirstController.setFirstController(locationService: self.locationService, coordinator: self)
+        self.firstController = AssemblyFirstController.setFirstController(locationService: self.locationService)
 
         let navController = UINavigationController(rootViewController: self.firstController!)
 
@@ -42,7 +39,6 @@ class RootCoordinator: CoordinatorProtocol {
         print("🧭showSettingController")
 
         self.mainController = AssemblyMainController.setMainController(locationService: self.locationService)
-
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: true)
 

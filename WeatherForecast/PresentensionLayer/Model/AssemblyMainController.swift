@@ -13,6 +13,9 @@ class AssemblyMainController {
     static func setMainController(locationService: LocationService?) -> MainViewController {
 
         let controller = MainViewController()
+
+        controller.locationService = locationService
+
         controller.view.backgroundColor = .white
         return controller
     }
