@@ -12,22 +12,22 @@ import UIKit
 
 final class LocationService: NSObject, CLLocationManagerDelegate {
 
+    var coordinator: RootCoordinator?
+
     lazy var locationManager = CLLocationManager()
 
+    lazy var authorizationStatus = self.locationManager.authorizationStatus
 
-    lazy var authorizationStatus = self.locationManager.authorizationStatus {
-        
-        didSet {
-            self.completion?(self)
-            print("didSet")
+    var currentLocation: CLLocation?
 
-        }
-    }
+    lazy var currentLatitude: CLLocationDegrees? = self.currentLocation?.coordinate.latitude
 
-    private var completion: ((LocationService) -> Void)?
+    lazy var currentLongitude: CLLocationDegrees? = self.currentLocation?.coordinate.longitude
+
+    lazy var currentCity: String? = nil
 
 
-    
+
     override init() {
         super.init()
 
@@ -50,6 +50,31 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
 
+    func getNameCurrentCity() {
+
+        let geocoder = CLGeocoder()
+
+
+        if let currentLocation = self.currentLocation {
+
+            geocoder.reverseGeocodeLocation(currentLocation) { [weak self] placemark, error in
+                if let error {
+                    print(error.localizedDescription)
+                }
+
+                else {
+
+                    if let firstLocation = placemark?[0],
+
+                        let currentCity = firstLocation.locality {
+                        self?.currentCity = currentCity
+                    }
+                }
+            }
+        }
+    }
+
+
     func requestPermission() {
 
         if self.authorizationStatus == .notDetermined  {
@@ -65,8 +90,25 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
 
+    
 
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+
+        if self.authorizationStatus != .notDetermined || self.authorizationStatus != .denied  {
+
+            self.locationManager.startUpdatingLocation()
+
+            self.currentLocation = self.locationManager.location
+
+            getNameCurrentCity()
+
+            print("🚩", self.currentCity)
+
+        }
+
+
+        self.authorizationStatus = self.locationManager.authorizationStatus
+
 
         switch self.locationManager.authorizationStatus {
         case .notDetermined:
@@ -74,22 +116,19 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         case .restricted:
             print("restricted")
         case .denied:
+            self.coordinator?.showMainController()
             print("denied")
         case .authorizedAlways:
             print("authorizedAlways")
         case .authorizedWhenInUse:
+            self.coordinator?.showMainController()
             print("authorizedWhenInUse")
         @unknown default:
             print("unknown default")
         }
 
 
-        if self.authorizationStatus != .notDetermined || self.authorizationStatus != .denied  {
-                self.locationManager.startUpdatingLocation()
-            }
 
-
-        self.authorizationStatus = self.locationManager.authorizationStatus
 
     }
 

@@ -12,6 +12,11 @@
 		8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E12925018D00574A7F /* RootCoordinator.swift */; };
 		8B55D9E6292506BC00574A7F /* AssemblyFirstController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */; };
 		8B55D9E8292509A300574A7F /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E7292509A300574A7F /* CoordinatorProtocol.swift */; };
+		8B55D9EE29275EA700574A7F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9ED29275EA700574A7F /* MainViewController.swift */; };
+		8B55D9F029275EDE00574A7F /* AssemblyMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9EF29275EDE00574A7F /* AssemblyMainController.swift */; };
+		8B55D9F229277EFE00574A7F /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9F129277EFE00574A7F /* WeatherModel.swift */; };
+		8B55D9F42927831D00574A7F /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9F32927831D00574A7F /* CoreDataService.swift */; };
+		8B55D9F7292784C300574A7F /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9F5292784C300574A7F /* CoreDataModel.xcdatamodeld */; };
 		8B857E3329239A9B00ABD4A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */; };
 		8B857E3529239A9B00ABD4A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */; };
 		8B857E3C29239A9C00ABD4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E3B29239A9C00ABD4A0 /* Assets.xcassets */; };
@@ -27,6 +32,11 @@
 		8B55D9E12925018D00574A7F /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyFirstController.swift; sourceTree = "<group>"; };
 		8B55D9E7292509A300574A7F /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
+		8B55D9ED29275EA700574A7F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		8B55D9EF29275EDE00574A7F /* AssemblyMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyMainController.swift; sourceTree = "<group>"; };
+		8B55D9F129277EFE00574A7F /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		8B55D9F32927831D00574A7F /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		8B55D9F6292784C300574A7F /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 		8B857E2F29239A9B00ABD4A0 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				8B55D9DF2924FB6600574A7F /* LocationService.swift */,
+				8B55D9F32927831D00574A7F /* CoreDataService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -81,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				8B857E4629239DC300ABD4A0 /* FirstController.swift */,
+				8B55D9ED29275EA700574A7F /* MainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -88,8 +100,8 @@
 		8B55D9EA2926240C00574A7F /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				8B55D9E12925018D00574A7F /* RootCoordinator.swift */,
 				8B55D9E7292509A300574A7F /* CoordinatorProtocol.swift */,
+				8B55D9E12925018D00574A7F /* RootCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -105,6 +117,9 @@
 			isa = PBXGroup;
 			children = (
 				8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */,
+				8B55D9EF29275EDE00574A7F /* AssemblyMainController.swift */,
+				8B55D9F129277EFE00574A7F /* WeatherModel.swift */,
+				8B55D9F5292784C300574A7F /* CoreDataModel.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -224,11 +239,16 @@
 			files = (
 				8B857E3329239A9B00ABD4A0 /* AppDelegate.swift in Sources */,
 				8B55D9E8292509A300574A7F /* CoordinatorProtocol.swift in Sources */,
+				8B55D9F7292784C300574A7F /* CoreDataModel.xcdatamodeld in Sources */,
 				8B857E3529239A9B00ABD4A0 /* SceneDelegate.swift in Sources */,
 				8B55D9E6292506BC00574A7F /* AssemblyFirstController.swift in Sources */,
+				8B55D9F229277EFE00574A7F /* WeatherModel.swift in Sources */,
 				8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */,
 				8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */,
+				8B55D9F029275EDE00574A7F /* AssemblyMainController.swift in Sources */,
+				8B55D9F42927831D00574A7F /* CoreDataService.swift in Sources */,
 				8B857E4729239DC300ABD4A0 /* FirstController.swift in Sources */,
+				8B55D9EE29275EA700574A7F /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +464,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B55D9F5292784C300574A7F /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B55D9F6292784C300574A7F /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 8B55D9F6292784C300574A7F /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B857E2729239A9B00ABD4A0 /* Project object */;
 }

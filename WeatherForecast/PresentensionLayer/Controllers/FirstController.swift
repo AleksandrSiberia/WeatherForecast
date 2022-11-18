@@ -11,16 +11,8 @@ import CoreLocation
 class FirstController: UIViewController {
 
 
-    var locationService: LocationService! {
+    var locationService: LocationService!
         
-        didSet {
-            print("🥨")
-            if self.locationService.authorizationStatus == .authorizedWhenInUse {
-                print("🧀")
-            }
-        }
-    }
-
 
     private lazy var scrollView: UIScrollView = {
         var scrollView = UIScrollView()
@@ -109,7 +101,7 @@ class FirstController: UIViewController {
     private lazy var buttonDisallowIdentifyLocation: UIButton = {
 
         let action = UIAction() { action in
-            print("disallow")
+            print("disallow", self.locationService.currentCity)
         }
 
         var buttonDisallowIdentifyLocation = UIButton(primaryAction: action)
