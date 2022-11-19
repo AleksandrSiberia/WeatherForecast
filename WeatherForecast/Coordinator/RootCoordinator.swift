@@ -16,6 +16,8 @@ class RootCoordinator: CoordinatorProtocol {
 
     private let locationService = LocationService()
 
+    private let networkService = NetworkService()
+
     private weak var firstController: FirstController?
 
     private weak var mainController: MainViewController?
@@ -25,6 +27,8 @@ class RootCoordinator: CoordinatorProtocol {
     func startCoordinator() -> UINavigationController {
 
         self.locationService.coordinator = self
+
+        self.networkService.locationService = locationService
 
         self.firstController = AssemblyFirstController.setFirstController(locationService: self.locationService)
 
@@ -38,8 +42,7 @@ class RootCoordinator: CoordinatorProtocol {
     func showMainController() {
         print("🧭showSettingController")
 
-        self.mainController = AssemblyMainController.setMainController(locationService: self.locationService)
-
+        self.mainController = AssemblyMainController.setMainController(locationService: self.locationService, networkService: self.networkService )
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: true)
 
 

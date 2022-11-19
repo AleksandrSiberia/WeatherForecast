@@ -11,17 +11,20 @@ class MainViewController: UIViewController {
 
     var locationService: LocationService?
 
+    var networkService: NetworkService?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+    //    print(networkService?.url)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        print("city", self.locationService?.currentCity)
+        print(self.networkService?.getURL())
 
+        print("city", self.locationService?.currentCity)
         self.navigationItem.title = self.locationService?.currentCity
     }
 

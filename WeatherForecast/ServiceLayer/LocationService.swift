@@ -20,11 +20,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     lazy var authorizationStatus = self.locationManager.authorizationStatus
 
-    var currentLocation: CLLocation?
+//    var currentLocation: CLLocation?
 
-    lazy var currentLatitude: CLLocationDegrees? = self.currentLocation?.coordinate.latitude
+    var currentLatitude: CLLocationDegrees?
 
-    lazy var currentLongitude: CLLocationDegrees? = self.currentLocation?.coordinate.longitude
+    var currentLongitude: CLLocationDegrees?
 
     lazy var currentCity: String? = nil
 
@@ -55,13 +55,17 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
 
 
-    func getNameCurrentCity(completion: @escaping (String) -> Void) {
+    func getNameCurrentCityAndLocation(completion: @escaping (String, CLLocation) -> Void) {
 
 
         let geocoder = CLGeocoder()
 
-        if let currentLocation = self.currentLocation {
+        if let currentLocation = self.locationManager.location {
 
+            self.currentLatitude = currentLocation.coordinate.latitude
+            self.currentLongitude = currentLocation.coordinate.longitude
+
+            print(self.currentLatitude, self.currentLongitude)
             geocoder.reverseGeocodeLocation(currentLocation) { [weak self] placemark, error in
                 if let error {
                     print(error.localizedDescription)
@@ -69,11 +73,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
                 else {
 
-                    if let firstLocation = placemark?[0],
 
+
+                    if let firstLocation = placemark?[0],
                         let currentCity = firstLocation.locality {
-                    //    self?.currentCity = currentCity
-                        completion(currentCity)
+                        
+                        completion(currentCity, currentLocation)
                     }
                 }
             }
@@ -106,7 +111,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         if self.authorizationStatus != .notDetermined || self.authorizationStatus != .denied  {
 
             self.locationManager.startUpdatingLocation()
-            self.currentLocation = self.locationManager.location
+    //        self.currentLocation = self.locationManager.location
+
         }
 
 
@@ -126,11 +132,14 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             print("authorizedAlways")
         case .authorizedWhenInUse:
 
-                self.getNameCurrentCity { string in
+            self.getNameCurrentCityAndLocation { nameCity, location in
 
-                    self.currentCity = string
 
-                    self.coordinator?.showMainController()
+                self.currentCity = nameCity
+
+
+
+                self.coordinator?.showMainController()
             }
 
         @unknown default:
