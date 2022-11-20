@@ -34,7 +34,7 @@ class NetworkService {
     }
 
 
-    func getData(completionHandler: @escaping (ArrayWeatherModel?) -> Void ) {
+    func getData(completionHandler: @escaping (WeatherModel?) -> Void ) {
 
         let url = URL(string: self.getURL())
 
@@ -71,7 +71,7 @@ class NetworkService {
                 return }
 
             do {
-                let answer = try JSONDecoder().decode(ArrayWeatherModel.self, from: data)
+                let answer = try JSONDecoder().decode(WeatherModel.self, from: data)
                 completionHandler(answer)
             }
             catch {

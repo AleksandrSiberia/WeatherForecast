@@ -29,29 +29,47 @@ struct MainWeatherModel: Codable {
 
 struct ImageAndTextWeatherModel: Codable {
 
-    var description: String
+    var descriptionWeather: String
     var icon: String
+
+    enum CodingKeys: String, CodingKey {
+
+        case descriptionWeather = "description"
+        case icon
+    }
 }
 
 
 
 struct CloudsWeatherModel: Codable {
 
-    var all: Int
+    var cloudsPercent: Int
+
+    enum CodingKeys: String, CodingKey {
+
+        case cloudsPercent = "all"
+    }
 }
 
 
 
 struct WindWeatherModel: Codable {
-    var speed: Float
-    var deg: Int
+
+    var speedWind: Float
+    var degWind: Int
+
+    enum CodingKeys: String, CodingKey {
+
+        case speedWind = "speed"
+        case degWind = "deg"
+    }
 }
 
 
 
 struct DateWeatherModel: Codable {
 
-       var main: MainWeatherModel
+    var main: MainWeatherModel
     var weather: [ImageAndTextWeatherModel]
     var clouds: CloudsWeatherModel
     var wind: WindWeatherModel
@@ -68,15 +86,31 @@ struct DateWeatherModel: Codable {
 
 
 
-struct ArrayWeatherModel: Codable {
+struct CityWeatherModel: Codable {
 
-    var date: [DateWeatherModel]
+  var timezone: Int
+  var sunrise: Int
+  var sunset: Int
+}
+
+
+
+
+struct WeatherModel: Codable {
+
+    var dateAndTime: [DateWeatherModel]
+
+    var city: CityWeatherModel
 
     enum CodingKeys: String, CodingKey {
 
-        case date = "list"
+        case dateAndTime = "list"
+        case city
+
+
     }
 }
+
 
 
 

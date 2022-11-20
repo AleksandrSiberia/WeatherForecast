@@ -134,8 +134,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
                 self.currentCity = nameCity
 
-                self.networkService?.getData(completionHandler: { arrayWeatherModel in
-                    print(arrayWeatherModel)
+                self.networkService?.getData(completionHandler: { weatherModel in
+                    print( weatherModel)
                 })
 
                 self.coordinator?.showMainController()
