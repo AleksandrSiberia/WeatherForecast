@@ -34,14 +34,14 @@ class NetworkService {
         let latitude = String(describing: self.locationService!.currentLatitude!)
         let longitude = String(describing: self.locationService!.currentLongitude!)
 
-        let url =  "api.openweathermap.org/data/2.5/forecast?lat=" + latitude + "&lon=" + longitude + "&appid=c6a8cb66ecd2502365bcc7589784a114"
+        let url =  "api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + latitude + "&lon=" + longitude + "&appid=c6a8cb66ecd2502365bcc7589784a114"
 
         return url
 
     }
 
 
-    func getData(completionHandler: @escaping (WeatherModel?) -> Void ) {
+    func getData(completionHandler: @escaping (ArrayWeatherModel?) -> Void ) {
 
         let url = URL(string: self.getURL())
 
@@ -64,7 +64,7 @@ class NetworkService {
                 return }
 
             do {
-                let answer = try JSONDecoder().decode(WeatherModel.self, from: data)
+                let answer = try JSONDecoder().decode(ArrayWeatherModel.self, from: data)
                 completionHandler(answer)
             }
             catch {
@@ -75,6 +75,8 @@ class NetworkService {
         }
         task.resume()
     }
+
+  
 
 
 }
