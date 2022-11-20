@@ -12,15 +12,13 @@ import UIKit
 
 final class LocationService: NSObject, CLLocationManagerDelegate {
 
-//    let dispatchQueue = DispatchQueue(label: "serial")
-
     var coordinator: RootCoordinator?
+
+    var networkService: NetworkService?
 
     lazy var locationManager = CLLocationManager()
 
     lazy var authorizationStatus = self.locationManager.authorizationStatus
-
-//    var currentLocation: CLLocation?
 
     var currentLatitude: CLLocationDegrees?
 
@@ -65,15 +63,14 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             self.currentLatitude = currentLocation.coordinate.latitude
             self.currentLongitude = currentLocation.coordinate.longitude
 
-            print(self.currentLatitude, self.currentLongitude)
+            print(self.currentLatitude!, self.currentLongitude!)
+
             geocoder.reverseGeocodeLocation(currentLocation) { [weak self] placemark, error in
                 if let error {
                     print(error.localizedDescription)
                 }
 
                 else {
-
-
 
                     if let firstLocation = placemark?[0],
                         let currentCity = firstLocation.locality {
@@ -111,7 +108,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         if self.authorizationStatus != .notDetermined || self.authorizationStatus != .denied  {
 
             self.locationManager.startUpdatingLocation()
-    //        self.currentLocation = self.locationManager.location
 
         }
 
@@ -132,12 +128,15 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             print("authorizedAlways")
         case .authorizedWhenInUse:
 
-            self.getNameCurrentCityAndLocation { nameCity, location in
+            print("👍 authorizedWhenInUse")
 
+            self.getNameCurrentCityAndLocation { nameCity, location in
 
                 self.currentCity = nameCity
 
-
+                self.networkService?.getData(completionHandler: { arrayWeatherModel in
+                    print(arrayWeatherModel)
+                })
 
                 self.coordinator?.showMainController()
             }

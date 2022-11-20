@@ -10,11 +10,11 @@ import Foundation
 
 struct MainWeatherModel: Codable {
 
-    var temp: String
-    var feelsLike: String
-    var tempMin: String
-    var tempMax: String
-    var humidity: String
+    var temp: Float
+    var feelsLike: Float
+    var tempMin: Float
+    var tempMax: Float
+    var humidity: Int
 
     enum CodingKeys: String, CodingKey {
         case temp
@@ -37,22 +37,22 @@ struct ImageAndTextWeatherModel: Codable {
 
 struct CloudsWeatherModel: Codable {
 
-    var all: String
+    var all: Int
 }
 
 
 
 struct WindWeatherModel: Codable {
-    var speed: String
-    var deg: String
+    var speed: Float
+    var deg: Int
 }
 
 
 
 struct DateWeatherModel: Codable {
 
-    var main: MainWeatherModel
-    var weather: ImageAndTextWeatherModel
+       var main: MainWeatherModel
+    var weather: [ImageAndTextWeatherModel]
     var clouds: CloudsWeatherModel
     var wind: WindWeatherModel
     var date: String

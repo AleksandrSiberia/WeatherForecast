@@ -28,7 +28,9 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.locationService.coordinator = self
 
-        self.networkService.locationService = locationService
+        self.networkService.locationService = self.locationService
+
+        self.locationService.networkService = self.networkService
 
         self.firstController = AssemblyFirstController.setFirstController(locationService: self.locationService)
 
