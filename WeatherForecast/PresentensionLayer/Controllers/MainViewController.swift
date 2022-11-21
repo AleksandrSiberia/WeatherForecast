@@ -16,28 +16,68 @@ class MainViewController: UIViewController {
     var coreDataService: CoreDataService?
 
 
+    lazy var tableView: UITableView = {
+
+        var tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        return tableView
+    }()
+
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = self.locationService?.currentCity
 
-    //    print(self.coreDataService?.getFolder(name: "WeatherFolder"))
+        self.view.addSubview(self.tableView)
 
-
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    //    print(self.networkService?.getURL()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        self.setupLayoutConstrains()
 
     }
-    
 
+
+    func setupLayoutConstrains() {
+        NSLayoutConstraint.activate([
+            self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+
+        ])
+    }
+}
+
+
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        }
+
+        if section == 1 {
+            return 1
+        }
+
+        else {
+            return 5
+        }
+    }
+
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        return UITableViewCell()
+    }
+
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+
+        3
+    }
 
 }
