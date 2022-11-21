@@ -98,16 +98,14 @@ struct CityWeatherModel: Codable {
 
 struct WeatherModel: Codable {
 
-    var dateAndTime: [DateWeatherModel]
+    var dateAndTimeAllWeatherForecast: [DateWeatherModel]
 
     var city: CityWeatherModel
 
     enum CodingKeys: String, CodingKey {
 
-        case dateAndTime = "list"
+        case dateAndTimeAllWeatherForecast = "list"
         case city
-
-
     }
 }
 

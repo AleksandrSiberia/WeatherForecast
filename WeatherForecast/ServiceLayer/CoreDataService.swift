@@ -23,13 +23,110 @@ class CoreDataService {
 
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
 
+
         return persistentContainer
     }()
+
 
 
 
     lazy var backgroundContext = self.persistentContainer.newBackgroundContext()
 
 
-    
+
+
+//    lazy var fetchedResultsController: NSFetchedResultsController = {
+//
+//        let request = WeatherForecastCoreData.fetchRequest()
+//
+//        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true) ]
+//
+//        var fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+//
+//        return fetchedResultsController
+//    }()
+
+
+    func saveBackgroundContext() {
+
+        do {
+            try self.backgroundContext.save()
+        }
+        catch {
+            print("‼️ error self.backgroundContext.save", error.localizedDescription)
+        }
+    }
+
+
+
+
+    func getFolder(name: String) -> FolderCoreData? {
+
+        let request = FolderCoreData.fetchRequest()
+
+        request.predicate = NSPredicate(format: name)
+
+        do {
+            let folder = try self.backgroundContext.fetch(request)
+            return folder[0]
+        }
+
+        catch {
+            print("‼️ error self.backgroundContext.fetch", error.localizedDescription)
+            return nil
+        }
+    }
+
+
+
+
+    func setFolder(name: String) {
+
+        let folder = FolderCoreData(context: self.backgroundContext)
+
+        folder.name = name
+
+        self.saveBackgroundContext()
+
+    }
+
+
+
+
+    func setWeatherForecast(weatherModel: WeatherModel) {
+
+     
+        for date in weatherModel.dateAndTimeAllWeatherForecast {
+
+            var weatherForecastCoreData = WeatherForecastCoreData(context: self.backgroundContext)
+
+            weatherForecastCoreData.relationshipFolder = self.getFolder(name: "WeatherFolder")
+
+            weatherForecastCoreData.date = date.date
+            weatherForecastCoreData.icon = date.weather[0].icon
+            weatherForecastCoreData.descriptionWeather = date.weather[0].descriptionWeather
+            weatherForecastCoreData.cloudsPercent = Int16(date.clouds.cloudsPercent)
+            weatherForecastCoreData.degWind = Int16(date.wind.speedWind)
+            weatherForecastCoreData.feelsLike = date.main.feelsLike
+            weatherForecastCoreData.humidity = Int16(date.main.humidity)
+            weatherForecastCoreData.temp = date.main.temp
+            weatherForecastCoreData.tempMax = date.main.tempMax
+            weatherForecastCoreData.tepmMin = date.main.tempMin
+            weatherForecastCoreData.speedWind = date.wind.speedWind
+
+            self.saveBackgroundContext()
+
+        }
+
+        let cityModel = CityModelCoreDada(context: self.backgroundContext)
+
+        cityModel.timezone = Int32(weatherModel.city.timezone)
+        cityModel.sunrise = Int32(weatherModel.city.sunrise)
+        cityModel.sunset = Int32(weatherModel.city.sunset)
+
+        self.saveBackgroundContext()
+    }
 }
+
+
+

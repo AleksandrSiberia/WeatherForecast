@@ -16,6 +16,9 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     var networkService: NetworkService?
 
+    var coreDataService: CoreDataService?
+
+
     lazy var locationManager = CLLocationManager()
 
     lazy var authorizationStatus = self.locationManager.authorizationStatus
@@ -138,7 +141,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                     print( weatherModel)
                 })
 
+
+                
                 self.coordinator?.showMainController()
+
+
             }
 
         @unknown default:
