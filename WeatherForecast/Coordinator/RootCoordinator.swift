@@ -10,9 +10,8 @@ import UIKit
 
 
 
-class RootCoordinator: CoordinatorProtocol {
-  
 
+class RootCoordinator: CoordinatorProtocol {
 
     private let locationService = LocationService()
 
@@ -25,8 +24,23 @@ class RootCoordinator: CoordinatorProtocol {
     private weak var mainController: MainViewController?
 
 
+    
 
     func startCoordinator() -> UINavigationController {
+
+        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")!)
+
+
+        if let folder = self.coreDataService.getFolder(name: "WeatherFolder") {
+            if folder.isEmpty == true {
+
+                self.coreDataService.setFolder(name: "WeatherFolder")
+            }
+        }
+
+
+        print("📡", self.coreDataService.fetchedResultsControllerWeatherForecast.sections?[0].objects?.count)
+
 
         self.locationService.coordinator = self
 
@@ -45,15 +59,16 @@ class RootCoordinator: CoordinatorProtocol {
 
 
 
+
+    
     func showMainController() {
-        print("🧭showSettingController")
+        print("🧭 showSettingController")
 
         self.mainController = AssemblyMainController.setMainController(locationService: self.locationService, networkService: self.networkService, coreDataService: self.coreDataService )
+
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: true)
 
 
     }
-
-    
 
 }

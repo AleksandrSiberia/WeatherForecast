@@ -11,6 +11,8 @@ import CoreData
 
 class CoreDataService {
 
+
+
     lazy var persistentContainer: NSPersistentContainer = {
 
         var persistentContainer = NSPersistentContainer(name: "CoreDataModel")
@@ -35,16 +37,28 @@ class CoreDataService {
 
 
 
-//    lazy var fetchedResultsController: NSFetchedResultsController = {
-//
-//        let request = WeatherForecastCoreData.fetchRequest()
-//
-//        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true) ]
-//
-//        var fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-//
-//        return fetchedResultsController
-//    }()
+    lazy var fetchedResultsControllerWeatherForecast: NSFetchedResultsController = {
+
+        let request = WeatherForecastCoreData.fetchRequest()
+
+        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true) ]
+
+        var fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+
+        return fetchedResultsController
+    }()
+
+
+
+
+
+    init() {
+
+        self.performFetchFetchedResultsControllerWeatherForecast()
+
+    }
+
+
 
 
     func saveBackgroundContext() {
@@ -55,20 +69,33 @@ class CoreDataService {
         catch {
             print("‼️ error self.backgroundContext.save", error.localizedDescription)
         }
+
+    }
+
+
+    
+    func performFetchFetchedResultsControllerWeatherForecast() {
+
+        print("⭕️ try self.fetchedResultsController.performFetch()")
+        do {
+            try self.fetchedResultsControllerWeatherForecast.performFetch()
+        }
+        catch {
+            print("‼️ error self.fetchedResultsController.performFetch()", error.localizedDescription)
+        }
     }
 
 
 
-
-    func getFolder(name: String) -> FolderCoreData? {
+    func getFolder(name: String) -> [FolderCoreData]? {
 
         let request = FolderCoreData.fetchRequest()
 
-        request.predicate = NSPredicate(format: name)
+        request.predicate = NSPredicate(format: "name == %@", name)
 
         do {
             let folder = try self.backgroundContext.fetch(request)
-            return folder[0]
+            return folder
         }
 
         catch {
@@ -76,6 +103,7 @@ class CoreDataService {
             return nil
         }
     }
+
 
 
 
@@ -93,14 +121,35 @@ class CoreDataService {
 
 
 
+    func delateFolder(name: String) {
+
+        if let folder = getFolder(name: name) {
+
+            if folder.isEmpty == false {
+
+                self.backgroundContext.delete(getFolder(name: name)![0])
+
+                self.saveBackgroundContext()
+
+                self.performFetchFetchedResultsControllerWeatherForecast()
+            }
+        }
+    }
+
+
+    
+
     func setWeatherForecast(weatherModel: WeatherModel) {
 
-     
+        self.delateFolder(name: "WeatherFolder")
+
+        self.setFolder(name: "WeatherFolder")
+
         for date in weatherModel.dateAndTimeAllWeatherForecast {
 
-            var weatherForecastCoreData = WeatherForecastCoreData(context: self.backgroundContext)
+            let weatherForecastCoreData = WeatherForecastCoreData(context: self.backgroundContext)
 
-            weatherForecastCoreData.relationshipFolder = self.getFolder(name: "WeatherFolder")
+            weatherForecastCoreData.relationshipFolder = self.getFolder(name: "WeatherFolder")![0]
 
             weatherForecastCoreData.date = date.date
             weatherForecastCoreData.icon = date.weather[0].icon
@@ -116,6 +165,8 @@ class CoreDataService {
 
             self.saveBackgroundContext()
 
+            self.performFetchFetchedResultsControllerWeatherForecast()
+
         }
 
         let cityModel = CityModelCoreDada(context: self.backgroundContext)
@@ -125,6 +176,8 @@ class CoreDataService {
         cityModel.sunset = Int32(weatherModel.city.sunset)
 
         self.saveBackgroundContext()
+
+        self.performFetchFetchedResultsControllerWeatherForecast()
     }
 }
 

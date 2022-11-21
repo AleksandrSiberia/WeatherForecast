@@ -11,6 +11,7 @@ import Foundation
 class AssemblyMainController {
 
     
+
     static func setMainController(locationService: LocationService?, networkService: NetworkService, coreDataService: CoreDataService ) -> MainViewController {
 
         let controller = MainViewController()

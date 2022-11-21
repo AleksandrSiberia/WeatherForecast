@@ -58,7 +58,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     func getNameCurrentCityAndLocation(completion: @escaping (String, CLLocation) -> Void) {
 
-
         let geocoder = CLGeocoder()
 
         if let currentLocation = self.locationManager.location {
@@ -99,7 +98,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 UIApplication.shared.open(appSettings)
             }
         }
-
     }
 
 
@@ -114,10 +112,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
         }
 
-
-
         self.authorizationStatus = self.locationManager.authorizationStatus
-
 
         switch self.locationManager.authorizationStatus {
         case .notDetermined:
@@ -138,13 +133,16 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 self.currentCity = nameCity
 
                 self.networkService?.getData(completionHandler: { weatherModel in
-                    print( weatherModel)
+
+                    guard let weatherModel else {
+                        print("‼️ error weatherModel = nil ")
+                        return
+                    }
+                    self.coreDataService?.setWeatherForecast(weatherModel: weatherModel)
+
                 })
 
-
-                
                 self.coordinator?.showMainController()
-
 
             }
 

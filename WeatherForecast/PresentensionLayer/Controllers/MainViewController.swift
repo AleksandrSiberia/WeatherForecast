@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
 
     var networkService: NetworkService?
 
-    var coreDataService: CoreDataService!
+    var coreDataService: CoreDataService?
 
 
 
@@ -22,7 +22,7 @@ class MainViewController: UIViewController {
 
         self.navigationItem.title = self.locationService?.currentCity
 
-        
+    //    print(self.coreDataService?.getFolder(name: "WeatherFolder"))
 
 
     }
