@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="22A380" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CityModelCoreDada" representedClassName="CityModelCoreDada" syncable="YES" codeGenerationType="class">
-        <attribute name="sunrise" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="sunset" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="timezone" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="relationshipFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FolderCoreData" inverseName="relationshipCity" inverseEntity="FolderCoreData"/>
-    </entity>
     <entity name="FolderCoreData" representedClassName="FolderCoreData" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="relationshipCity" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CityModelCoreDada" inverseName="relationshipFolder" inverseEntity="CityModelCoreDada"/>
         <relationship name="relationshipWeather" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="WeatherForecastCoreData" inverseName="relationshipFolder" inverseEntity="WeatherForecastCoreData"/>
     </entity>
     <entity name="WeatherForecastCoreData" representedClassName="WeatherForecastCoreData" syncable="YES" codeGenerationType="class">
@@ -20,9 +13,12 @@
         <attribute name="humidity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="icon" optional="YES" attributeType="String"/>
         <attribute name="speedWind" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sunrise" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sunset" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="temp" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="tempMax" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="tepmMin" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="timezone" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="relationshipFolder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FolderCoreData" inverseName="relationshipWeather" inverseEntity="FolderCoreData"/>
     </entity>
 </model>

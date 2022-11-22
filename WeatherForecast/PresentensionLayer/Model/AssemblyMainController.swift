@@ -12,13 +12,11 @@ class AssemblyMainController {
 
     
 
-    static func setMainController(locationService: LocationService?, networkService: NetworkService, coreDataService: CoreDataService ) -> MainViewController {
+    static func setMainController(coordinator: CoordinatorProtocol ) -> MainViewController {
 
         let controller = MainViewController()
 
-        controller.locationService = locationService
-        controller.networkService = networkService
-        controller.coreDataService = coreDataService
+        controller.coordinator = coordinator
 
         controller.view.backgroundColor = .white
         return controller

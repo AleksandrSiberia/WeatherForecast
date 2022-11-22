@@ -9,19 +9,17 @@ import UIKit
 
 class MainViewController: UIViewController {
 
-    var locationService: LocationService?
-
-    var networkService: NetworkService?
-
-    var coreDataService: CoreDataService?
+    var coordinator: CoordinatorProtocol?
 
 
+    
     lazy var tableView: UITableView = {
 
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
         return tableView
     }()
 
@@ -30,7 +28,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.title = self.locationService?.currentCity
+        self.navigationItem.title = self.coordinator?.locationService.currentCity
 
         self.view.addSubview(self.tableView)
 
@@ -71,7 +69,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        return UITableViewCell()
+        if indexPath.section == 0 {
+
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: MainTopTableViewCell.nameCell, for: indexPath) as? MainTopTableViewCell
+            else {
+                return UITableViewCell()
+            }
+            cell.setupCell(nowWeather: self.coordinator?.weatherForecastService.getTodayForecast()?[0])
+            return cell
+        }
+        else {
+            return UITableViewCell()
+        }
     }
 
 

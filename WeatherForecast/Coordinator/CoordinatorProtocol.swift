@@ -11,7 +11,18 @@ import UIKit
 
 protocol CoordinatorProtocol {
 
+    var locationService: LocationService { get set }
+
+    var networkService: NetworkService { get set }
+
+    var coreDataService: CoreDataService { get set }
+
+    var weatherForecastService: WeatherForecastService { get set }
+
+
     func startCoordinator() -> UINavigationController
+
+
 
 
 }

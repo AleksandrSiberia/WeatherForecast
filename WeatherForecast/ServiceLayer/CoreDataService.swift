@@ -37,16 +37,16 @@ class CoreDataService {
 
 
 
-    lazy var fetchedResultsControllerWeatherForecast: NSFetchedResultsController = {
-
-        let request = WeatherForecastCoreData.fetchRequest()
-
-        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true) ]
-
-        var fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-
-        return fetchedResultsController
-    }()
+//    lazy var fetchedResultsControllerWeatherForecast: NSFetchedResultsController = {
+//
+//        let request = WeatherForecastCoreData.fetchRequest()
+//
+//        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
+//
+//        var fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
+//
+//        return fetchedResultsController
+//    }()
 
 
 
@@ -54,7 +54,7 @@ class CoreDataService {
 
     init() {
 
-        self.performFetchFetchedResultsControllerWeatherForecast()
+  //      self.performFetchFetchedResultsControllerWeatherForecast()
 
     }
 
@@ -74,16 +74,16 @@ class CoreDataService {
 
 
     
-    func performFetchFetchedResultsControllerWeatherForecast() {
-
-        print("⭕️ try self.fetchedResultsController.performFetch()")
-        do {
-            try self.fetchedResultsControllerWeatherForecast.performFetch()
-        }
-        catch {
-            print("‼️ error self.fetchedResultsController.performFetch()", error.localizedDescription)
-        }
-    }
+//    func performFetchFetchedResultsControllerWeatherForecast() {
+//
+//        print("⭕️ try self.fetchedResultsController.performFetch()")
+//        do {
+//            try self.fetchedResultsControllerWeatherForecast.performFetch()
+//        }
+//        catch {
+//            print("‼️ error self.fetchedResultsController.performFetch()", error.localizedDescription)
+//        }
+//    }
 
 
 
@@ -131,13 +131,36 @@ class CoreDataService {
 
                 self.saveBackgroundContext()
 
-                self.performFetchFetchedResultsControllerWeatherForecast()
+         //       self.performFetchFetchedResultsControllerWeatherForecast()
             }
         }
     }
 
 
+
+
+    func getWeatherForecast(attribute: String?, value: String?) -> [WeatherForecastCoreData]? {
+
+        let request = WeatherForecastCoreData.fetchRequest()
+
+        if let attribute, let value {
+
+            request.predicate = NSPredicate(format: "\(attribute) contains %@", value)
+        }
+
+        do {
+            let weatherForecast = try self.backgroundContext.fetch(request)
+            return weatherForecast
+        }
+        catch {
+            print("‼️ error self.backgroundContext.fetch(request)", error.localizedDescription)
+            return nil
+        }
+
+    }
     
+
+
 
     func setWeatherForecast(weatherModel: WeatherModel) {
 
@@ -163,21 +186,15 @@ class CoreDataService {
             weatherForecastCoreData.tepmMin = date.main.tempMin
             weatherForecastCoreData.speedWind = date.wind.speedWind
 
+            weatherForecastCoreData.timezone = Int32(weatherModel.city.timezone)
+            weatherForecastCoreData.sunset = Int32(weatherModel.city.sunset)
+            weatherForecastCoreData.sunrise = Int32(weatherModel.city.sunrise)
+
             self.saveBackgroundContext()
 
-            self.performFetchFetchedResultsControllerWeatherForecast()
+   //         self.performFetchFetchedResultsControllerWeatherForecast()
 
         }
-
-        let cityModel = CityModelCoreDada(context: self.backgroundContext)
-
-        cityModel.timezone = Int32(weatherModel.city.timezone)
-        cityModel.sunrise = Int32(weatherModel.city.sunrise)
-        cityModel.sunset = Int32(weatherModel.city.sunset)
-
-        self.saveBackgroundContext()
-
-        self.performFetchFetchedResultsControllerWeatherForecast()
     }
 }
 

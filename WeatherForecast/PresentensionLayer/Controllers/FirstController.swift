@@ -11,7 +11,7 @@ import CoreLocation
 class FirstController: UIViewController {
 
 
-    var locationService: LocationService!
+    var coordinator: CoordinatorProtocol!
         
 
 
@@ -76,7 +76,7 @@ class FirstController: UIViewController {
 
         let action = UIAction() { action in
             print("📲")
-            self.locationService.requestPermission()
+            self.coordinator.locationService.requestPermission()
 
            
 
@@ -102,7 +102,7 @@ class FirstController: UIViewController {
     private lazy var buttonDisallowIdentifyLocation: UIButton = {
 
         let action = UIAction() { action in
-            print("disallow", self.locationService.currentCity)
+            print("disallow", self.coordinator.locationService.currentCity)
         }
 
         var buttonDisallowIdentifyLocation = UIButton(primaryAction: action)

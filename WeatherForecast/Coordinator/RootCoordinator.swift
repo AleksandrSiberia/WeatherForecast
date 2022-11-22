@@ -13,11 +13,16 @@ import UIKit
 
 class RootCoordinator: CoordinatorProtocol {
 
-    private let locationService = LocationService()
 
-    private let networkService = NetworkService()
+    var locationService = LocationService()
 
-    private let coreDataService = CoreDataService()
+    var networkService = NetworkService()
+
+    var coreDataService = CoreDataService()
+
+    var weatherForecastService = WeatherForecastService()
+
+
 
     private weak var firstController: FirstController?
 
@@ -39,7 +44,7 @@ class RootCoordinator: CoordinatorProtocol {
         }
 
 
-        print("📡", self.coreDataService.fetchedResultsControllerWeatherForecast.sections?[0].objects?.count)
+
 
 
         self.locationService.coordinator = self
@@ -50,7 +55,17 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.locationService.networkService = self.networkService
 
-        self.firstController = AssemblyFirstController.setFirstController(locationService: self.locationService)
+        self.weatherForecastService.coreDataService = self.coreDataService
+
+
+
+        print("📡 >>>",
+            self.coreDataService.getWeatherForecast(attribute: nil, value: nil)?.count,
+              self.weatherForecastService.getTodayForecast()?.count)
+
+
+
+        self.firstController = AssemblyFirstController.setFirstController(coordinator: self)
 
         let navController = UINavigationController(rootViewController: self.firstController!)
 
@@ -64,7 +79,7 @@ class RootCoordinator: CoordinatorProtocol {
     func showMainController() {
         print("🧭 showSettingController")
 
-        self.mainController = AssemblyMainController.setMainController(locationService: self.locationService, networkService: self.networkService, coreDataService: self.coreDataService )
+        self.mainController = AssemblyMainController.setMainController(coordinator: self)
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: true)
 
