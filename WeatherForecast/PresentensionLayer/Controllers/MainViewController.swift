@@ -12,6 +12,11 @@ class MainViewController: UIViewController {
     var coordinator: CoordinatorProtocol?
 
 
+    var getTodayForecast: WeatherForecastCoreData?
+
+
+    var weatherModel: WeatherModel?
+
     
     lazy var tableView: UITableView = {
 
@@ -75,6 +80,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             else {
                 return UITableViewCell()
             }
+
+            guard self.coordinator?.weatherForecastService.getTodayForecast()?.isEmpty == false
+            else {
+
+                self.coordinator?.networkService.getData(completionHandler: { weatherModel in
+                    DispatchQueue.main.async {
+                        cell.setupCellNetwork(weatherModel: weatherModel)
+                    }
+                })
+
+                return cell }
+
+
             cell.setupCell(nowWeather: self.coordinator?.weatherForecastService.getTodayForecast()?[0])
             return cell
         }

@@ -33,17 +33,6 @@ class RootCoordinator: CoordinatorProtocol {
 
     func startCoordinator() -> UINavigationController {
 
-        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")!)
-
-
-        if let folder = self.coreDataService.getFolder(name: "WeatherFolder") {
-            if folder.isEmpty == true {
-
-                self.coreDataService.setFolder(name: "WeatherFolder")
-            }
-        }
-
-
 
 
 
@@ -57,6 +46,15 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.weatherForecastService.coreDataService = self.coreDataService
 
+
+        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")!)
+
+        if let folder = self.coreDataService.getFolder(name: "WeatherFolder") {
+            if folder.isEmpty == true {
+
+                self.coreDataService.setFolder(name: "WeatherFolder")
+            }
+        }
 
 
         print("📡 >>>",

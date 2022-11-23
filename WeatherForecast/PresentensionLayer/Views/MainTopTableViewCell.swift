@@ -10,8 +10,6 @@ import UIKit
 class MainTopTableViewCell: UITableViewCell {
 
 
-//    var nowWeather: WeatherForecastCoreData?
-
 
     private lazy var labelMinMaxTemp: UILabel = {
 
@@ -19,6 +17,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelMinMaxTemp.textColor = .white
         labelMinMaxTemp.translatesAutoresizingMaskIntoConstraints = false
         labelMinMaxTemp.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelMinMaxTemp.numberOfLines = 0
         return labelMinMaxTemp
     }()
     
@@ -30,6 +29,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelTemp.textColor = .white
         labelTemp.translatesAutoresizingMaskIntoConstraints = false
         labelTemp.font = UIFont(name: "Rubik-Medium", size: 36)
+        labelTemp.numberOfLines = 0
         return labelTemp
     }()
 
@@ -40,6 +40,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelDescriptionWeather.textColor = .white
         labelDescriptionWeather.translatesAutoresizingMaskIntoConstraints = false
         labelDescriptionWeather.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelDescriptionWeather.numberOfLines = 0
         return labelDescriptionWeather
     }()
 
@@ -51,6 +52,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelSpeedWind.textColor = .white
         labelSpeedWind.translatesAutoresizingMaskIntoConstraints = false
         labelSpeedWind.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelSpeedWind.numberOfLines = 0
         return labelSpeedWind
     }()
 
@@ -73,6 +75,7 @@ class MainTopTableViewCell: UITableViewCell {
         ViewCloudsPercent.textColor = .white
         ViewCloudsPercent.translatesAutoresizingMaskIntoConstraints = false
         ViewCloudsPercent.font = UIFont(name: "Rubik-Regular", size: 14)
+        ViewCloudsPercent.numberOfLines = 0
         return ViewCloudsPercent
     }()
 
@@ -105,9 +108,35 @@ class MainTopTableViewCell: UITableViewCell {
         labelHumidity.textColor = .white
         labelHumidity.translatesAutoresizingMaskIntoConstraints = false
         labelHumidity.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelHumidity.numberOfLines = 0
         return labelHumidity
     }()
 
+
+    lazy var labelDate: UILabel = {
+
+        var labelDate = UILabel()
+        labelDate.textColor = UIColor(named: "#F6DD01")
+        labelDate.translatesAutoresizingMaskIntoConstraints = false
+        labelDate.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelDate.numberOfLines = 0
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm, E dd MMMM"
+        labelDate.text = dateFormatter.string(from: Date())
+
+        return labelDate
+    }()
+
+
+    lazy var imageViewRainbow: UIImageView = {
+
+        var imageViewRainbow = UIImageView()
+        imageViewRainbow.translatesAutoresizingMaskIntoConstraints = false
+        imageViewRainbow.image = UIImage(named: "rainbow")
+        imageViewRainbow.contentMode = .scaleAspectFit
+        return imageViewRainbow
+    }()
 
 
 
@@ -117,7 +146,7 @@ class MainTopTableViewCell: UITableViewCell {
 
         self.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
 
-        [self.labelMinMaxTemp, self.labelTemp, self.labelDescriptionWeather,  self.labelSpeedWind, self.imageViewSpeedWind, self.labelCloudsPercent, self.imageViewCloudsPercent, self.imageViewHumidity, self.labelHumidity ].forEach { self.addSubview($0) }
+        [self.imageViewRainbow, self.labelMinMaxTemp, self.labelTemp, self.labelDescriptionWeather,  self.labelSpeedWind, self.imageViewSpeedWind, self.labelCloudsPercent, self.imageViewCloudsPercent, self.imageViewHumidity, self.labelHumidity, self.labelDate ].forEach { self.addSubview($0) }
 
         self.setupLayoutConstrains()
 
@@ -130,6 +159,13 @@ class MainTopTableViewCell: UITableViewCell {
 
     func setupLayoutConstrains() {
         NSLayoutConstraint.activate([
+
+            self.heightAnchor.constraint(equalToConstant: 250),
+
+            self.imageViewRainbow.topAnchor.constraint(equalTo: self.topAnchor, constant: 17),
+            self.imageViewRainbow.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            self.imageViewRainbow.trailingAnchor.constraint(equalTo: self.trailingAnchor),
+
             self.labelMinMaxTemp.topAnchor.constraint(equalTo: self.topAnchor, constant: 33),
             self.labelMinMaxTemp.centerXAnchor.constraint(equalTo: self.centerXAnchor),
 
@@ -160,21 +196,41 @@ class MainTopTableViewCell: UITableViewCell {
             self.labelHumidity.leadingAnchor.constraint(equalTo: self.imageViewHumidity.trailingAnchor, constant: 5),
             self.labelHumidity.centerYAnchor.constraint(equalTo: self.labelSpeedWind.centerYAnchor),
 
-
-
-            self.labelSpeedWind.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -21)
+            self.labelDate.topAnchor.constraint(equalTo: self.labelSpeedWind.bottomAnchor, constant: 10),
+            self.labelDate.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.labelDate.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -21)
 
         ])
     }
 
 
-    func setupCell(nowWeather: WeatherForecastCoreData?) {
+    func setupCellNetwork(weatherModel: WeatherModel?) {
 
+        let todayWeatherModel = weatherModel?.dateAndTimeAllWeatherForecast[0]
+
+        let tepmMin = String(todayWeatherModel?.main.tempMin ?? 0)
+        let tempMax = String(todayWeatherModel?.main.tempMax ?? 0)
+        let  labelMinMaxTemp = "\(tepmMin)°/\(tempMax)°"
+        self.labelMinMaxTemp.text = labelMinMaxTemp
+
+        self.labelTemp.text = String(todayWeatherModel?.main.temp ?? 0)
+
+        self.labelDescriptionWeather.text = String(todayWeatherModel?.weather[0].descriptionWeather ?? "")
+
+        self.labelSpeedWind.text = String(todayWeatherModel?.wind.speedWind ?? 0) + " м/с"
+
+        self.labelCloudsPercent.text = String(todayWeatherModel?.clouds.cloudsPercent ?? 0) + " %"
+
+        self.labelHumidity.text = String(todayWeatherModel?.main.humidity ?? 0) + " %"
+
+    }
+
+
+    func setupCell(nowWeather: WeatherForecastCoreData?) {
 
         let tepmMin = String(nowWeather?.tepmMin ?? 0)
         let tempMax = String(nowWeather?.tempMax ?? 0)
         let  labelMinMaxTemp = "\(tepmMin)°/\(tempMax)°"
-
         self.labelMinMaxTemp.text = labelMinMaxTemp
 
         self.labelTemp.text = String(nowWeather?.temp ?? 0) + "°"
@@ -184,13 +240,12 @@ class MainTopTableViewCell: UITableViewCell {
         self.labelSpeedWind.text = String(nowWeather?.speedWind ?? 0) + " м/с"
 
         self.labelCloudsPercent.text = String(nowWeather?.cloudsPercent ?? 0) + " %"
-
+        
         self.labelHumidity.text = String(nowWeather?.humidity ?? 0) + " %"
-
-
     }
-
 }
+
+
 
 extension MainTopTableViewCell: CellNameProtocol {
 

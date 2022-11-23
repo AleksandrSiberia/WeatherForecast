@@ -35,6 +35,8 @@ class WeatherForecastService {
 
         let todayForecast = self.coreDataService?.getWeatherForecast(attribute: "date", value: todayDateString)
 
+        
+
         return todayForecast
     }
 
