@@ -93,7 +93,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell }
 
 
-            cell.setupCell(nowWeather: self.coordinator?.weatherForecastService.getTodayForecast()?[0])
+            cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getTodayForecast()?[0])
             return cell
         }
         else {

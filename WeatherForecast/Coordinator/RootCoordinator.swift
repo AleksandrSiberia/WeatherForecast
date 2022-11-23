@@ -79,7 +79,7 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.mainController = AssemblyMainController.setMainController(coordinator: self)
 
-        self.firstController?.navigationController?.pushViewController(self.mainController!, animated: true)
+        self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
 
 
     }

@@ -138,16 +138,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                         print("‼️ error weatherModel = nil ")
                         return
                     }
-                    
                     self.coreDataService?.setWeatherForecast(weatherModel: weatherModel)
-
-
-
                 })
-
                 self.coordinator?.showMainController()
-
             }
+
+
 
         @unknown default:
             print("unknown default")
