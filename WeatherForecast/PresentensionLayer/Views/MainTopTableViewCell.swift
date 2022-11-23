@@ -9,6 +9,15 @@ import UIKit
 
 class MainTopTableViewCell: UITableViewCell {
 
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        var activityIndicator = UIActivityIndicatorView()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.startAnimating()
+        activityIndicator.color = .white
+        activityIndicator.transform = CGAffineTransform(scaleX: 2, y: 2)
+        return activityIndicator
+    }()
+
 
     lazy var imageViewRainbow: UIImageView = {
 
@@ -194,7 +203,7 @@ class MainTopTableViewCell: UITableViewCell {
 
         self.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
 
-        [   self.imageViewRainbow, self.imageViewSunrise, self.imageViewSunset, self.labelSunrise, self.labelSunset, self.labelMinMaxTemp, self.labelTemp, self.labelDescriptionWeather,  self.labelSpeedWind, self.imageViewSpeedWind, self.labelCloudsPercent, self.imageViewCloudsPercent, self.imageViewHumidity, self.labelHumidity, self.labelDate ].forEach { self.addSubview($0) }
+        [   self.imageViewRainbow, self.imageViewSunrise, self.imageViewSunset, self.labelSunrise, self.labelSunset, self.labelMinMaxTemp, self.labelTemp, self.labelDescriptionWeather,  self.labelSpeedWind, self.imageViewSpeedWind, self.labelCloudsPercent, self.imageViewCloudsPercent, self.imageViewHumidity, self.labelHumidity, self.labelDate, self.activityIndicator ].forEach { self.addSubview($0) }
 
         self.setupLayoutConstrains()
 
@@ -207,6 +216,9 @@ class MainTopTableViewCell: UITableViewCell {
 
     func setupLayoutConstrains() {
         NSLayoutConstraint.activate([
+
+            self.activityIndicator.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            self.activityIndicator.centerYAnchor.constraint(equalTo: self.centerYAnchor),
 
 
             self.imageViewRainbow.topAnchor.constraint(equalTo: self.topAnchor, constant: 17),
@@ -300,16 +312,18 @@ class MainTopTableViewCell: UITableViewCell {
         let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
         self.labelSunset.text = timeSunset
 
+        self.activityIndicator.stopAnimating()
         self.imageViewRainbow.isHidden = false
         self.imageViewSunrise.isHidden = false
         self.imageViewSunset.isHidden = false
+
 
     }
 
 
     func setupCellCoreData(nowWeather: WeatherForecastCoreData?) {
 
-
+        self.activityIndicator.stopAnimating()
 
         let tepmMin = String(nowWeather?.tepmMin ?? 0)
         let tempMax = String(nowWeather?.tempMax ?? 0)
