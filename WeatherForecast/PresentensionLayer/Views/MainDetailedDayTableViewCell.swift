@@ -7,19 +7,38 @@
 
 import UIKit
 
+
 class MainDetailedDayTableViewCell: UITableViewCell {
 
 
     var dayForecast: [WeatherForecastCoreData]?
 
-    private let itemCount = 5.0
+    private let itemCount = 4.0
 
+
+
+
+    private lazy var buttonDetailedDayForecast: UIButton = {
+
+        let action = UIAction{  _ in
+            print("buttonDetailedDayForecast")
+        }
+
+        var buttonDetailedDayForecast = UIButton(primaryAction: action)
+        buttonDetailedDayForecast.setTitle("Подробнее на 24 часа", for: .normal)
+        buttonDetailedDayForecast.translatesAutoresizingMaskIntoConstraints = false
+
+        return buttonDetailedDayForecast
+    }()
+    
 
 
     private lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
         var collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.scrollDirection = .horizontal
-        collectionViewFlowLayout.minimumInteritemSpacing = 2
+        collectionViewFlowLayout.minimumInteritemSpacing = 16
+        collectionViewFlowLayout.sectionInset.left = 16
+        collectionViewFlowLayout.sectionInset.bottom = 16
         return collectionViewFlowLayout
     }()
 
@@ -36,23 +55,29 @@ class MainDetailedDayTableViewCell: UITableViewCell {
     }()
 
 
-
+    
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.contentView.addSubview(self.collectionView)
+        self.contentView.addSubview( self.buttonDetailedDayForecast)
+        self.contentView.addSubview( self.collectionView)
 
-        self.backgroundColor = .black
+        self.backgroundColor = .white
 
-
-        
         NSLayoutConstraint.activate([
 
-            self.collectionView.topAnchor.constraint(equalTo: self.topAnchor),
-            self.collectionView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
-            self.collectionView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.collectionView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.buttonDetailedDayForecast.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 33),
+            self.buttonDetailedDayForecast.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
+
+            self.collectionView.topAnchor.constraint(equalTo: self.buttonDetailedDayForecast.bottomAnchor, constant: 24),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            self.collectionView.heightAnchor.constraint(equalToConstant: self.getSizeItem().height + self.collectionViewFlowLayout.sectionInset.bottom)
+
+
         ])
     }
 
@@ -65,12 +90,38 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
 
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+
+    }
+
+
 
     func setupCellCoreData(dayForecast: [WeatherForecastCoreData]? ) {
 
         self.dayForecast = dayForecast
     }
 
+
+
+
+    func getSizeItem() -> CGSize {
+
+        let screenWidth = UIScreen.main.bounds.width
+
+        let itemSpacing = self.collectionViewFlowLayout.minimumInteritemSpacing
+
+        let itemSpacingCount = self.itemCount - 1.0
+
+        let itemWidth = (screenWidth - self.collectionViewFlowLayout.sectionInset.left - (itemSpacing * itemSpacingCount)) / self.itemCount
+
+
+        let itemCGSize = CGSize(width: itemWidth, height: itemWidth * 2)
+
+        return itemCGSize
+
+    }
 }
 
 
@@ -93,7 +144,13 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
         else {
             return UICollectionViewCell()
         }
-        cell.setupCollectionCellCoreData(dayForecast: self.dayForecast)
+        guard self.dayForecast?.isEmpty == false
+        else {
+            print("‼️ self.dayForecast?.isEmpty == true")
+            return UICollectionViewCell()
+        }
+        
+        cell.setupCollectionCellCoreData(dayForecast: self.dayForecast?[indexPath.row])
         
         return cell
     }
@@ -102,16 +159,7 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let screenWidth = collectionView.frame.width
-        let itemSpacing = self.collectionViewFlowLayout.minimumInteritemSpacing
-
-        let itemSpacingCount = self.itemCount - 1.0
-
-        let itemWidth = (screenWidth - (itemSpacing * itemSpacingCount)) / self.itemCount
-
-        let itemCGSize = CGSize(width: itemWidth, height: itemWidth * 2)
-
-        return itemCGSize
+        return self.getSizeItem()
     }
 
 

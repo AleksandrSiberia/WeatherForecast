@@ -64,6 +64,7 @@ class MainTopTableViewCell: UITableViewCell {
     }()
 
 
+
     private lazy var labelSunset: UILabel = {
 
         var labelSunset = UILabel()
@@ -73,6 +74,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelSunset.numberOfLines = 0
         return labelSunset
     }()
+
 
 
     private lazy var labelMinMaxTemp: UILabel = {
@@ -96,6 +98,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelTemp.numberOfLines = 0
         return labelTemp
     }()
+
 
 
     private lazy var labelDescriptionWeather: UILabel = {

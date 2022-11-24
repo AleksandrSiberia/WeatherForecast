@@ -44,7 +44,9 @@ class MainViewController: UIViewController {
 
 
     func setupLayoutConstrains() {
+        
         NSLayoutConstraint.activate([
+
             self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
@@ -113,6 +115,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
            }
 
             cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getTodayForecast())
+           
             return cell
         }
 
