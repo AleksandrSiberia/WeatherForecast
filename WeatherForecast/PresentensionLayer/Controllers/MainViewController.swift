@@ -25,6 +25,7 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
+        tableView.register( MainDetailedDayTableViewCell.self, forCellReuseIdentifier: MainDetailedDayTableViewCell.nameCell)
         return tableView
     }()
 
@@ -74,10 +75,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+
+
         if indexPath.section == 0 {
 
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: MainTopTableViewCell.nameCell, for: indexPath) as? MainTopTableViewCell
             else {
+                print("‼️ indexPath.section == 0")
                 return UITableViewCell()
             }
 
@@ -96,6 +100,24 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getTodayForecast()?[0])
             return cell
         }
+
+
+
+
+        if indexPath.section == 1 {
+
+           guard let cell = tableView.dequeueReusableCell(withIdentifier:  MainDetailedDayTableViewCell.nameCell, for: indexPath) as? MainDetailedDayTableViewCell
+            else {
+               print("‼️ indexPath.section == 1")
+               return UITableViewCell()
+           }
+
+            cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getTodayForecast())
+            return cell
+        }
+
+
+
         else {
             return UITableViewCell()
         }

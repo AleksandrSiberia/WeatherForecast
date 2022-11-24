@@ -9,7 +9,7 @@ import UIKit
 
 class MainTopTableViewCell: UITableViewCell {
 
-    lazy var activityIndicator: UIActivityIndicatorView = {
+    private lazy var activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.startAnimating()
@@ -19,7 +19,7 @@ class MainTopTableViewCell: UITableViewCell {
     }()
 
 
-    lazy var imageViewRainbow: UIImageView = {
+    private lazy var imageViewRainbow: UIImageView = {
 
         var imageViewRainbow = UIImageView()
         imageViewRainbow.translatesAutoresizingMaskIntoConstraints = false
@@ -30,7 +30,7 @@ class MainTopTableViewCell: UITableViewCell {
     }()
 
 
-    lazy var imageViewSunrise: UIImageView = {
+    private lazy var imageViewSunrise: UIImageView = {
 
         var imageViewSunrise = UIImageView()
         imageViewSunrise.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class MainTopTableViewCell: UITableViewCell {
     }()
 
 
-    lazy var imageViewSunset: UIImageView = {
+    private lazy var imageViewSunset: UIImageView = {
 
         var imageViewSunset = UIImageView()
         imageViewSunset.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +51,7 @@ class MainTopTableViewCell: UITableViewCell {
         return imageViewSunset
     }()
 
-
+    
 
     private lazy var labelSunrise: UILabel = {
 

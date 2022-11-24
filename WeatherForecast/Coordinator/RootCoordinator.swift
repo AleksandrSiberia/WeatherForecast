@@ -81,7 +81,5 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
 
-
     }
-
 }
