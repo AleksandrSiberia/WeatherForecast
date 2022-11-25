@@ -14,6 +14,7 @@ class NetworkService {
     var locationService: LocationService?
 
 
+
     init() {
      
     }
@@ -28,7 +29,7 @@ class NetworkService {
         let longitude = String(describing: self.locationService!.currentLongitude!)
 
         let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + latitude + "&lon=" + longitude + "&appid=c6a8cb66ecd2502365bcc7589784a114"
-
+        
         return url
 
     }
@@ -37,7 +38,6 @@ class NetworkService {
     func getData(completionHandler: @escaping (WeatherModel?) -> Void ) {
 
         let url = URL(string: self.getURL())
-
 
 
         let session = URLSession(configuration: .default)

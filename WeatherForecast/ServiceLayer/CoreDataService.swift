@@ -76,7 +76,7 @@ class CoreDataService {
     
 //    func performFetchFetchedResultsControllerWeatherForecast() {
 //
-//        print("⭕️ try self.fetchedResultsController.performFetch()")
+//
 //        do {
 //            try self.fetchedResultsControllerWeatherForecast.performFetch()
 //        }
@@ -131,7 +131,7 @@ class CoreDataService {
 
                 self.saveBackgroundContext()
 
-         //       self.performFetchFetchedResultsControllerWeatherForecast()
+         //     self.performFetchFetchedResultsControllerWeatherForecast()
             }
         }
     }

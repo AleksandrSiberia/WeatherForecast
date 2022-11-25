@@ -9,7 +9,17 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+
     var coordinator: CoordinatorProtocol?
+
+
+
+    var dayForecastNetwork: WeatherModel? {
+        
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
 
     var getTodayForecast: WeatherForecastCoreData?
@@ -40,7 +50,25 @@ class MainViewController: UIViewController {
 
         self.setupLayoutConstrains()
 
+
+
+//        self.coordinator?.networkService.getData(completionHandler: { weatherModel in
+//            if let weatherModel {
+//                self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
+//
+//            }
+//        })
+
     }
+
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+
+
+    }
+
 
 
     func setupLayoutConstrains() {
@@ -82,26 +110,36 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 0 {
 
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: MainTopTableViewCell.nameCell, for: indexPath) as? MainTopTableViewCell
+
             else {
                 print("‼️ indexPath.section == 0")
                 return UITableViewCell()
             }
 
-            guard self.coordinator?.weatherForecastService.getTodayForecast()?.isEmpty == false
+            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false
+
             else {
 
-                self.coordinator?.networkService.getData(completionHandler: { weatherModel in
-                    DispatchQueue.main.async {
-                        cell.setupCellNetwork(weatherModel: weatherModel)
-                    }
-                })
+                cell.setupCellNetwork(weatherModel: self.dayForecastNetwork)
 
-                return cell }
+                
+//                self.coordinator?.networkService.getData(completionHandler: { weatherModel in
+//
+//                    DispatchQueue.main.async {
+//                        self.dayForecast = weatherModel
+//                        self.tableView.reloadData()
+//                        cell.setupCellNetwork(weatherModel: weatherModel)
+//
+//                    }
+//                })
 
+                return cell
+            }
 
-            cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getTodayForecast()?[0])
+            cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getTodayForecastCoreData()?[0])
             return cell
         }
+
 
 
 
@@ -109,12 +147,22 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 1 {
 
            guard let cell = tableView.dequeueReusableCell(withIdentifier:  MainDetailedDayTableViewCell.nameCell, for: indexPath) as? MainDetailedDayTableViewCell
+
             else {
                print("‼️ indexPath.section == 1")
                return UITableViewCell()
            }
 
-            cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getTodayForecast())
+            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false
+
+            else {
+
+                cell.setupCellNetwork(dayForecast: self.dayForecastNetwork)
+                return cell
+
+            }
+
+            cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getTodayForecastCoreData())
            
             return cell
         }

@@ -16,14 +16,13 @@ class WeatherForecastService {
 
     init() {
 
-       
+  
     }
 
 
 
-    func getTodayForecast() -> [WeatherForecastCoreData]? {
+    func getTodayForecastCoreData() -> [WeatherForecastCoreData]? {
 
-        
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -33,10 +32,12 @@ class WeatherForecastService {
 
         print("1️⃣ today", todayDateString)
 
-        let todayForecast = self.coreDataService?.getWeatherForecast(attribute: "date", value: todayDateString)
+        let todayForecast = self.coreDataService?.getWeatherForecast(attribute: nil, value: nil)
 
         return todayForecast
     }
+
+
 }
 
 

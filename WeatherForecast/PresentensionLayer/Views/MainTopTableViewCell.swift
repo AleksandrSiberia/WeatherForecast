@@ -315,10 +315,10 @@ class MainTopTableViewCell: UITableViewCell {
         let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
         self.labelSunset.text = timeSunset
 
-        self.activityIndicator.stopAnimating()
-        self.imageViewRainbow.isHidden = false
-        self.imageViewSunrise.isHidden = false
-        self.imageViewSunset.isHidden = false
+     //   self.activityIndicator.stopAnimating()
+//        self.imageViewRainbow.isHidden = false
+//        self.imageViewSunrise.isHidden = false
+//        self.imageViewSunset.isHidden = false
 
 
     }
@@ -355,6 +355,7 @@ class MainTopTableViewCell: UITableViewCell {
         let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
         self.labelSunset.text = timeSunset
 
+        
         self.imageViewRainbow.isHidden = false
         self.imageViewSunrise.isHidden = false
         self.imageViewSunset.isHidden = false

@@ -77,7 +77,6 @@
 				8B55D9DF2924FB6600574A7F /* LocationService.swift */,
 				8B55D9F32927831D00574A7F /* CoreDataService.swift */,
 				8B55D9F82927BE7600574A7F /* NetworkService.swift */,
-				8B55D9FC292CAD0C00574A7F /* WeatherForecastService.swift */,
 			);
 			path = ServiceLayer;
 			sourceTree = "<group>";
@@ -115,6 +114,7 @@
 			children = (
 				8B55D9FE292CD74C00574A7F /* CellNameProtocol.swift */,
 				8B55D9FA292BA3F300574A7F /* MainTopTableViewCell.swift */,
+				8B55D9FC292CAD0C00574A7F /* WeatherForecastService.swift */,
 				8B55DA00292F470E00574A7F /* MainDetailedDayTableViewCell.swift */,
 				8B55DA02292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift */,
 			);

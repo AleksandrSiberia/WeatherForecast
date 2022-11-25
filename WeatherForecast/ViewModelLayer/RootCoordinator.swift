@@ -26,7 +26,7 @@ class RootCoordinator: CoordinatorProtocol {
 
     private weak var firstController: FirstController?
 
-    private weak var mainController: MainViewController?
+    weak var mainController: MainViewController?
 
 
     
@@ -47,7 +47,7 @@ class RootCoordinator: CoordinatorProtocol {
         self.weatherForecastService.coreDataService = self.coreDataService
 
 
-        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")!)
+        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")?.count)
 
         if let folder = self.coreDataService.getFolder(name: "WeatherFolder") {
             if folder.isEmpty == true {
@@ -56,12 +56,9 @@ class RootCoordinator: CoordinatorProtocol {
             }
         }
 
+        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")?.count)
 
-        print("📡 >>>",
-            self.coreDataService.getWeatherForecast(attribute: nil, value: nil)?.count,
-              self.weatherForecastService.getTodayForecast()?.count)
-
-
+        
 
         self.firstController = AssemblyFirstController.setFirstController(coordinator: self)
 

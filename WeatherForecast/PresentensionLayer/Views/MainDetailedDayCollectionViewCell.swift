@@ -10,9 +10,6 @@ import UIKit
 class MainDetailedDayCollectionViewCell: UICollectionViewCell {
 
 
-    
-
-
     private lazy var labelTimeForecast: UILabel = {
 
         var labelTimeForecast = UILabel()
@@ -24,6 +21,28 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
     }()
 
 
+
+
+    private lazy var imageViewIconWeather: UIImageView = {
+
+        var imageViewIconWeather = UIImageView()
+        imageViewIconWeather.translatesAutoresizingMaskIntoConstraints = false
+        imageViewIconWeather.contentMode = .scaleAspectFit
+        return imageViewIconWeather
+    }()
+    
+
+
+
+    private lazy var labelTempForecast: UILabel = {
+
+        var labelTempForecast = UILabel()
+        labelTempForecast.textColor = .black
+        labelTempForecast.translatesAutoresizingMaskIntoConstraints = false
+        labelTempForecast.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelTempForecast.numberOfLines = 0
+        return labelTempForecast
+    }()
     
 
     override init(frame: CGRect) {
@@ -35,7 +54,7 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.borderWidth = 0.3
         self.contentView.layer.borderColor = UIColor.black.cgColor
 
-        [ self.labelTimeForecast].forEach { self.contentView.addSubview($0) }
+        [ self.labelTimeForecast, self.imageViewIconWeather, self.labelTempForecast].forEach { self.contentView.addSubview($0) }
 
         self.setupLayoutConstraints()
     }
@@ -56,13 +75,49 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
     func setupLayoutConstraints() {
         NSLayoutConstraint.activate([
 
-            self.labelTimeForecast.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 2),
+
             self.labelTimeForecast.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
 
-            self.labelTimeForecast.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -13)
+            self.imageViewIconWeather.topAnchor.constraint(equalTo: self.labelTimeForecast.bottomAnchor, constant: 4),
+            self.imageViewIconWeather.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.imageViewIconWeather.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            self.imageViewIconWeather.heightAnchor.constraint(equalToConstant: 50),
 
+            self.labelTempForecast.topAnchor.constraint(equalTo: self.imageViewIconWeather.bottomAnchor, constant: 4),
+            self.labelTempForecast.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor)
         ])
     }
+
+
+    func setupCollectionCellNetwork(dayForecast: WeatherModel?, indexPath: IndexPath) {
+
+
+        let stringDate = dayForecast?.dateAndTimeAllWeatherForecast[indexPath.row].date ?? ""
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        guard let dateDate = dateFormatter.date(from: stringDate)
+
+        else {
+            self.labelTimeForecast.text = ""
+            return
+        }
+
+        dateFormatter.dateFormat = "HH:mm"
+        let time = dateFormatter.string(from: dateDate)
+        self.labelTimeForecast.text = time
+
+
+
+        self.imageViewIconWeather.image = UIImage(named: dayForecast?.dateAndTimeAllWeatherForecast[indexPath.row].weather[0].icon ?? "")
+
+        self.labelTempForecast.text = String(dayForecast?.dateAndTimeAllWeatherForecast[indexPath.row].main.temp ?? 0)
+
+
+    }
+
+
 
 
     
@@ -84,11 +139,10 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
         let time = dateFormatter.string(from: dateDate)
         self.labelTimeForecast.text = time
 
-        print("⌚️", time)
 
+        self.imageViewIconWeather.image = UIImage(named: dayForecast?.icon ?? "")
 
-
-
+        self.labelTempForecast.text = String(dayForecast?.temp ?? 0)
 
     }
 }

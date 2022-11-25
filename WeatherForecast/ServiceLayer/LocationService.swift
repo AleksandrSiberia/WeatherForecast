@@ -128,9 +128,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
             print("👍 authorizedWhenInUse")
 
+
+
             self.getNameCurrentCityAndLocation { nameCity, location in
 
                 self.currentCity = nameCity
+
 
                 self.networkService?.getData(completionHandler: { weatherModel in
 
@@ -138,9 +141,21 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                         print("‼️ error weatherModel = nil ")
                         return
                     }
-                    self.coreDataService?.setWeatherForecast(weatherModel: weatherModel)
+
+
+                    if self.coordinator?.coreDataService.getWeatherForecast(attribute: nil, value: nil)?.isEmpty == true {
+
+                        DispatchQueue.main.async {
+
+                            self.coordinator?.mainController?.dayForecastNetwork = weatherModel
+
+                            
+                        }
+                    }
                 })
+
                 self.coordinator?.showMainController()
+
             }
 
 
