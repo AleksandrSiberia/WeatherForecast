@@ -51,20 +51,26 @@ class MainViewController: UIViewController {
         self.setupLayoutConstrains()
 
 
-
-//        self.coordinator?.networkService.getData(completionHandler: { weatherModel in
-//            if let weatherModel {
-//                self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
-//
-//            }
-//        })
+        self.coordinator?.networkService.getData(completionHandler: { weatherModel in
+            if let weatherModel {
+                self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    print("🍒 self.tableView.reloadData()")
+                }
+            }
+        })
 
     }
 
 
+
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
+
+
+
 
 
     }
@@ -116,25 +122,15 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false
+            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false && self.dayForecastNetwork == nil
 
             else {
 
                 cell.setupCellNetwork(weatherModel: self.dayForecastNetwork)
 
-                
-//                self.coordinator?.networkService.getData(completionHandler: { weatherModel in
-//
-//                    DispatchQueue.main.async {
-//                        self.dayForecast = weatherModel
-//                        self.tableView.reloadData()
-//                        cell.setupCellNetwork(weatherModel: weatherModel)
-//
-//                    }
-//                })
-
                 return cell
             }
+
 
             cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getTodayForecastCoreData()?[0])
             return cell
@@ -153,7 +149,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                return UITableViewCell()
            }
 
-            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false
+            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false  &&  self.dayForecastNetwork == nil
 
             else {
 

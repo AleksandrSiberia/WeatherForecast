@@ -137,7 +137,7 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        guard let dayForecastCoreData = self.dayForecastCoreData else {
+        guard self.dayForecastCoreData != nil && self.dayForecastNetwork == nil else {
 
             guard let _ = self.dayForecastNetwork
             else {
@@ -147,7 +147,7 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
             return self.dayForecastNetwork?.dateAndTimeAllWeatherForecast.count ?? 0
         }
 
-        return dayForecastCoreData.count
+        return self.dayForecastCoreData?.count ?? 0
 
     }
 
@@ -160,7 +160,7 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
             return UICollectionViewCell()
         }
 
-        guard self.dayForecastCoreData?.isEmpty == false
+        guard self.dayForecastCoreData?.isEmpty == false && self.dayForecastNetwork == nil
 
         else {
             
