@@ -49,7 +49,7 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         self.contentView.layer.masksToBounds = true
-        self.contentView.layer.cornerRadius = 25
+        self.contentView.layer.cornerRadius = 22
         self.contentView.layer.borderWidth = 0.3
         self.contentView.layer.borderColor = UIColor.black.cgColor
 

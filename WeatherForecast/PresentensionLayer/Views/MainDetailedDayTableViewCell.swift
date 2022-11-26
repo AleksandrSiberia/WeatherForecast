@@ -37,7 +37,21 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
         return buttonDetailedDayForecast
     }()
+
+
+
+    private lazy var labelEverydayForecast: UILabel = {
+
+        var labelEverydayForecast = UILabel()
+        labelEverydayForecast.textColor = .black
+        labelEverydayForecast.translatesAutoresizingMaskIntoConstraints = false
+        labelEverydayForecast.font = UIFont(name: "Rubik-Medium", size: 18)
+        labelEverydayForecast.numberOfLines = 0
+        labelEverydayForecast.text = "Ежедневный прогноз"
+        return labelEverydayForecast
+    }()
     
+
 
 
     private lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -48,6 +62,7 @@ class MainDetailedDayTableViewCell: UITableViewCell {
         collectionViewFlowLayout.sectionInset.bottom = 16
         return collectionViewFlowLayout
     }()
+
 
 
 
@@ -65,24 +80,30 @@ class MainDetailedDayTableViewCell: UITableViewCell {
     
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.contentView.addSubview( self.buttonDetailedDayForecast)
-        self.contentView.addSubview( self.collectionView)
+
+        [ self.labelEverydayForecast, self.buttonDetailedDayForecast, self.collectionView ].forEach { self.contentView.addSubview($0)}
+
 
         self.backgroundColor = .white
 
         NSLayoutConstraint.activate([
 
-            self.buttonDetailedDayForecast.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 33),
+            self.buttonDetailedDayForecast.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 15),
             self.buttonDetailedDayForecast.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
 
             self.collectionView.topAnchor.constraint(equalTo: self.buttonDetailedDayForecast.bottomAnchor, constant: 24),
             self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
-            self.collectionView.heightAnchor.constraint(equalToConstant: self.getSizeItem().height + self.collectionViewFlowLayout.sectionInset.bottom)
+            self.collectionView.heightAnchor.constraint(equalToConstant: self.getSizeItem().height + self.collectionViewFlowLayout.sectionInset.bottom),
+
+            self.labelEverydayForecast.topAnchor.constraint(equalTo: self.collectionView.bottomAnchor, constant: 10),
+            self.labelEverydayForecast.leadingAnchor.constraint(equalTo: self.collectionView.leadingAnchor, constant: 15),
+
+            self.labelEverydayForecast.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
+
+
 
 
         ])
@@ -104,9 +125,9 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
         self.dayForecastCoreData = dayForecast
 
-
         self.collectionView.reloadData()
     }
+
 
 
     func setupCellNetwork(dayForecast: WeatherModel?) {

@@ -204,7 +204,8 @@ class MainTopTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        self.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+        self.contentView.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+        self.contentView.layer.cornerRadius = 8
 
         [   self.imageViewRainbow, self.imageViewSunrise, self.imageViewSunset, self.labelSunrise, self.labelSunset, self.labelMinMaxTemp, self.labelTemp, self.labelDescriptionWeather,  self.labelSpeedWind, self.imageViewSpeedWind, self.labelCloudsPercent, self.imageViewCloudsPercent, self.imageViewHumidity, self.labelHumidity, self.labelDate, self.activityIndicator ].forEach { self.addSubview($0) }
 

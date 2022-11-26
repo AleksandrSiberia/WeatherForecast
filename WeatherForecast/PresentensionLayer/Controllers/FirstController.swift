@@ -74,15 +74,20 @@ class FirstController: UIViewController {
 
     private lazy var buttonAllowIdentifyLocation: UIButton = {
 
+
         let action = UIAction() { action in
-            print("📲")
+
+            print("buttonAllowIdentifyLocation: UIButton")
+
+            
             self.coordinator.locationService.requestPermission()
-
-           
-
         }
 
         var buttonAllowIdentifyLocation = UIButton(primaryAction: action)
+
+//        if coordinator.locationService.locationManager.authorizationStatus == .authorizedWhenInUse {
+//            buttonAllowIdentifyLocation.isHidden = true
+//        }
 
         buttonAllowIdentifyLocation.translatesAutoresizingMaskIntoConstraints = false
         buttonAllowIdentifyLocation.backgroundColor = UIColor(named: "#F26E11")
@@ -133,6 +138,9 @@ class FirstController: UIViewController {
     }
 
 
+    func hidButtonAllowIdentifyLocation() {
+        self.buttonAllowIdentifyLocation.isHidden = true
+    }
 
     func setupLayoutConstrains() {
 
@@ -142,7 +150,6 @@ class FirstController: UIViewController {
             self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-
 
             self.imageViewBanner.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 30),
             self.imageViewBanner.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),

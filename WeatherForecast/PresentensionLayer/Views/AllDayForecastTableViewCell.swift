@@ -68,10 +68,32 @@ class AllDayForecastTableViewCell: UITableViewCell {
     }()
 
 
+
+    private lazy var labeDisclosureIndicator: UILabel = {
+
+        var labeDisclosureIndicator = UILabel()
+        labeDisclosureIndicator.textColor = UIColor(named: "#272722")
+        labeDisclosureIndicator.translatesAutoresizingMaskIntoConstraints = false
+        labeDisclosureIndicator.font = UIFont(name: "Rubik-Regular", size: 20)
+        labeDisclosureIndicator.numberOfLines = 0
+        labeDisclosureIndicator.text = ">"
+        return labeDisclosureIndicator
+    }()
+
+
+
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        [ self.labelDate, self.labelHumidity, self.imageViewIconWeather, self.labelDescriptionWeather, self.labelMinMaxTemp ].forEach { self.contentView.addSubview($0) }
+        self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
+        self.contentView.layer.cornerRadius = 12
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.borderWidth = 4
+        self.contentView.layer.borderColor = UIColor.white.cgColor
+
+
+        [ self.labelDate, self.labelHumidity, self.imageViewIconWeather, self.labelDescriptionWeather, self.labelMinMaxTemp, self.labeDisclosureIndicator ].forEach { self.contentView.addSubview($0) }
 
         setupLayoutConstrains()
 
@@ -109,6 +131,9 @@ class AllDayForecastTableViewCell: UITableViewCell {
 
             self.labelMinMaxTemp.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             self.labelMinMaxTemp.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+
+            self.labeDisclosureIndicator.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -4),
+            self.labeDisclosureIndicator.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -1),
 
 
 

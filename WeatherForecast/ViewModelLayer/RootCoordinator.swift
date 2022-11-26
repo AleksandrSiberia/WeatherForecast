@@ -24,7 +24,7 @@ class RootCoordinator: CoordinatorProtocol {
 
 
 
-    private weak var firstController: FirstController?
+    weak var firstController: FirstController?
 
     weak var mainController: MainViewController?
 

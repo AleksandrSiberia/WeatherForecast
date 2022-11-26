@@ -29,9 +29,14 @@ class MainViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
+
+        tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+
         tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
         tableView.register( MainDetailedDayTableViewCell.self, forCellReuseIdentifier: MainDetailedDayTableViewCell.nameCell)
         tableView.register(AllDayForecastTableViewCell.self, forCellReuseIdentifier: AllDayForecastTableViewCell.nameCell)
+
         return tableView
     }()
 
@@ -39,6 +44,8 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.setHidesBackButton(true, animated: false)
 
         self.navigationItem.title = self.coordinator?.locationService.currentCity
 
@@ -64,11 +71,6 @@ class MainViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-
-
-
-
     }
 
 
@@ -174,6 +176,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.setupCell(dayForecast: self.coordinator?.weatherForecastService.getOneDayForecastCoreData(indexPath: indexPath))
+
+    //        cell.accessoryType = .disclosureIndicator
             return cell
         }
 

@@ -128,33 +128,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
             print("👍 authorizedWhenInUse")
 
-
+     //       self.coordinator?.firstController?.hidButtonAllowIdentifyLocation()
 
             self.getNameCurrentCityAndLocation { nameCity, location in
 
                 self.currentCity = nameCity
-
-//
-//                self.networkService?.getData(completionHandler: { weatherModel in
-//
-//                    guard let weatherModel else {
-//                        print("‼️ error weatherModel = nil ")
-//                        return
-//                    }
-//
-//
-//                    if self.coordinator?.coreDataService.getWeatherForecast(attribute: nil, value: nil)?.isEmpty == true {
-//
-//                        DispatchQueue.main.async {
-//
-//
-////
-////                            self.coordinator?.mainController?.dayForecastNetwork = weatherModel
-//
-//
-//                        }
-//                    }
-//                })
 
                 self.coordinator?.showMainController()
 
