@@ -48,7 +48,6 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-   //     self.contentView.backgroundColor = .yellow
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.cornerRadius = 25
         self.contentView.layer.borderWidth = 0.3
@@ -121,9 +120,9 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
 
 
     
-    func setupCollectionCellCoreData(dayForecast: WeatherForecastCoreData?)  {
+    func setupCollectionCellCoreData(forecast: WeatherForecastCoreData?)  {
 
-        let stringDate = dayForecast?.date ?? ""
+        let stringDate = forecast?.date ?? ""
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -140,9 +139,9 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
         self.labelTimeForecast.text = time
 
 
-        self.imageViewIconWeather.image = UIImage(named: dayForecast?.icon ?? "")
+        self.imageViewIconWeather.image = UIImage(named: forecast?.icon ?? "")
 
-        self.labelTempForecast.text = String(dayForecast?.temp ?? 0)
+        self.labelTempForecast.text = String(forecast?.temp ?? 0)
 
     }
 }

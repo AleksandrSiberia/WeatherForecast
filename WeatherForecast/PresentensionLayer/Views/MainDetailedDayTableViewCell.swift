@@ -100,9 +100,12 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
 
 
-    func setupCellCoreData(dayForecast: [WeatherForecastCoreData]? ) {
+    func setupCellCoreData(dayForecast: [WeatherForecastCoreData]?) {
 
         self.dayForecastCoreData = dayForecast
+
+
+        self.collectionView.reloadData()
     }
 
 
@@ -147,7 +150,11 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
             return self.dayForecastNetwork?.dateAndTimeAllWeatherForecast.count ?? 0
         }
 
-        return self.dayForecastCoreData?.count ?? 0
+        guard (self.dayForecastCoreData?.count ?? 0) >= 9
+        else {
+            return self.dayForecastCoreData?.count ?? 0
+        }
+        return 9
 
     }
 
@@ -176,7 +183,7 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
             return cell
         }
         
-        cell.setupCollectionCellCoreData(dayForecast: self.dayForecastCoreData?[indexPath.row])
+        cell.setupCollectionCellCoreData(forecast: self.dayForecastCoreData?[indexPath.row])
         
         return cell
     }

@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     var coordinator: CoordinatorProtocol?
 
 
-
+    
     var dayForecastNetwork: WeatherModel? {
         
         didSet {
@@ -22,12 +22,7 @@ class MainViewController: UIViewController {
     }
 
 
-    var getTodayForecast: WeatherForecastCoreData?
 
-
-    var weatherModel: WeatherModel?
-
-    
     lazy var tableView: UITableView = {
 
         var tableView = UITableView()
@@ -36,6 +31,7 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
         tableView.register( MainDetailedDayTableViewCell.self, forCellReuseIdentifier: MainDetailedDayTableViewCell.nameCell)
+        tableView.register(AllDayForecastTableViewCell.self, forCellReuseIdentifier: AllDayForecastTableViewCell.nameCell)
         return tableView
     }()
 
@@ -103,8 +99,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return 1
         }
 
-        else {
+        if section == 2 {
+
             return 5
+        }
+
+        else {
+            return 0
         }
     }
 
@@ -122,7 +123,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false && self.dayForecastNetwork == nil
+            guard self.coordinator?.weatherForecastService.getForecastCoreData()?.isEmpty == false && self.dayForecastNetwork == nil
 
             else {
 
@@ -132,7 +133,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
 
-            cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getTodayForecastCoreData()?[0])
+            cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getForecastCoreData()?[0])
             return cell
         }
 
@@ -149,7 +150,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                return UITableViewCell()
            }
 
-            guard self.coordinator?.weatherForecastService.getTodayForecastCoreData()?.isEmpty == false  &&  self.dayForecastNetwork == nil
+            guard self.coordinator?.weatherForecastService.getForecastCoreData()?.isEmpty == false  &&  self.dayForecastNetwork == nil
 
             else {
 
@@ -157,17 +158,31 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return cell
 
             }
-
-            cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getTodayForecastCoreData())
+            cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getForecastCoreData())
            
             return cell
         }
 
 
 
+        
+        if indexPath.section == 2 {
+
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: AllDayForecastTableViewCell.nameCell, for: indexPath) as? AllDayForecastTableViewCell
+            else {
+                print("‼️ error = as? AllDayForecastTableViewCell")
+                return UITableViewCell()
+            }
+            cell.setupCell(dayForecast: self.coordinator?.weatherForecastService.getOneDayForecastCoreData(indexPath: indexPath))
+            return cell
+        }
+
+
         else {
             return UITableViewCell()
         }
+
+
     }
 
 
