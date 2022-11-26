@@ -14,7 +14,7 @@ class AllDayForecastTableViewCell: UITableViewCell {
     private lazy var labelDate: UILabel = {
 
         var labelDate = UILabel()
-        labelDate.textColor = UIColor(named: "#9A9696")
+        labelDate.textColor = UIColor(named: "#272722")
         labelDate.translatesAutoresizingMaskIntoConstraints = false
         labelDate.font = UIFont(name: "Rubik-Regular", size: 14)
         labelDate.numberOfLines = 0
@@ -34,10 +34,44 @@ class AllDayForecastTableViewCell: UITableViewCell {
 
 
 
+    private lazy var labelHumidity: UILabel = {
+
+        var labelHumidity = UILabel()
+        labelHumidity.textColor = UIColor(named: "#204EC7")
+        labelHumidity.translatesAutoresizingMaskIntoConstraints = false
+        labelHumidity.font = UIFont(name: "Rubik-Regular", size: 12)
+        labelHumidity.numberOfLines = 0
+        return labelHumidity
+    }()
+
+
+
+    private lazy var labelDescriptionWeather: UILabel = {
+
+        var labelDescriptionWeather = UILabel()
+        labelDescriptionWeather.textColor = UIColor(named: "#272722")
+        labelDescriptionWeather.translatesAutoresizingMaskIntoConstraints = false
+        labelDescriptionWeather.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelDescriptionWeather.numberOfLines = 0
+        return labelDescriptionWeather
+    }()
+
+
+    private lazy var labelMinMaxTemp: UILabel = {
+
+        var labelMinMaxTemp = UILabel()
+        labelMinMaxTemp.textColor = UIColor(named: "#272722")
+        labelMinMaxTemp.translatesAutoresizingMaskIntoConstraints = false
+        labelMinMaxTemp.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelMinMaxTemp.numberOfLines = 0
+        return labelMinMaxTemp
+    }()
+
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        [ self.labelDate, self.imageViewIconWeather ].forEach { self.contentView.addSubview($0) }
+        [ self.labelDate, self.labelHumidity, self.imageViewIconWeather, self.labelDescriptionWeather, self.labelMinMaxTemp ].forEach { self.contentView.addSubview($0) }
 
         setupLayoutConstrains()
 
@@ -59,13 +93,24 @@ class AllDayForecastTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
 
             self.labelDate.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 12),
-            self.labelDate.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
+            self.labelDate.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 22),
 
             self.imageViewIconWeather.topAnchor.constraint(equalTo: self.labelDate.bottomAnchor, constant: 1),
             self.imageViewIconWeather.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
             self.imageViewIconWeather.heightAnchor.constraint(equalToConstant: 30),
             self.imageViewIconWeather.widthAnchor.constraint(equalToConstant: 30),
-            self.imageViewIconWeather.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -6)
+            self.imageViewIconWeather.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -6),
+
+            self.labelHumidity.leadingAnchor.constraint(equalTo: self.imageViewIconWeather.trailingAnchor),
+            self.labelHumidity.centerYAnchor.constraint(equalTo: self.imageViewIconWeather.centerYAnchor),
+
+            self.labelDescriptionWeather.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.labelDescriptionWeather.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+
+            self.labelMinMaxTemp.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            self.labelMinMaxTemp.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+
+
 
         ])
     }
@@ -94,6 +139,17 @@ class AllDayForecastTableViewCell: UITableViewCell {
 
 
         self.imageViewIconWeather.image = UIImage(named: dayForecast?[0].icon ?? "")
+
+        self.labelHumidity.text = String(dayForecast?[0].humidity ?? 0) + "%"
+
+        self.labelDescriptionWeather.text = dayForecast?[0].descriptionWeather ?? ""
+
+
+        let minTemp = String(Int(round(dayForecast?[0].tepmMin ?? 0))) + "°"
+        let maxTemp = String(Int(round(dayForecast?[0].tempMax ?? 0))) + "°"
+
+        let minMaxTemp = minTemp + "/" + maxTemp
+        self.labelMinMaxTemp.text = minMaxTemp
     }
 
 

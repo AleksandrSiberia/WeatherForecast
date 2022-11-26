@@ -288,12 +288,12 @@ class MainTopTableViewCell: UITableViewCell {
 
         let todayWeatherModel = weatherModel?.dateAndTimeAllWeatherForecast[0]
 
-        let tepmMin = String(todayWeatherModel?.main.tempMin ?? 0)
-        let tempMax = String(todayWeatherModel?.main.tempMax ?? 0)
+        let tepmMin = String(Int(round(todayWeatherModel?.main.tempMin ?? 0)))
+        let tempMax = String(Int(round(todayWeatherModel?.main.tempMax ?? 0)))
         let  labelMinMaxTemp = "\(tepmMin)°/\(tempMax)°"
         self.labelMinMaxTemp.text = labelMinMaxTemp
 
-        self.labelTemp.text = String(todayWeatherModel?.main.temp ?? 0)
+        self.labelTemp.text = String(Int(round(todayWeatherModel?.main.temp ?? 0)))
 
         self.labelDescriptionWeather.text = String(todayWeatherModel?.weather[0].descriptionWeather ?? "")
 
@@ -328,12 +328,12 @@ class MainTopTableViewCell: UITableViewCell {
 
         self.activityIndicator.stopAnimating()
 
-        let tepmMin = String(nowWeather?.tepmMin ?? 0)
-        let tempMax = String(nowWeather?.tempMax ?? 0)
+        let tepmMin = String(Int(round(nowWeather?.tepmMin ?? 0)))
+        let tempMax = String(Int(round(nowWeather?.tempMax ?? 0)))
         let  labelMinMaxTemp = "\(tepmMin)°/\(tempMax)°"
         self.labelMinMaxTemp.text = labelMinMaxTemp
 
-        self.labelTemp.text = String(nowWeather?.temp ?? 0) + "°"
+        self.labelTemp.text = String(Int(round(nowWeather?.temp ?? 0))) + "°"
 
         self.labelDescriptionWeather.text = String(nowWeather?.descriptionWeather ?? "")
 
