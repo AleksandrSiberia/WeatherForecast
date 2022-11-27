@@ -78,8 +78,9 @@ class RootCoordinator: CoordinatorProtocol {
 
 
 
+        let controller =  AssemblyMainController.setMainController(coordinator: self)
 
-        self.mainController =  AssemblyMainController.setMainController(coordinator: self)
+        self.mainController = controller
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
 
@@ -92,10 +93,10 @@ class RootCoordinator: CoordinatorProtocol {
 
         print("🎀 showDayDetailForecastController()")
 
-//        let controller = AssemblyDayDetailForecastController.getAssemblyDayDetailForecastController(coordinator: self)
-//
-//        self.dayDetailForecastController = controller
-//
-//        self.mainController?.navigationController?.pushViewController( self.dayDetailForecastController!, animated: true)
+        let controller = AssemblyDayDetailForecastController.getAssemblyDayDetailForecastController(coordinator: self)
+
+        self.dayDetailForecastController = controller
+
+        self.mainController?.navigationController?.pushViewController( self.dayDetailForecastController!, animated: true)
     }
 }

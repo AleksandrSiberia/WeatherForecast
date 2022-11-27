@@ -200,7 +200,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
 
-                cell.setupCell(dayForecast: self.coordinator?.weatherForecastService.getDayForecastCoreData(indexPathRow: indexPath.row))
+                cell.setupCell(dayForecast: self.coordinator?.weatherForecastService.getDayForecastCoreData(day: indexPath.row))
 
                 return cell
             }

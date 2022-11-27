@@ -33,7 +33,7 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
         let action = UIAction{  _ in
 
-        //    self.mainViewController?.showDayDetailForecastViewController()
+        self.mainViewController?.showDayDetailForecastViewController()
 
             print("buttonDetailedDayForecast")
         }

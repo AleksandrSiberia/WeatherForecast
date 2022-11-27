@@ -24,7 +24,6 @@ class MainTopTableViewCell: UITableViewCell {
         var imageViewRainbow = UIImageView()
         imageViewRainbow.translatesAutoresizingMaskIntoConstraints = false
         imageViewRainbow.image = UIImage(named: "rainbow")
-    //    imageViewRainbow.contentMode = .scaleAspectFit
         imageViewRainbow.isHidden = true
         return imageViewRainbow
     }()
@@ -156,6 +155,10 @@ class MainTopTableViewCell: UITableViewCell {
         imageViewIcon.contentMode = .scaleAspectFit
         return imageViewIcon
     }()
+
+
+
+ 
 
 
 

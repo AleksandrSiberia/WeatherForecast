@@ -21,6 +21,7 @@ class WeatherForecastService {
     }
 
 
+
     func getForecastCoreData() -> [WeatherForecastCoreData]? {
 
         let todayForecast = self.coreDataService?.getWeatherForecast(attribute: nil, value: nil)
@@ -32,7 +33,7 @@ class WeatherForecastService {
 
 
 
-    func getDayForecastCoreData(indexPathRow: Int) -> [WeatherForecastCoreData]? {
+    func getDayForecastCoreData(day indexPathRow: Int?) -> [WeatherForecastCoreData]? {
 
 
         let currentDate = Date()
@@ -48,7 +49,7 @@ class WeatherForecastService {
         dateComponents.month = Int(dateFormatter.string(from: currentDate))
 
         dateFormatter.dateFormat = "dd"
-        dateComponents.day  = (Int(dateFormatter.string(from: currentDate)) ?? 0) + indexPathRow
+        dateComponents.day  = (Int(dateFormatter.string(from: currentDate)) ?? 0) + (indexPathRow ?? 0)
 
         let day = Calendar.current.date(from: dateComponents) ?? Date()
 
@@ -63,8 +64,6 @@ class WeatherForecastService {
 
         return todayForecast
     }
-
-
 }
 
 

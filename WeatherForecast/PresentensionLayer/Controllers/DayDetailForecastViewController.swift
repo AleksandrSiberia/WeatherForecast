@@ -19,6 +19,7 @@ class DayDetailForecastViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(DayDetailForecastTableViewCell.self, forCellReuseIdentifier: DayDetailForecastTableViewCell.nameCell)
 
         return tableView
     }()
@@ -63,14 +64,33 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
         }
 
         else {
-            return 5
+            return 9
         }
     }
 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        return UITableViewCell()
+        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: DayDetailForecastTableViewCell.nameCell, for: indexPath) as? DayDetailForecastTableViewCell
+        else {
+            return UITableViewCell()
+        }
+
+
+        if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
+            guard forecastCoreData.isEmpty == false
+            else {
+                return cell
+            }
+
+            cell.setupCell(dayForecast: forecastCoreData[indexPath.row])
+            return cell
+        }
+
+
+        else {
+            return cell
+        }
     }
 
 
