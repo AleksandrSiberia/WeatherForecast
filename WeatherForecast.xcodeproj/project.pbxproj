@@ -24,6 +24,9 @@
 		8B55DA01292F470E00574A7F /* MainDetailedDayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55DA00292F470E00574A7F /* MainDetailedDayTableViewCell.swift */; };
 		8B55DA03292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55DA02292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift */; };
 		8B55DA082931E2E200574A7F /* AllDayForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55DA072931E2E200574A7F /* AllDayForecastTableViewCell.swift */; };
+		8B55DA0A293341A200574A7F /* DayDetailForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55DA09293341A200574A7F /* DayDetailForecastViewController.swift */; };
+		8B55DA0C2933441800574A7F /* AssemblyDayDetailForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55DA0B2933441800574A7F /* AssemblyDayDetailForecastController.swift */; };
+		8B55DA0E29334C8F00574A7F /* DayDetailForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55DA0D29334C8F00574A7F /* DayDetailForecastTableViewCell.swift */; };
 		8B857E3329239A9B00ABD4A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */; };
 		8B857E3529239A9B00ABD4A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */; };
 		8B857E3C29239A9C00ABD4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B857E3B29239A9C00ABD4A0 /* Assets.xcassets */; };
@@ -51,6 +54,9 @@
 		8B55DA00292F470E00574A7F /* MainDetailedDayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailedDayTableViewCell.swift; sourceTree = "<group>"; };
 		8B55DA02292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDetailedDayCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B55DA072931E2E200574A7F /* AllDayForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllDayForecastTableViewCell.swift; sourceTree = "<group>"; };
+		8B55DA09293341A200574A7F /* DayDetailForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailForecastViewController.swift; sourceTree = "<group>"; };
+		8B55DA0B2933441800574A7F /* AssemblyDayDetailForecastController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyDayDetailForecastController.swift; sourceTree = "<group>"; };
+		8B55DA0D29334C8F00574A7F /* DayDetailForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayDetailForecastTableViewCell.swift; sourceTree = "<group>"; };
 		8B857E2F29239A9B00ABD4A0 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B857E3229239A9B00ABD4A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B857E3429239A9B00ABD4A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 			children = (
 				8B857E4629239DC300ABD4A0 /* FirstController.swift */,
 				8B55D9ED29275EA700574A7F /* MainViewController.swift */,
+				8B55DA09293341A200574A7F /* DayDetailForecastViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -120,6 +127,7 @@
 				8B55DA00292F470E00574A7F /* MainDetailedDayTableViewCell.swift */,
 				8B55DA02292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift */,
 				8B55DA072931E2E200574A7F /* AllDayForecastTableViewCell.swift */,
+				8B55DA0D29334C8F00574A7F /* DayDetailForecastTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 			children = (
 				8B55D9EF29275EDE00574A7F /* AssemblyMainController.swift */,
 				8B55D9E5292506BC00574A7F /* AssemblyFirstController.swift */,
+				8B55DA0B2933441800574A7F /* AssemblyDayDetailForecastController.swift */,
 			);
 			path = Assembly;
 			sourceTree = "<group>";
@@ -273,14 +282,17 @@
 				8B55DA03292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift in Sources */,
 				8B55D9F7292784C300574A7F /* CoreDataModel.xcdatamodeld in Sources */,
 				8B55D9FF292CD74C00574A7F /* CellNameProtocol.swift in Sources */,
+				8B55DA0A293341A200574A7F /* DayDetailForecastViewController.swift in Sources */,
 				8B55D9F92927BE7600574A7F /* NetworkService.swift in Sources */,
 				8B857E3529239A9B00ABD4A0 /* SceneDelegate.swift in Sources */,
 				8B55D9E6292506BC00574A7F /* AssemblyFirstController.swift in Sources */,
 				8B55D9FB292BA3F300574A7F /* MainTopTableViewCell.swift in Sources */,
 				8B55D9F229277EFE00574A7F /* WeatherModel.swift in Sources */,
 				8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */,
+				8B55DA0E29334C8F00574A7F /* DayDetailForecastTableViewCell.swift in Sources */,
 				8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */,
 				8B55D9F029275EDE00574A7F /* AssemblyMainController.swift in Sources */,
+				8B55DA0C2933441800574A7F /* AssemblyDayDetailForecastController.swift in Sources */,
 				8B55D9F42927831D00574A7F /* CoreDataService.swift in Sources */,
 				8B857E4729239DC300ABD4A0 /* FirstController.swift in Sources */,
 				8B55DA082931E2E200574A7F /* AllDayForecastTableViewCell.swift in Sources */,

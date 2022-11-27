@@ -29,7 +29,10 @@ class RootCoordinator: CoordinatorProtocol {
     weak var mainController: MainViewController?
 
 
-    
+
+    weak var dayDetailForecastController: DayDetailForecastViewController?
+
+
 
     func startCoordinator() -> UINavigationController {
 
@@ -72,11 +75,27 @@ class RootCoordinator: CoordinatorProtocol {
 
     
     func showMainController() {
-        print("🧭 showSettingController")
 
-        self.mainController = AssemblyMainController.setMainController(coordinator: self)
+
+
+
+        self.mainController =  AssemblyMainController.setMainController(coordinator: self)
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
 
+    }
+
+
+
+
+    func showDayDetailForecastController() {
+
+        print("🎀 showDayDetailForecastController()")
+
+//        let controller = AssemblyDayDetailForecastController.getAssemblyDayDetailForecastController(coordinator: self)
+//
+//        self.dayDetailForecastController = controller
+//
+//        self.mainController?.navigationController?.pushViewController( self.dayDetailForecastController!, animated: true)
     }
 }

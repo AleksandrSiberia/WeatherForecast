@@ -13,6 +13,8 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
     var dayForecastCoreData: [WeatherForecastCoreData]?
 
+    var mainViewController: MainViewController?
+
     
     var dayForecastNetwork: WeatherModel? {
 
@@ -25,9 +27,14 @@ class MainDetailedDayTableViewCell: UITableViewCell {
     private let itemCount = 4.0
 
 
+
+
     private lazy var buttonDetailedDayForecast: UIButton = {
 
         let action = UIAction{  _ in
+
+        //    self.mainViewController?.showDayDetailForecastViewController()
+
             print("buttonDetailedDayForecast")
         }
 
@@ -130,8 +137,11 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
 
 
-    func setupCellNetwork(dayForecast: WeatherModel?) {
+    func setupCell(dayForecast: WeatherModel?, mainController: MainViewController?) {
+
         self.dayForecastNetwork = dayForecast
+        self.mainViewController = mainController
+
     }
 
 
@@ -161,14 +171,11 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        guard self.dayForecastCoreData != nil && self.dayForecastNetwork == nil else {
 
-            guard let _ = self.dayForecastNetwork
-            else {
-                print("‼️ dayForecastCoreData = nil")
-                return 0
-            }
-            return self.dayForecastNetwork?.dateAndTimeAllWeatherForecast.count ?? 0
+
+        guard self.dayForecastCoreData != nil && self.dayForecastCoreData?.isEmpty == false  else {
+
+            return 0
         }
 
         guard (self.dayForecastCoreData?.count ?? 0) >= 9
@@ -188,21 +195,13 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
             return UICollectionViewCell()
         }
 
-        guard self.dayForecastCoreData?.isEmpty == false && self.dayForecastNetwork == nil
+
+        guard self.dayForecastCoreData != nil
 
         else {
-            
-            print("‼️ self.dayForecastCoreData?.isEmpty == true")
-            guard let dayForecastNetwork
-
-            else {
-                print("‼️ dayForecastNetwork = nil")
-                return UICollectionViewCell()
-            }
-
-            cell.setupCollectionCellNetwork(dayForecast: dayForecastNetwork, indexPath: indexPath)
             return cell
         }
+
         
         cell.setupCollectionCellCoreData(forecast: self.dayForecastCoreData?[indexPath.row])
         

@@ -16,6 +16,8 @@ class WeatherForecastService {
 
     init() {
 
+
+    //    getDayForecastCoreData(indexPath: IndexPath())
     }
 
 
@@ -30,29 +32,34 @@ class WeatherForecastService {
 
 
 
-    func getOneDayForecastCoreData(indexPath: IndexPath) -> [WeatherForecastCoreData]? {
+    func getDayForecastCoreData(indexPathRow: Int) -> [WeatherForecastCoreData]? {
 
-        // "yyyy-MM-dd"
 
         let currentDate = Date()
 
         let dateFormatter = DateFormatter()
 
-
+        var dateComponents = DateComponents()
 
         dateFormatter.dateFormat = "yyyy"
-        let year = dateFormatter.string(from: currentDate)
+        dateComponents.year = Int(dateFormatter.string(from: currentDate))
 
         dateFormatter.dateFormat = "MM"
-        let month = dateFormatter.string(from: currentDate)
+        dateComponents.month = Int(dateFormatter.string(from: currentDate))
 
         dateFormatter.dateFormat = "dd"
-        let day  = dateFormatter.string(from: currentDate)
-        let numberDay = (Int(day) ?? 0) + indexPath.row
+        dateComponents.day  = (Int(dateFormatter.string(from: currentDate)) ?? 0) + indexPathRow
 
-        let dateString = year + "-" + month + "-" + String(numberDay)
+        let day = Calendar.current.date(from: dateComponents) ?? Date()
+
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        let dateString = dateFormatter.string(from: day)
+
 
         let todayForecast = self.coreDataService?.getWeatherForecast(attribute: "date", value: dateString)
+
 
         return todayForecast
     }

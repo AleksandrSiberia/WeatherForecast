@@ -12,14 +12,9 @@ class MainViewController: UIViewController {
 
     var coordinator: CoordinatorProtocol?
 
-
+    var mainViewController: MainViewController?
     
-    var dayForecastNetwork: WeatherModel? {
-        
-        didSet {
-            self.tableView.reloadData()
-        }
-    }
+
 
 
 
@@ -75,6 +70,12 @@ class MainViewController: UIViewController {
 
 
 
+    func showDayDetailForecastViewController() {
+        self.coordinator?.showDayDetailForecastController()
+    }
+
+
+
     func setupLayoutConstrains() {
         
         NSLayoutConstraint.activate([
@@ -112,6 +113,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
 
+
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
 
@@ -125,45 +128,56 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
-            guard self.coordinator?.weatherForecastService.getForecastCoreData()?.isEmpty == false && self.dayForecastNetwork == nil
+            if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
 
-            else {
+                guard getForecastCoreData.isEmpty == false
 
-                cell.setupCellNetwork(weatherModel: self.dayForecastNetwork)
+                else {
+                    return cell
+                }
 
+                cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getForecastCoreData()?[0])
                 return cell
             }
-
-
-            cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getForecastCoreData()?[0])
-            return cell
+            else {
+                return cell
+            }
         }
-
 
 
 
 
         if indexPath.section == 1 {
 
-           guard let cell = tableView.dequeueReusableCell(withIdentifier:  MainDetailedDayTableViewCell.nameCell, for: indexPath) as? MainDetailedDayTableViewCell
+            guard let cell = tableView.dequeueReusableCell(withIdentifier:  MainDetailedDayTableViewCell.nameCell, for: indexPath) as? MainDetailedDayTableViewCell
 
             else {
-               print("‼️ indexPath.section == 1")
-               return UITableViewCell()
-           }
-
-            guard self.coordinator?.weatherForecastService.getForecastCoreData()?.isEmpty == false  &&  self.dayForecastNetwork == nil
-
-            else {
-
-                cell.setupCellNetwork(dayForecast: self.dayForecastNetwork)
-                return cell
-
+                print("‼️ indexPath.section == 1")
+                return UITableViewCell()
             }
-            cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getForecastCoreData())
-           
-            return cell
+
+
+            if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
+
+                guard getForecastCoreData.isEmpty == false
+
+                else {
+                    return cell
+                }
+
+                cell.setupCell(dayForecast: nil, mainController: self)
+
+                cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getForecastCoreData())
+
+
+                return cell
+            }
+
+            else {
+                return cell
+            }
         }
+
 
 
 
@@ -175,10 +189,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 print("‼️ error = as? AllDayForecastTableViewCell")
                 return UITableViewCell()
             }
-            cell.setupCell(dayForecast: self.coordinator?.weatherForecastService.getOneDayForecastCoreData(indexPath: indexPath))
 
-    //        cell.accessoryType = .disclosureIndicator
-            return cell
+
+            if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
+
+                guard getForecastCoreData.isEmpty == false
+
+                else {
+                    return cell
+                }
+
+
+                cell.setupCell(dayForecast: self.coordinator?.weatherForecastService.getDayForecastCoreData(indexPathRow: indexPath.row))
+
+                return cell
+            }
+
+            else {
+                return cell
+            }
         }
 
 
@@ -186,10 +215,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
 
-
     }
 
 
+    
     func numberOfSections(in tableView: UITableView) -> Int {
 
         3

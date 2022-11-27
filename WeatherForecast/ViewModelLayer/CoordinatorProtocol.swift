@@ -22,6 +22,8 @@ protocol CoordinatorProtocol {
 
     func startCoordinator() -> UINavigationController
 
+    func showDayDetailForecastController()
+
 
     
  

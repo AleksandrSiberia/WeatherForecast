@@ -283,47 +283,7 @@ class MainTopTableViewCell: UITableViewCell {
     }
 
 
-    func setupCellNetwork(weatherModel: WeatherModel?) {
-
-
-
-        let todayWeatherModel = weatherModel?.dateAndTimeAllWeatherForecast[0]
-
-        let tepmMin = String(Int(round(todayWeatherModel?.main.tempMin ?? 0)))
-        let tempMax = String(Int(round(todayWeatherModel?.main.tempMax ?? 0)))
-        let  labelMinMaxTemp = "\(tepmMin)°/\(tempMax)°"
-        self.labelMinMaxTemp.text = labelMinMaxTemp
-
-        self.labelTemp.text = String(Int(round(todayWeatherModel?.main.temp ?? 0)))
-
-        self.labelDescriptionWeather.text = String(todayWeatherModel?.weather[0].descriptionWeather ?? "")
-
-        self.labelSpeedWind.text = String(todayWeatherModel?.wind.speedWind ?? 0) + " м/с"
-
-        self.labelCloudsPercent.text = String(todayWeatherModel?.clouds.cloudsPercent ?? 0) + " %"
-
-        self.labelHumidity.text = String(todayWeatherModel?.main.humidity ?? 0) + " %"
-
-        let secondUnixSunrise = TimeInterval((weatherModel?.city.sunrise ?? 0) - (weatherModel?.city.timezone ?? 0))
-        let sunriseNSDate = NSDate(timeIntervalSince1970: secondUnixSunrise)
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        let timeSunrise = dateFormatter.string(from: sunriseNSDate as Date)
-        self.labelSunrise.text = timeSunrise
-
-        let secondUnixSunset = TimeInterval((weatherModel?.city.sunset ?? 0) - (weatherModel?.city.timezone ?? 0))
-        let sunsetNSDate = NSDate(timeIntervalSince1970: secondUnixSunset)
-        let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
-        self.labelSunset.text = timeSunset
-
-     //   self.activityIndicator.stopAnimating()
-//        self.imageViewRainbow.isHidden = false
-//        self.imageViewSunrise.isHidden = false
-//        self.imageViewSunset.isHidden = false
-
-
-    }
-
+   
 
     func setupCellCoreData(nowWeather: WeatherForecastCoreData?) {
 

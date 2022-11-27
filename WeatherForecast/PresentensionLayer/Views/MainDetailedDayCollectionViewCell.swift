@@ -88,34 +88,7 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
     }
 
 
-    func setupCollectionCellNetwork(dayForecast: WeatherModel?, indexPath: IndexPath) {
-
-
-        let stringDate = dayForecast?.dateAndTimeAllWeatherForecast[indexPath.row].date ?? ""
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-
-        guard let dateDate = dateFormatter.date(from: stringDate)
-
-        else {
-            self.labelTimeForecast.text = ""
-            return
-        }
-
-        dateFormatter.dateFormat = "HH:mm"
-        let time = dateFormatter.string(from: dateDate)
-        self.labelTimeForecast.text = time
-
-
-
-        self.imageViewIconWeather.image = UIImage(named: dayForecast?.dateAndTimeAllWeatherForecast[indexPath.row].weather[0].icon ?? "")
-
-        self.labelTempForecast.text = String(dayForecast?.dateAndTimeAllWeatherForecast[indexPath.row].main.temp ?? 0)
-
-
-    }
-
+ 
 
 
 
