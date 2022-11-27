@@ -71,26 +71,36 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = self.tableView.dequeueReusableCell(withIdentifier: DayDetailForecastTableViewCell.nameCell, for: indexPath) as? DayDetailForecastTableViewCell
+        if indexPath.section == 1 {
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: DayDetailForecastTableViewCell.nameCell, for: indexPath) as? DayDetailForecastTableViewCell
+            else {
+                return UITableViewCell()
+            }
+
+
+            if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
+                guard forecastCoreData.isEmpty == false
+                else {
+                    return cell
+                }
+
+                cell.setupCell(dayForecast: forecastCoreData[indexPath.row])
+                return cell
+            }
+
+
+            else {
+                return cell
+            }
+        }
+
+
+
         else {
             return UITableViewCell()
         }
 
 
-        if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
-            guard forecastCoreData.isEmpty == false
-            else {
-                return cell
-            }
-
-            cell.setupCell(dayForecast: forecastCoreData[indexPath.row])
-            return cell
-        }
-
-
-        else {
-            return cell
-        }
     }
 
 

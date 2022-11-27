@@ -47,6 +47,19 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
 
 
+    private lazy var labelFeel: UILabel = {
+
+        var labelFeel = UILabel()
+        labelFeel.text = "По ощущению"
+        labelFeel.textColor = UIColor(named: "#272722")
+        labelFeel.translatesAutoresizingMaskIntoConstraints = false
+        labelFeel.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelFeel.numberOfLines = 0
+        return labelFeel
+    }()
+
+
+
 
     private lazy var imageViewSpeedWind: UIImageView = {
 
@@ -57,6 +70,18 @@ class DayDetailForecastTableViewCell: UITableViewCell {
         return imageViewSpeedWind
     }()
 
+
+
+    private lazy var labelSpeedWind: UILabel = {
+
+        var labelSpeedWind = UILabel()
+        labelSpeedWind.text = "Ветер"
+        labelSpeedWind.textColor = UIColor(named: "#272722")
+        labelSpeedWind.translatesAutoresizingMaskIntoConstraints = false
+        labelSpeedWind.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelSpeedWind.numberOfLines = 0
+        return labelSpeedWind
+    }()
 
 
 
@@ -71,6 +96,19 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
 
 
+    private lazy var labelHumidity: UILabel = {
+
+        var labelHumidity = UILabel()
+        labelHumidity.text = "Атмосферные осадки"
+        labelHumidity.textColor = UIColor(named: "#272722")
+        labelHumidity.translatesAutoresizingMaskIntoConstraints = false
+        labelHumidity.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelHumidity.numberOfLines = 0
+        return labelHumidity
+    }()
+
+
+
 
     private lazy var imageViewCloudsPercent: UIImageView = {
 
@@ -79,6 +117,19 @@ class DayDetailForecastTableViewCell: UITableViewCell {
         imageViewIcon.image = UIImage(named: "clouds")
         imageViewIcon.contentMode = .scaleAspectFit
         return imageViewIcon
+    }()
+
+
+
+    private lazy var labelCloudsPercent: UILabel = {
+
+        var labelCloudsPercent = UILabel()
+        labelCloudsPercent.text = "Облачность"
+        labelCloudsPercent.textColor = UIColor(named: "#272722")
+        labelCloudsPercent.translatesAutoresizingMaskIntoConstraints = false
+        labelCloudsPercent.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelCloudsPercent.numberOfLines = 0
+        return labelCloudsPercent
     }()
 
 
@@ -96,10 +147,14 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
 
 
+
+
+
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        [ self.labelDate, self.labelTame, self.labelTemp, imageFeel, self.imageViewSpeedWind, self.imageViewHumidity, self.imageViewCloudsPercent ].forEach { self.contentView.addSubview($0) }
+        [ self.labelDate, self.labelTame, self.labelTemp, self.imageFeel, self.labelFeel, self.imageViewSpeedWind, self.labelSpeedWind, self.imageViewHumidity, self.labelHumidity, self.imageViewCloudsPercent, self.labelCloudsPercent, ].forEach { self.contentView.addSubview($0) }
 
         setupLayoutConstrains()
     }
@@ -128,21 +183,33 @@ class DayDetailForecastTableViewCell: UITableViewCell {
             self.imageFeel.widthAnchor.constraint(equalToConstant: 12),
             self.imageFeel.heightAnchor.constraint(equalToConstant: 12),
 
+            self.labelFeel.centerYAnchor.constraint(equalTo: self.imageFeel.centerYAnchor),
+            self.labelFeel.leadingAnchor.constraint(equalTo: self.imageFeel.trailingAnchor, constant: 12),
+
             self.imageViewSpeedWind.topAnchor.constraint(equalTo: self.imageFeel.bottomAnchor, constant: 10),
             self.imageViewSpeedWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 75),
             self.imageViewSpeedWind.widthAnchor.constraint(equalToConstant: 18),
             self.imageViewSpeedWind.heightAnchor.constraint(equalToConstant: 18),
+
+            self.labelSpeedWind.centerYAnchor.constraint(equalTo: self.imageViewSpeedWind.centerYAnchor),
+            self.labelSpeedWind.leadingAnchor.constraint(equalTo: self.imageViewSpeedWind.trailingAnchor, constant: 12),
 
             self.imageViewHumidity.topAnchor.constraint(equalTo: self.imageViewSpeedWind.bottomAnchor, constant: 10),
             self.imageViewHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 77),
             self.imageViewHumidity.widthAnchor.constraint(equalToConstant: 15),
             self.imageViewHumidity.heightAnchor.constraint(equalToConstant: 15),
 
+            self.labelHumidity.centerYAnchor.constraint(equalTo: self.imageViewHumidity.centerYAnchor),
+            self.labelHumidity.leadingAnchor.constraint(equalTo: self.imageViewHumidity.trailingAnchor, constant: 12),
+
             self.imageViewCloudsPercent.topAnchor.constraint(equalTo: self.imageViewHumidity.bottomAnchor, constant: 10),
             self.imageViewCloudsPercent.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 77),
             self.imageViewCloudsPercent.widthAnchor.constraint(equalToConstant: 15),
             self.imageViewCloudsPercent.heightAnchor.constraint(equalToConstant: 15),
-            self.imageViewCloudsPercent.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8),
+            self.imageViewCloudsPercent.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -12),
+
+            self.labelCloudsPercent.centerYAnchor.constraint(equalTo: self.imageViewCloudsPercent.centerYAnchor),
+            self.labelCloudsPercent.leadingAnchor.constraint(equalTo: self.imageViewCloudsPercent.trailingAnchor, constant: 12),
         ])
     }
 
@@ -179,7 +246,6 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
     }
 }
-
 
 
 
