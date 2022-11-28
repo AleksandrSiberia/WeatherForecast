@@ -10,6 +10,8 @@ import UIKit
 class DayDetailForecastTableViewCell: UITableViewCell {
 
 
+    
+
     private lazy var labelDate: UILabel = {
 
         var labelDate = UILabel()
@@ -26,7 +28,7 @@ class DayDetailForecastTableViewCell: UITableViewCell {
     private lazy var labelTame: UILabel = {
 
         var labelTame = UILabel()
-        labelTame.textColor = UIColor(named: "#272722")
+        labelTame.textColor = UIColor(named: "#9A9696")
         labelTame.translatesAutoresizingMaskIntoConstraints = false
         labelTame.font = UIFont(name: "Rubik-Regular", size: 14)
         labelTame.numberOfLines = 0
@@ -60,6 +62,20 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
 
 
+    private lazy var labelFeelValue: UILabel = {
+
+        var labelFeelValue = UILabel()
+        labelFeelValue.text = "По ощущению"
+        labelFeelValue.textColor = UIColor(named: "#9A9696")
+        labelFeelValue.translatesAutoresizingMaskIntoConstraints = false
+        labelFeelValue.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelFeelValue.numberOfLines = 0
+        return labelFeelValue
+    }()
+
+
+
+
 
     private lazy var imageViewSpeedWind: UIImageView = {
 
@@ -82,6 +98,20 @@ class DayDetailForecastTableViewCell: UITableViewCell {
         labelSpeedWind.numberOfLines = 0
         return labelSpeedWind
     }()
+
+
+
+    private lazy var labelSpeedWindValue: UILabel = {
+
+        var labelWindValue = UILabel()
+        labelWindValue.text = "По ощущению"
+        labelWindValue.textColor = UIColor(named: "#9A9696")
+        labelWindValue.translatesAutoresizingMaskIntoConstraints = false
+        labelWindValue.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelWindValue.numberOfLines = 0
+        return labelWindValue
+    }()
+
 
 
 
@@ -108,6 +138,16 @@ class DayDetailForecastTableViewCell: UITableViewCell {
     }()
 
 
+    private lazy var labelHumidityValue: UILabel = {
+
+        var labelHumidityValue = UILabel()
+        labelHumidityValue.text = "По ощущению"
+        labelHumidityValue.textColor = UIColor(named: "#9A9696")
+        labelHumidityValue.translatesAutoresizingMaskIntoConstraints = false
+        labelHumidityValue.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelHumidityValue.numberOfLines = 0
+        return labelHumidityValue
+    }()
 
 
     private lazy var imageViewCloudsPercent: UIImageView = {
@@ -133,6 +173,18 @@ class DayDetailForecastTableViewCell: UITableViewCell {
     }()
 
 
+    private lazy var labelCloudsPercentValue: UILabel = {
+
+        var labelCloudsPercentValue = UILabel()
+        labelCloudsPercentValue.text = "По ощущению"
+        labelCloudsPercentValue.textColor = UIColor(named: "#9A9696")
+        labelCloudsPercentValue.translatesAutoresizingMaskIntoConstraints = false
+        labelCloudsPercentValue.font = UIFont(name: "Rubik-Regular", size: 14)
+        labelCloudsPercentValue.numberOfLines = 0
+        return labelCloudsPercentValue
+    }()
+
+
 
 
     private lazy var labelTemp: UILabel = {
@@ -154,7 +206,7 @@ class DayDetailForecastTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        [ self.labelDate, self.labelTame, self.labelTemp, self.imageFeel, self.labelFeel, self.imageViewSpeedWind, self.labelSpeedWind, self.imageViewHumidity, self.labelHumidity, self.imageViewCloudsPercent, self.labelCloudsPercent, ].forEach { self.contentView.addSubview($0) }
+        [ self.labelDate, self.labelTame, self.labelTemp, self.imageFeel, self.labelFeel, self.labelFeelValue,  self.imageViewSpeedWind, self.labelSpeedWind, self.labelSpeedWindValue, self.imageViewHumidity, self.labelHumidity, self.labelHumidityValue, self.imageViewCloudsPercent, self.labelCloudsPercent, self.labelCloudsPercentValue, ].forEach { self.contentView.addSubview($0) }
 
         setupLayoutConstrains()
     }
@@ -186,6 +238,9 @@ class DayDetailForecastTableViewCell: UITableViewCell {
             self.labelFeel.centerYAnchor.constraint(equalTo: self.imageFeel.centerYAnchor),
             self.labelFeel.leadingAnchor.constraint(equalTo: self.imageFeel.trailingAnchor, constant: 12),
 
+            self.labelFeelValue.centerYAnchor.constraint(equalTo: self.labelFeel.centerYAnchor),
+            self.labelFeelValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
+
             self.imageViewSpeedWind.topAnchor.constraint(equalTo: self.imageFeel.bottomAnchor, constant: 10),
             self.imageViewSpeedWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 75),
             self.imageViewSpeedWind.widthAnchor.constraint(equalToConstant: 18),
@@ -193,6 +248,9 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
             self.labelSpeedWind.centerYAnchor.constraint(equalTo: self.imageViewSpeedWind.centerYAnchor),
             self.labelSpeedWind.leadingAnchor.constraint(equalTo: self.imageViewSpeedWind.trailingAnchor, constant: 12),
+
+            self.labelSpeedWindValue.centerYAnchor.constraint(equalTo: self.labelSpeedWind.centerYAnchor),
+            self.labelSpeedWindValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
 
             self.imageViewHumidity.topAnchor.constraint(equalTo: self.imageViewSpeedWind.bottomAnchor, constant: 10),
             self.imageViewHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 77),
@@ -202,6 +260,9 @@ class DayDetailForecastTableViewCell: UITableViewCell {
             self.labelHumidity.centerYAnchor.constraint(equalTo: self.imageViewHumidity.centerYAnchor),
             self.labelHumidity.leadingAnchor.constraint(equalTo: self.imageViewHumidity.trailingAnchor, constant: 12),
 
+            self.labelHumidityValue.centerYAnchor.constraint(equalTo: self.labelHumidity.centerYAnchor),
+            self.labelHumidityValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
+
             self.imageViewCloudsPercent.topAnchor.constraint(equalTo: self.imageViewHumidity.bottomAnchor, constant: 10),
             self.imageViewCloudsPercent.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 77),
             self.imageViewCloudsPercent.widthAnchor.constraint(equalToConstant: 15),
@@ -210,7 +271,23 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
             self.labelCloudsPercent.centerYAnchor.constraint(equalTo: self.imageViewCloudsPercent.centerYAnchor),
             self.labelCloudsPercent.leadingAnchor.constraint(equalTo: self.imageViewCloudsPercent.trailingAnchor, constant: 12),
+
+            self.labelCloudsPercentValue.centerYAnchor.constraint(equalTo: self.labelCloudsPercent.centerYAnchor),
+            self.labelCloudsPercentValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
+
+
+
         ])
+    }
+
+
+    func changeTemp(temp: Float?) -> String {
+
+        let changeType = (temp ?? 273.0) - 273.0
+        let roundTemp = round(changeType * 10.0) / 10.0
+        let roundTempString = String(roundTemp)
+
+        return roundTempString
     }
 
 
@@ -239,7 +316,19 @@ class DayDetailForecastTableViewCell: UITableViewCell {
         self.labelTame.text = labelTime
 
 
-        self.labelTemp.text = String(Int(round(dayForecast?.temp ?? 0))) + "°"
+        self.labelTemp.text = self.changeTemp(temp: dayForecast?.temp) + "°"
+
+
+        self.labelFeelValue.text = self.changeTemp(temp: dayForecast?.feelsLike) + "°"
+
+
+        self.labelSpeedWindValue.text = String(Int(round(dayForecast?.speedWind ?? 0))) + " м/с"
+
+
+        self.labelHumidityValue.text = String(dayForecast?.humidity ?? 0 ) + " %"
+
+
+        self.labelCloudsPercentValue.text = String(dayForecast?.cloudsPercent ?? 0) + " %"
 
 
 

@@ -30,6 +30,7 @@ class WeatherForecastService {
     }
 
 
+    
 
 
 
@@ -51,6 +52,8 @@ class WeatherForecastService {
         dateFormatter.dateFormat = "dd"
         dateComponents.day  = (Int(dateFormatter.string(from: currentDate)) ?? 0) + (indexPathRow ?? 0)
 
+        
+
         let day = Calendar.current.date(from: dateComponents) ?? Date()
 
 
@@ -58,6 +61,7 @@ class WeatherForecastService {
 
         let dateString = dateFormatter.string(from: day)
 
+        print("🪄", dateString)
 
         let todayForecast = self.coreDataService?.getWeatherForecast(attribute: "date", value: dateString)
 

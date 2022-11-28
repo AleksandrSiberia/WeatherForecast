@@ -19,7 +19,10 @@ class DayDetailForecastViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.allowsSelection = false
+        
         tableView.register(DayDetailForecastTableViewCell.self, forCellReuseIdentifier: DayDetailForecastTableViewCell.nameCell)
+        tableView.register(DayDetailTopForecastTableViewCell.self, forCellReuseIdentifier: DayDetailTopForecastTableViewCell.nameCell)
 
         return tableView
     }()
@@ -71,6 +74,37 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
+  //      DayDetailTopForecastTableViewCell.nameCell
+
+
+        if indexPath.section == 0 {
+
+            guard let cell = self.tableView.dequeueReusableCell(withIdentifier:  DayDetailTopForecastTableViewCell.nameCell, for: indexPath) as?  DayDetailTopForecastTableViewCell
+            else {
+                return UITableViewCell()
+            }
+
+
+            if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
+
+                guard forecastCoreData.isEmpty == false
+                else {
+                    return cell
+                }
+
+                cell.setupCellCoreData(dayForecast: forecastCoreData)
+                return cell
+            }
+
+
+            else {
+                return cell
+            }
+        }
+        
+        
+
+
         if indexPath.section == 1 {
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: DayDetailForecastTableViewCell.nameCell, for: indexPath) as? DayDetailForecastTableViewCell
             else {
@@ -79,6 +113,7 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
 
 
             if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
+                
                 guard forecastCoreData.isEmpty == false
                 else {
                     return cell

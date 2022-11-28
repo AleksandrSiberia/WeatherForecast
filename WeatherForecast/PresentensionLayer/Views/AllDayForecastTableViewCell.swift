@@ -74,7 +74,7 @@ class AllDayForecastTableViewCell: UITableViewCell {
         var labeDisclosureIndicator = UILabel()
         labeDisclosureIndicator.textColor = UIColor(named: "#272722")
         labeDisclosureIndicator.translatesAutoresizingMaskIntoConstraints = false
-        labeDisclosureIndicator.font = UIFont(name: "Rubik-Regular", size: 20)
+        labeDisclosureIndicator.font = UIFont(name: "Rubik-Regular", size: 18)
         labeDisclosureIndicator.numberOfLines = 0
         labeDisclosureIndicator.text = ">"
         return labeDisclosureIndicator
@@ -141,6 +141,15 @@ class AllDayForecastTableViewCell: UITableViewCell {
     }
 
 
+    func changeTemp(temp: Float?) -> String {
+
+        let changeType = (temp ?? 273.0) - 273.0
+        let roundTemp = round(changeType * 10.0) / 10.0
+        let roundTempString = String(roundTemp)
+
+        return roundTempString
+    }
+
 
     func setupCell(dayForecast: [WeatherForecastCoreData]? ) {
 
@@ -170,8 +179,8 @@ class AllDayForecastTableViewCell: UITableViewCell {
         self.labelDescriptionWeather.text = dayForecast?[0].descriptionWeather ?? ""
 
 
-        let minTemp = String(Int(round(dayForecast?[0].tepmMin ?? 0))) + "°"
-        let maxTemp = String(Int(round(dayForecast?[0].tempMax ?? 0))) + "°"
+        let minTemp = self.changeTemp(temp: dayForecast?[0].tepmMin) + "°"
+        let maxTemp = changeTemp(temp: dayForecast?[0].tempMax) + "°"
 
         let minMaxTemp = minTemp + "/" + maxTemp
         self.labelMinMaxTemp.text = minMaxTemp

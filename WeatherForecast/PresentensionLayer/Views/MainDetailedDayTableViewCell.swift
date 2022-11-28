@@ -137,9 +137,9 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
 
 
-    func setupCell(dayForecast: WeatherModel?, mainController: MainViewController?) {
+    func setupCell(mainController: MainViewController?) {
 
-        self.dayForecastNetwork = dayForecast
+
         self.mainViewController = mainController
 
     }

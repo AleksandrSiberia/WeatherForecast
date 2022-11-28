@@ -88,8 +88,15 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
     }
 
 
- 
 
+    func changeTemp(temp: Float?) -> String {
+
+        let changeType = (temp ?? 273.0) - 273.0
+        let roundTemp = round(changeType * 10.0) / 10.0
+        let roundTempString = String(roundTemp)
+
+        return roundTempString
+    }
 
 
     
@@ -114,7 +121,8 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
 
         self.imageViewIconWeather.image = UIImage(named: forecast?.icon ?? "")
 
-        self.labelTempForecast.text = String(forecast?.temp ?? 0)
+        self.labelTempForecast.text = self.changeTemp(temp: forecast?.temp)
+      
 
     }
 }

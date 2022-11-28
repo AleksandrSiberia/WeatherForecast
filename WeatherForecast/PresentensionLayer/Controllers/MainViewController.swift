@@ -90,23 +90,39 @@ class MainViewController: UIViewController {
 }
 
 
+
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+
         if section == 0 {
             return 1
         }
+
 
         if section == 1 {
             return 1
         }
 
+
         if section == 2 {
 
-            return 5
-        }
+            if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
 
+                guard forecastCoreData.count >= 5
+
+                else {
+                    return 0
+                }
+                return 5
+            }
+
+            else {
+                return 0
+            }
+        }
         else {
             return 0
         }
@@ -165,7 +181,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     return cell
                 }
 
-                cell.setupCell(dayForecast: nil, mainController: self)
+                cell.setupCell(mainController: self)
 
                 cell.setupCellCoreData(dayForecast: self.coordinator?.weatherForecastService.getForecastCoreData())
 
