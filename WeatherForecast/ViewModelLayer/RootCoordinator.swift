@@ -28,16 +28,13 @@ class RootCoordinator: CoordinatorProtocol {
 
     weak var mainController: MainViewController?
 
-
+    weak var setCityViewController: SetCityViewController?
 
     weak var dayDetailForecastController: DayDetailForecastViewController?
 
 
 
     func startCoordinator() -> UINavigationController {
-
-
-
 
         self.locationService.coordinator = self
 
@@ -61,7 +58,6 @@ class RootCoordinator: CoordinatorProtocol {
 
         print("📒", self.coreDataService.getFolder(name: "WeatherFolder")?.count)
 
-        
 
         self.firstController = AssemblyFirstController.setFirstController(coordinator: self)
 
@@ -77,13 +73,27 @@ class RootCoordinator: CoordinatorProtocol {
     func showMainController() {
 
 
-
         let controller =  AssemblyMainController.setMainController(coordinator: self)
 
         self.mainController = controller
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
 
+    }
+
+
+
+
+
+    func showSetCityViewController() {
+
+        let controller = SetCityViewController()
+
+        controller.coordinator = self
+
+        self.setCityViewController = controller
+
+        self.firstController?.navigationController?.pushViewController(self.setCityViewController!, animated: true)
     }
 
 
@@ -99,4 +109,5 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.mainController?.navigationController?.pushViewController( self.dayDetailForecastController!, animated: true)
     }
+
 }

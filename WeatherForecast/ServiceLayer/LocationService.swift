@@ -10,6 +10,7 @@ import CoreLocation
 import UIKit
 
 
+
 final class LocationService: NSObject, CLLocationManagerDelegate {
 
     var coordinator: RootCoordinator?
@@ -84,6 +85,37 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         }
     }
 
+
+
+    
+
+    func getLocationCity(nameCity: String, completionHandler: @escaping (String) -> Void)  {
+
+        let geocoder = CLGeocoder()
+
+        geocoder.geocodeAddressString(nameCity) { placemark, error in
+
+            if let error {
+                print(error.localizedDescription)
+                completionHandler("город не найден, попробуйте написать занова")
+
+            }
+            else {
+
+                
+                print("📭", placemark?[0])
+
+                let latitude = placemark?[0].location?.coordinate.latitude
+                let longitude = placemark?[0].location?.coordinate.longitude
+
+                UserDefaults.standard.set(latitude, forKey: "latitude")
+                UserDefaults.standard.set(longitude, forKey: "longitude")
+
+                completionHandler("Город добавлен")
+
+            }
+        }
+    }
 
 
 

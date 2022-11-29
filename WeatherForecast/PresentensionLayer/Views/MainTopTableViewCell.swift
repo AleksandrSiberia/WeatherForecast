@@ -11,6 +11,7 @@ class MainTopTableViewCell: UITableViewCell {
 
 
 
+
     private lazy var activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false

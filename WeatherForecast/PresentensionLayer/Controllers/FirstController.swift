@@ -107,6 +107,9 @@ class FirstController: UIViewController {
     private lazy var buttonDisallowIdentifyLocation: UIButton = {
 
         let action = UIAction() { action in
+
+            self.coordinator.showSetCityViewController()
+
             print("disallow", self.coordinator.locationService.currentCity)
         }
 

@@ -13,8 +13,6 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
     var temp: Float = 0
 
 
-
-
     private lazy var labelTemp: UILabel = {
 
         var labelTemp = UILabel()
@@ -105,10 +103,8 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        print("🛍️", self.temp, self.contentView.frame.height)
 
         let heightItem = self.contentView.frame.height
-
 
 
         if self.temp > 0 {
@@ -219,11 +215,9 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
         
         self.labelTemp.text = changeTemp(temp: forecast?.temp ?? 0) + "°"
     }
-
-
-
-    
 }
+
+
 
 extension DayDetailTopForecastCollectionViewCell: CellNameProtocol {
 
