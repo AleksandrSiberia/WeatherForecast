@@ -33,6 +33,8 @@ class DayDetailForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationItem.title = "Прогноз на 24 часа"
+
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.backgroundColor = .white
         self.view.addSubview(tableView)

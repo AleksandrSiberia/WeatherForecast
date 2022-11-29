@@ -86,7 +86,7 @@ class DayDetailTopForecastTableViewCell: UITableViewCell {
         let itemWidth = (screenWidth - self.collectionViewFlowLayout.sectionInset.left - (itemSpacing * itemSpacingCount)) / self.itemCount
 
 
-        let itemCGSize = CGSize(width: itemWidth, height: itemWidth * 2)
+        let itemCGSize = CGSize(width: itemWidth, height: itemWidth * 4)
 
         return itemCGSize
 
