@@ -97,13 +97,10 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
             if let error {
                 print(error.localizedDescription)
-                completionHandler("город не найден, попробуйте написать занова")
+                completionHandler("город не найден, попробуйте написать заново")
 
             }
             else {
-
-                
-                print("📭", placemark?[0])
 
                 let latitude = placemark?[0].location?.coordinate.latitude
                 let longitude = placemark?[0].location?.coordinate.longitude
@@ -147,17 +144,19 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         self.authorizationStatus = self.locationManager.authorizationStatus
 
         switch self.locationManager.authorizationStatus {
+            
         case .notDetermined:
             print("notDetermined")
         case .restricted:
             print("restricted")
+
         case .denied:
             self.coordinator?.showMainController()
             print("denied")
+
         case .authorizedAlways:
             print("authorizedAlways")
         case .authorizedWhenInUse:
-
             print("👍 authorizedWhenInUse")
 
      //       self.coordinator?.firstController?.hidButtonAllowIdentifyLocation()

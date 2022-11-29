@@ -24,8 +24,9 @@ protocol CoordinatorProtocol {
 
     func showDayDetailForecastController()
 
-
     func showSetCityViewController()
+
+    func showMainControllerFromSetCityViewController() 
 
 
     

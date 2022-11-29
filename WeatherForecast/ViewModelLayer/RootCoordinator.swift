@@ -78,13 +78,23 @@ class RootCoordinator: CoordinatorProtocol {
         self.mainController = controller
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
-
     }
 
 
 
 
+    func showMainControllerFromSetCityViewController() {
 
+        let controller =  AssemblyMainController.setMainController(coordinator: self)
+
+        self.mainController = controller
+
+        self.setCityViewController?.navigationController?.pushViewController(controller, animated: false)
+    }
+
+
+
+    
     func showSetCityViewController() {
 
         let controller = SetCityViewController()

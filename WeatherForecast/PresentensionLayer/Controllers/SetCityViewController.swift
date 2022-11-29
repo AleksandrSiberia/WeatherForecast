@@ -45,7 +45,11 @@ class SetCityViewController: UIViewController {
                     let actionResult = UIAlertAction(title: "Ок", style: .cancel) {
                         _ in
 
-                        print("📤")
+
+                        if UserDefaults.standard.string(forKey: "latitude") != nil && (UserDefaults.standard.string(forKey: "longitude") != nil) {
+
+                            self.coordinator?.showMainControllerFromSetCityViewController()
+                        }
                     }
 
                     alertResult.addAction(actionResult)
@@ -91,7 +95,7 @@ class SetCityViewController: UIViewController {
 
         self.view.backgroundColor = .white
 
-      // self.coordinator?.locationService.getLocationCity(nameCity: "иркутск") {_ in }
+        self.navigationItem.title = "Добавте город"
 
         NSLayoutConstraint.activate([
 
