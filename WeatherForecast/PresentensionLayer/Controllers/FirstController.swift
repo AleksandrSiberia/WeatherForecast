@@ -134,13 +134,17 @@ class FirstController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+        self.navigationController?.navigationBar.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+
         self.view.addSubview(self.scrollView)
 
         [self.imageViewBanner, self.labelLetLocation, self.labelAnnotation, self.labelAnnotationStopLocation, self.buttonAllowIdentifyLocation, self.buttonDisallowIdentifyLocation].forEach { self.scrollView.addSubview($0) }
 
         self.setupLayoutConstrains()
 
-        
+
+
 
     }
 

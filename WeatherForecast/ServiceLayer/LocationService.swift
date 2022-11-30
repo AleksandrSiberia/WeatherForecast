@@ -108,8 +108,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 UserDefaults.standard.set(latitude, forKey: "latitude")
                 UserDefaults.standard.set(longitude, forKey: "longitude")
 
-                print("📮",  UserDefaults.standard.string(forKey: "latitude"), UserDefaults.standard.string(forKey: "longitude"))
-
 
                 completionHandler("Город добавлен")
 
@@ -141,7 +139,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         if self.authorizationStatus != .notDetermined || self.authorizationStatus != .denied  {
 
             self.locationManager.startUpdatingLocation()
-
         }
 
         self.authorizationStatus = self.locationManager.authorizationStatus
@@ -155,6 +152,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             print("notDetermined")
 
 
+            if  UserDefaults.standard.string(forKey: "latitude") != nil &&  UserDefaults.standard.string(forKey: "longitude") != nil {
+
+                self.coordinator?.showMainController()
+            }
+
 
         case .restricted:
             print("restricted")
@@ -162,7 +164,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
         case .denied:
 
-   //         print(UserDefaults.standard.string(forKey: "latitude"), UserDefaults.standard.string(forKey: "longitude"))
+     //       print(UserDefaults.standard.string(forKey: "latitude"), UserDefaults.standard.string(forKey: "longitude"))
 
             if  UserDefaults.standard.string(forKey: "latitude") != nil &&  UserDefaults.standard.string(forKey: "longitude") != nil {
 

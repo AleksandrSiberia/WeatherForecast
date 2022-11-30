@@ -50,8 +50,6 @@ class MainViewController: UIViewController {
 
         self.navigationItem.rightBarButtonItem = self.barButtonItemLocation
 
-        self.navigationItem.title = self.coordinator?.locationService.currentCity
-
         self.view.addSubview(self.tableView)
 
         self.setupLayoutConstrains()
@@ -60,8 +58,10 @@ class MainViewController: UIViewController {
 
         self.coordinator?.networkService.getData(completionHandler: { weatherModel in
             if let weatherModel {
+
                 self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
                 DispatchQueue.main.async {
+                    self.navigationItem.title = weatherModel.city.nameCity
                     self.tableView.reloadData()
                     print("🍒 self.tableView.reloadData()")
                 }
@@ -73,9 +73,13 @@ class MainViewController: UIViewController {
 
 
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBar.backgroundColor = .white
     }
+
+ 
 
 
     @objc func actionBarButtonItemLocation() {

@@ -189,6 +189,7 @@ class CoreDataService {
             weatherForecastCoreData.timezone = Int32(weatherModel.city.timezone)
             weatherForecastCoreData.sunset = Int32(weatherModel.city.sunset)
             weatherForecastCoreData.sunrise = Int32(weatherModel.city.sunrise)
+            weatherForecastCoreData.nameCity = weatherModel.city.nameCity
 
             self.saveBackgroundContext()
 

@@ -54,8 +54,9 @@ class RootCoordinator: CoordinatorProtocol {
             }
         }
 
+        var controller = AssemblyFirstController.setFirstController(coordinator: self)
 
-        self.firstController = AssemblyFirstController.setFirstController(coordinator: self)
+        self.firstController = controller
 
         let navController = UINavigationController(rootViewController: self.firstController!)
 

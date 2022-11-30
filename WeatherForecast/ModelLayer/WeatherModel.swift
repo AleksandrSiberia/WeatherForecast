@@ -88,9 +88,18 @@ struct DateWeatherModel: Codable {
 
 struct CityWeatherModel: Codable {
 
-  var timezone: Int
-  var sunrise: Int
-  var sunset: Int
+    var timezone: Int
+    var sunrise: Int
+    var sunset: Int
+    var nameCity: String
+
+    enum CodingKeys: String, CodingKey {
+        case timezone
+        case sunrise
+        case sunset
+        case nameCity = "name"
+    }
+
 }
 
 
