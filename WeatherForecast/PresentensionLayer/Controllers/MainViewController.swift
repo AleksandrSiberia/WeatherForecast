@@ -128,9 +128,6 @@ class MainViewController: UIViewController {
     @objc func actionBarButtonItemSetting() {
         self.coordinator?.showSettingViewController()
     }
-
-
-
 }
 
 

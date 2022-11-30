@@ -37,6 +37,19 @@ class SettingViewController: UIViewController {
 
 
 
+    private lazy var labelSettingTemp: UILabel = {
+
+        var labelSettingTemp = UILabel()
+        labelSettingTemp.textColor = UIColor(named: "#272722")
+        labelSettingTemp.translatesAutoresizingMaskIntoConstraints = false
+        labelSettingTemp.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelSettingTemp.numberOfLines = 0
+        labelSettingTemp.text = "Темпиратура, C/F"
+        return labelSettingTemp
+    }()
+
+
+
     
     private lazy var switchTemp: UISwitch = {
         var switchTemp = UISwitch()
@@ -62,46 +75,72 @@ class SettingViewController: UIViewController {
                 UserDefaults.standard.set("F", forKey: "switchTemp")
             }
 
-            print("🏓", UserDefaults.standard.string(forKey: "switchTemp"))
-
-            
-
             self.coordinator?.dayDetailForecastController?.reloadTableView()
-
             self.coordinator?.mainController?.reloadTableView()
         }
 
         switchTemp.addAction(action, for: .touchUpInside)
-
-
-
-
-
-
-
 
         return switchTemp
     }()
 
 
 
-    private lazy var labelSettingTemp: UILabel = {
+    private lazy var labelSettingWind: UILabel = {
 
-        var labelSettingTemp = UILabel()
-        labelSettingTemp.textColor = UIColor(named: "#272722")
-        labelSettingTemp.translatesAutoresizingMaskIntoConstraints = false
-        labelSettingTemp.font = UIFont(name: "Rubik-Regular", size: 16)
-        labelSettingTemp.numberOfLines = 0
-        labelSettingTemp.text = "Темпиратура, C/F"
-        return labelSettingTemp
+        var labelSettingWind = UILabel()
+        labelSettingWind.textColor = UIColor(named: "#272722")
+        labelSettingWind.translatesAutoresizingMaskIntoConstraints = false
+        labelSettingWind.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelSettingWind.numberOfLines = 0
+        labelSettingWind.text = "Скорость ветра, Км/Мили"
+        return labelSettingWind
     }()
+
+
+
+    private lazy var switchSettingWind: UISwitch = {
+
+        var switchSettingWind = UISwitch()
+        switchSettingWind.translatesAutoresizingMaskIntoConstraints = false
+
+        if UserDefaults.standard.string(forKey: "switchWind") == "Km" || UserDefaults.standard.string(forKey: "switchWind") == nil {
+            switchSettingWind.isOn = false
+        }
+
+        if UserDefaults.standard.string(forKey: "switchWind") == "Mi" {
+            switchSettingWind.isOn = true
+        }
+
+
+        let action = UIAction { _ in
+
+            if switchSettingWind.isOn == false {
+                UserDefaults.standard.set("Km", forKey: "switchWind")
+            }
+
+            if switchSettingWind.isOn == true {
+                UserDefaults.standard.set("Mi", forKey: "switchWind")
+
+            }
+
+            self.coordinator?.dayDetailForecastController?.reloadTableView()
+            self.coordinator?.mainController?.reloadTableView()
+        }
+
+        switchSettingWind.addAction(action, for: .touchUpInside)
+
+        return switchSettingWind
+    }()
+
+
 
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        [self.viewCentre, self.labelSetting, self.labelSettingTemp, self.switchTemp ].forEach { self.view.addSubview( $0 )}
+        [self.viewCentre, self.labelSetting, self.labelSettingTemp, self.switchTemp, self.labelSettingWind, self.switchSettingWind ].forEach { self.view.addSubview( $0 )}
 
         setupLayoutConstrains()
     }
@@ -135,6 +174,13 @@ class SettingViewController: UIViewController {
 
             self.switchTemp.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
             self.switchTemp.centerYAnchor.constraint(equalTo: self.labelSettingTemp.centerYAnchor),
+
+            self.labelSettingWind.topAnchor.constraint(equalTo: self.labelSettingTemp.bottomAnchor, constant: 30),
+            self.labelSettingWind.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
+
+            self.switchSettingWind.centerYAnchor.constraint(equalTo: self.labelSettingWind.centerYAnchor),
+            self.switchSettingWind.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
+
 
 
         ])

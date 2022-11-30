@@ -49,13 +49,34 @@ final class SettingService {
         else {
             return ""
         }
-
-
     }
 
 
+    func changeSpeedWind(float: CFloat?) -> String {
 
+        if UserDefaults.standard.string(forKey: "switchWind") == "Km" ||
+            UserDefaults.standard.string(forKey: "switchWind") == nil {
 
+            let speedString = String(float ?? 0) + " м/с"
+            return speedString
+        }
 
+        if UserDefaults.standard.string(forKey: "switchWind") == "Mi" {
+
+            if let float {
+                let milesPerHour = float * 2.236936
+
+                return ""
+            }
+            else {
+                return ""
+            }
+        }
+
+        else {
+            return ""
+        }
+
+    }
 
 }

@@ -52,9 +52,7 @@ class DayDetailForecastViewController: UIViewController {
         self.tableView.reloadData()
     }
 
-
 }
-
 
 
 
@@ -142,7 +140,6 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
         else {
             return UITableViewCell()
         }
-
 
     }
 
