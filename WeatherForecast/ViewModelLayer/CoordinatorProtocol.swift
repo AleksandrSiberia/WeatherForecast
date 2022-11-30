@@ -20,6 +20,12 @@ protocol CoordinatorProtocol {
     var weatherForecastService: WeatherForecastService { get set }
 
 
+    var dayDetailForecastController: DayDetailForecastViewController? { get set }
+
+    var mainController: MainViewController? { get set }
+
+
+
     func startCoordinator() -> UINavigationController
 
     func showDayDetailForecastController()

@@ -47,6 +47,12 @@ class DayDetailForecastViewController: UIViewController {
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
     }
+
+    func reloadTableView() {
+        self.tableView.reloadData()
+    }
+
+
 }
 
 

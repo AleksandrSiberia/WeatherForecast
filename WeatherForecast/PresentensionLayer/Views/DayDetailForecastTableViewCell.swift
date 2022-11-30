@@ -293,6 +293,7 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
     func setupCell(dayForecast: WeatherForecastCoreData?) {
 
+        
         let dateFormatter = DateFormatter()
 
         let dateString = dayForecast?.date ?? ""
@@ -316,10 +317,10 @@ class DayDetailForecastTableViewCell: UITableViewCell {
         self.labelTame.text = labelTime
 
 
-        self.labelTemp.text = self.changeTemp(temp: dayForecast?.temp) + "°"
+        self.labelTemp.text = SettingService.shared.changeTemp(temp: dayForecast?.temp) + "°"
 
 
-        self.labelFeelValue.text = self.changeTemp(temp: dayForecast?.feelsLike) + "°"
+        self.labelFeelValue.text = SettingService.shared.changeTemp(temp: dayForecast?.feelsLike) + "°"
 
 
         self.labelSpeedWindValue.text = String(Int(round(dayForecast?.speedWind ?? 0))) + " м/с"

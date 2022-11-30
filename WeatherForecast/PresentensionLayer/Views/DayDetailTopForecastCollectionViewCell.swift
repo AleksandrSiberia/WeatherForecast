@@ -109,6 +109,8 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
         if self.temp > 0 {
 
+            
+
             self.viewTempIndicator.backgroundColor = UIColor(named: "beige")
 
             NSLayoutConstraint.activate([
@@ -149,6 +151,7 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
 
         NSLayoutConstraint.activate([
+
 
             self.viewBlackLine.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             self.viewBlackLine.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
@@ -192,7 +195,7 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
         self.temp = (Float(self.changeTemp(temp: forecast?.temp)) ??  0)
 
-
+        
         let dateFormatter = DateFormatter()
 
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -213,7 +216,7 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
         self.imageIcon.image = UIImage(named: forecast?.icon ?? "")
 
         
-        self.labelTemp.text = changeTemp(temp: forecast?.temp ?? 0) + "°"
+        self.labelTemp.text = SettingService.shared.changeTemp(temp: forecast?.temp) + "°"
     }
 }
 

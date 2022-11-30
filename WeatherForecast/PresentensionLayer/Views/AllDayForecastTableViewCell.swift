@@ -141,52 +141,53 @@ class AllDayForecastTableViewCell: UITableViewCell {
     }
 
 
-    func changeTemp(temp: Float?) -> String {
-
-        let changeType = (temp ?? 273.0) - 273.0
-        let roundTemp = round(changeType * 10.0) / 10.0
-        let roundTempString = String(roundTemp)
-
-        return roundTempString
-    }
 
 
     func setupCell(dayForecast: [WeatherForecastCoreData]? ) {
 
-        let dateFormatter = DateFormatter()
+        if dayForecast?.isEmpty == false {
 
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let dateFormatter = DateFormatter()
 
-        let dateString = dayForecast?[0].date ?? ""
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-        let dateDate = dateFormatter.date(from: dateString)
+            let dateString = dayForecast?[0].date ?? ""
 
-        dateFormatter.dateFormat = "dd/MM"
+            let dateDate = dateFormatter.date(from: dateString)
 
-        if let dateDate {
+            dateFormatter.dateFormat = "dd/MM"
 
-            let dateForLabel = dateFormatter.string(from: dateDate)
+            if let dateDate {
 
-            self.labelDate.text = dateForLabel
+                let dateForLabel = dateFormatter.string(from: dateDate)
+
+                self.labelDate.text = dateForLabel
+            }
+
+
+
+            self.imageViewIconWeather.image = UIImage(named: dayForecast?[0].icon ?? "")
+
+            self.labelHumidity.text = String(dayForecast?[0].humidity ?? 0) + "%"
+
+            self.labelDescriptionWeather.text = dayForecast?[0].descriptionWeather ?? ""
+
+
+            let minTemp = SettingService.shared.changeTemp(temp: dayForecast?[0].tepmMin) + "°"
+            let maxTemp = SettingService.shared.changeTemp(temp: dayForecast?[0].tempMax) + "°"
+
+            let minMaxTemp = minTemp + "/" + maxTemp
+            self.labelMinMaxTemp.text = minMaxTemp
+        }
+
+        else {
+
+            print("‼️ error -> func setupCell(dayForecast: [WeatherForecastCoreData]? )")
         }
 
 
 
-        self.imageViewIconWeather.image = UIImage(named: dayForecast?[0].icon ?? "")
-
-        self.labelHumidity.text = String(dayForecast?[0].humidity ?? 0) + "%"
-
-        self.labelDescriptionWeather.text = dayForecast?[0].descriptionWeather ?? ""
-
-
-        let minTemp = self.changeTemp(temp: dayForecast?[0].tepmMin) + "°"
-        let maxTemp = changeTemp(temp: dayForecast?[0].tempMax) + "°"
-
-        let minMaxTemp = minTemp + "/" + maxTemp
-        self.labelMinMaxTemp.text = minMaxTemp
     }
-
-
 
 }
 

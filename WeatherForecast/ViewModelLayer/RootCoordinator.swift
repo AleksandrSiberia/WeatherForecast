@@ -133,9 +133,13 @@ class RootCoordinator: CoordinatorProtocol {
     }
 
 
+    
+
     func showSettingViewController() {
 
         let controller = SettingViewController()
+
+        controller.coordinator = self
 
         self.settingViewController = controller
 

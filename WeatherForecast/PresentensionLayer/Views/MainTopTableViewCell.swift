@@ -288,28 +288,22 @@ class MainTopTableViewCell: UITableViewCell {
         ])
     }
 
-    func changeTemp(temp: Float?) -> String {
 
-        let changeType = (temp ?? 273.0) - 273.0
-        let roundTemp = round(changeType * 10.0) / 10.0
-        let roundTempString = String(roundTemp)
-
-        return roundTempString
-    }
    
 
     func setupCellCoreData(nowWeather: WeatherForecastCoreData?) {
 
+
         self.activityIndicator.stopAnimating()
 
 
-        let tepmMin = self.changeTemp(temp: nowWeather?.tepmMin)
-        let tempMax = self.changeTemp(temp: nowWeather?.tempMax)
+        let tepmMin = SettingService.shared.changeTemp(temp: nowWeather?.tepmMin)
+        let tempMax = SettingService.shared.changeTemp(temp: nowWeather?.tempMax)
 
         let  labelMinMaxTemp = "\(tepmMin)°/\(tempMax)°"
         self.labelMinMaxTemp.text = labelMinMaxTemp
 
-        self.labelTemp.text = self.changeTemp(temp: nowWeather?.temp) + "°"
+        self.labelTemp.text = SettingService.shared.changeTemp(temp: nowWeather?.temp) + "°"
 
         self.labelDescriptionWeather.text = String(nowWeather?.descriptionWeather ?? "")
 

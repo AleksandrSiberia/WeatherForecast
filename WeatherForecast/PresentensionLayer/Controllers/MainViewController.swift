@@ -34,7 +34,7 @@ class MainViewController: UIViewController {
 
 
 
-    lazy var tableView: UITableView = {
+    private lazy var tableView: UITableView = {
 
         var tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,28 +94,6 @@ class MainViewController: UIViewController {
 
 
 
-
-    @objc func actionBarButtonItemLocation() {
-
-        self.coordinator?.showFirstController()
-
-    }
-
-
-    @objc func actionBarButtonItemSetting() {
-
-        print("🧽")
-
-        self.coordinator?.showSettingViewController()
-    }
-
-
-    func showDayDetailForecastViewController() {
-        self.coordinator?.showDayDetailForecastController()
-    }
-
-
-
     func setupLayoutConstrains() {
         
         NSLayoutConstraint.activate([
@@ -127,6 +105,32 @@ class MainViewController: UIViewController {
 
         ])
     }
+
+
+    func showDayDetailForecastViewController() {
+
+        self.coordinator?.showDayDetailForecastController()
+    }
+
+
+    func reloadTableView() {
+        self.tableView.reloadData()
+    }
+
+
+    
+    @objc func actionBarButtonItemLocation() {
+        self.coordinator?.showFirstController()
+    }
+
+
+
+    @objc func actionBarButtonItemSetting() {
+        self.coordinator?.showSettingViewController()
+    }
+
+
+
 }
 
 
