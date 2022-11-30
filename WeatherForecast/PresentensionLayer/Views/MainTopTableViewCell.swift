@@ -195,7 +195,7 @@ class MainTopTableViewCell: UITableViewCell {
         labelDate.numberOfLines = 0
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "hh:mm, E dd MMMM"
+        dateFormatter.dateFormat = "HH:mm, E dd MMMM"
         labelDate.text = dateFormatter.string(from: Date())
 
         return labelDate
@@ -300,10 +300,7 @@ class MainTopTableViewCell: UITableViewCell {
 
     func setupCellCoreData(nowWeather: WeatherForecastCoreData?) {
 
-
-
         self.activityIndicator.stopAnimating()
-
 
 
         let tepmMin = self.changeTemp(temp: nowWeather?.tepmMin)

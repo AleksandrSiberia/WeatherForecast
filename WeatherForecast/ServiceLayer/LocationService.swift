@@ -158,6 +158,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             }
 
 
+//            if self.coordinator?.coreDataService.getWeatherForecast(attribute: nil, value: nil) != nil {
+//
+//                self.coordinator?.showMainController()
+//            }
+
+
         case .restricted:
             print("restricted")
 
@@ -175,6 +181,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             }
             print("denied")
 
+
+
         case .authorizedAlways:
             print("authorizedAlways")
 
@@ -188,15 +196,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 UserDefaults.standard.removeObject(forKey: "longitude")
             }
 
-     //       self.coordinator?.firstController?.hidButtonAllowIdentifyLocation()
-
-            self.getNameCurrentCityAndLocation { nameCity, location in
-
-                self.currentCity = nameCity
-
-                self.coordinator?.showMainController()
-
-            }
+           self.coordinator?.showMainController()
 
 
 

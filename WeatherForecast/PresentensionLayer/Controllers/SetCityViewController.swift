@@ -70,17 +70,10 @@ class SetCityViewController: UIViewController {
             self.navigationController?.present(alertWriteNameCity, animated: true)
         }
 
-
-        let image = UIImageView(image: UIImage(named: "plus2"))
-        image.frame.size = .init(width: 70, height: 70)
-        image.contentMode = .scaleAspectFit
-
-
         var buttonSetCity = UIButton(primaryAction: action)
-        buttonSetCity.addSubview(image)
-        buttonSetCity.translatesAutoresizingMaskIntoConstraints = false
-        buttonSetCity.frame.size = .init(width: 100, height: 100)
 
+        buttonSetCity.setImage(UIImage(systemName: "plus.app"), for: .normal)
+        buttonSetCity.translatesAutoresizingMaskIntoConstraints = false
         return buttonSetCity
     }()
 
@@ -120,6 +113,14 @@ class SetCityViewController: UIViewController {
             self.navigationController?.present(alert, animated: true)
         }
     }
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        self.navigationController?.navigationBar.backgroundColor = .white
+    }
+
 
 
 

@@ -24,6 +24,16 @@ class MainViewController: UIViewController {
     }()
 
 
+
+    private lazy var barButtonItemSetting: UIBarButtonItem = {
+
+        var barButtonItemSetting = UIBarButtonItem(image: UIImage(systemName:  "gearshape"), style: .done, target: self, action: #selector(actionBarButtonItemSetting))
+
+        return barButtonItemSetting
+    }()
+
+
+
     lazy var tableView: UITableView = {
 
         var tableView = UITableView()
@@ -49,24 +59,27 @@ class MainViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: false)
 
         self.navigationItem.rightBarButtonItem = self.barButtonItemLocation
+        self.navigationItem.leftBarButtonItem = self.barButtonItemSetting
 
         self.view.addSubview(self.tableView)
 
         self.setupLayoutConstrains()
 
-        
 
-        self.coordinator?.networkService.getData(completionHandler: { weatherModel in
-            if let weatherModel {
+        self.coordinator?.locationService.getNameCurrentCityAndLocation() { string, clLocation in
 
-                self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
-                DispatchQueue.main.async {
-                    self.navigationItem.title = weatherModel.city.nameCity
-                    self.tableView.reloadData()
-                    print("🍒 self.tableView.reloadData()")
+            self.coordinator?.networkService.getData(completionHandler: { weatherModel in
+                if let weatherModel {
+
+                    self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
+                    DispatchQueue.main.async {
+                        self.navigationItem.title = weatherModel.city.nameCity
+                        self.tableView.reloadData()
+                        print("🍒 self.tableView.reloadData()")
+                    }
                 }
-            }
-        })
+            })
+        }
 
     }
 
@@ -79,13 +92,21 @@ class MainViewController: UIViewController {
         self.navigationController?.navigationBar.backgroundColor = .white
     }
 
- 
+
 
 
     @objc func actionBarButtonItemLocation() {
 
         self.coordinator?.showFirstController()
-        print("📩")
+
+    }
+
+
+    @objc func actionBarButtonItemSetting() {
+
+        print("🧽")
+
+        self.coordinator?.showSettingViewController()
     }
 
 

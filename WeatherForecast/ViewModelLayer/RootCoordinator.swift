@@ -32,6 +32,9 @@ class RootCoordinator: CoordinatorProtocol {
 
     weak var dayDetailForecastController: DayDetailForecastViewController?
 
+    weak var settingViewController: SettingViewController?
+
+
 
 
     func startCoordinator() -> UINavigationController {
@@ -104,6 +107,8 @@ class RootCoordinator: CoordinatorProtocol {
     }
 
 
+
+
     func showFirstController() {
 
         let controller = AssemblyFirstController.setFirstController(coordinator: self)
@@ -113,15 +118,29 @@ class RootCoordinator: CoordinatorProtocol {
     }
 
 
+
+
+
     func showDayDetailForecastController() {
 
-        print("🎀 showDayDetailForecastController()")
+
 
         let controller = AssemblyDayDetailForecastController.getAssemblyDayDetailForecastController(coordinator: self)
 
         self.dayDetailForecastController = controller
 
         self.mainController?.navigationController?.pushViewController( self.dayDetailForecastController!, animated: true)
+    }
+
+
+    func showSettingViewController() {
+
+        let controller = SettingViewController()
+
+        self.settingViewController = controller
+
+        self.mainController?.navigationController?.pushViewController(self.settingViewController!, animated: true)
+
     }
 
 }

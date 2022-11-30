@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B1407932935EE470085DB43 /* SetCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1407922935EE470085DB43 /* SetCityViewController.swift */; };
+		8B1407952937677B0085DB43 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1407942937677B0085DB43 /* SettingViewController.swift */; };
 		8B55D9DD2924F37200574A7F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B55D9DC2924F37200574A7F /* Rubik-Medium.ttf */; };
 		8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9DF2924FB6600574A7F /* LocationService.swift */; };
 		8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E12925018D00574A7F /* RootCoordinator.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		8B1407922935EE470085DB43 /* SetCityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetCityViewController.swift; sourceTree = "<group>"; };
+		8B1407942937677B0085DB43 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		8B55D9DC2924F37200574A7F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		8B55D9DF2924FB6600574A7F /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		8B55D9E12925018D00574A7F /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				8B55D9ED29275EA700574A7F /* MainViewController.swift */,
 				8B55DA09293341A200574A7F /* DayDetailForecastViewController.swift */,
 				8B1407922935EE470085DB43 /* SetCityViewController.swift */,
+				8B1407942937677B0085DB43 /* SettingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				8B857E3329239A9B00ABD4A0 /* AppDelegate.swift in Sources */,
 				8B55DA122934B85C00574A7F /* DayDetailTopForecastCollectionViewCell.swift in Sources */,
 				8B55D9E8292509A300574A7F /* CoordinatorProtocol.swift in Sources */,
+				8B1407952937677B0085DB43 /* SettingViewController.swift in Sources */,
 				8B55DA01292F470E00574A7F /* MainDetailedDayTableViewCell.swift in Sources */,
 				8B55D9FD292CAD0C00574A7F /* WeatherForecastService.swift in Sources */,
 				8B55DA03292F4ADA00574A7F /* MainDetailedDayCollectionViewCell.swift in Sources */,

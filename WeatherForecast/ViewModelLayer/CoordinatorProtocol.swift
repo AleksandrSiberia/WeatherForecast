@@ -30,6 +30,8 @@ protocol CoordinatorProtocol {
 
     func showMainController()
 
+    func showSettingViewController()
+
     func showFirstController()
 
 
