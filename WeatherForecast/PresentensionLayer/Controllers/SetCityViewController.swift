@@ -106,6 +106,20 @@ class SetCityViewController: UIViewController {
         ])
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if self.coordinator?.locationService.locationManager.authorizationStatus == .authorizedWhenInUse {
+
+            let alert = UIAlertController(title: nil, message: "Чтобы настройки города сохранились при следующем запуске приложения, автоопределение локации должно быть отключено", preferredStyle: .alert)
+
+            let action = UIAlertAction(title: "Ok", style: .cancel)
+
+            alert.addAction(action)
+
+            self.navigationController?.present(alert, animated: true)
+        }
+    }
 
 
 

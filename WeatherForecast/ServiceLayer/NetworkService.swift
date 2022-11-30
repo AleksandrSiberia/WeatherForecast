@@ -22,10 +22,7 @@ class NetworkService {
 
     func getURL() -> String {
 
-//        guard self.locationService?.currentLatitude != nil &&
-//              self.locationService?.currentLongitude != nil else { return "" }
-
-
+   
 
         if  let latitude = UserDefaults.standard.string(forKey: "latitude"), let longitude = UserDefaults.standard.string(forKey: "longitude")
 
@@ -38,29 +35,33 @@ class NetworkService {
 
 
 
-        if let latitude = self.locationService?.currentLatitude,
-                let longitude = self.locationService?.currentLongitude
-        {
-
-            let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + String(describing: latitude) + "&lon=" + String(describing: longitude) + "&appid=c6a8cb66ecd2502365bcc7589784a114"
-
-            return url
-        }
-
-
-
         else {
 
-            // Иркутск по дефолту
+            if let latitude = self.locationService?.currentLatitude,
+               let longitude = self.locationService?.currentLongitude {
 
-            let latitude = "52.2978"
-            let longitude = "104.296"
+                let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + String(describing: latitude) + "&lon=" + String(describing: longitude) + "&appid=c6a8cb66ecd2502365bcc7589784a114"
 
-            let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + latitude + "&lon=" + longitude + "&appid=c6a8cb66ecd2502365bcc7589784a114"
+                return url
+            }
 
-            return url
+            else  {
+                return ""
+            }
         }
     }
+
+
+
+//        else {
+//            // Иркутск по дефолту
+//            let latitude = "52.2978"
+//            let longitude = "104.296"
+//
+//            let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + latitude + "&lon=" + longitude + "&appid=c6a8cb66ecd2502365bcc7589784a114"
+//            return url
+//        }
+
 
 
 

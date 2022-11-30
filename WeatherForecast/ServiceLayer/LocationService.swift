@@ -108,6 +108,9 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 UserDefaults.standard.set(latitude, forKey: "latitude")
                 UserDefaults.standard.set(longitude, forKey: "longitude")
 
+                print("📮",  UserDefaults.standard.string(forKey: "latitude"), UserDefaults.standard.string(forKey: "longitude"))
+
+
                 completionHandler("Город добавлен")
 
             }
@@ -143,21 +146,45 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
         self.authorizationStatus = self.locationManager.authorizationStatus
 
+
+
+
         switch self.locationManager.authorizationStatus {
-            
+
         case .notDetermined:
             print("notDetermined")
+
+
+
         case .restricted:
             print("restricted")
 
+
         case .denied:
-            self.coordinator?.showMainController()
+
+   //         print(UserDefaults.standard.string(forKey: "latitude"), UserDefaults.standard.string(forKey: "longitude"))
+
+            if  UserDefaults.standard.string(forKey: "latitude") != nil &&  UserDefaults.standard.string(forKey: "longitude") != nil {
+
+                self.coordinator?.showMainController()
+            }
+            else {
+                self.coordinator?.showSetCityViewController()
+            }
             print("denied")
 
         case .authorizedAlways:
             print("authorizedAlways")
+
+            
         case .authorizedWhenInUse:
+
             print("👍 authorizedWhenInUse")
+
+            if  UserDefaults.standard.string(forKey: "latitude") != nil && UserDefaults.standard.string(forKey: "longitude") != nil {
+                UserDefaults.standard.removeObject(forKey: "latitude")
+                UserDefaults.standard.removeObject(forKey: "longitude")
+            }
 
      //       self.coordinator?.firstController?.hidButtonAllowIdentifyLocation()
 

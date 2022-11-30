@@ -26,7 +26,11 @@ protocol CoordinatorProtocol {
 
     func showSetCityViewController()
 
-    func showMainControllerFromSetCityViewController() 
+    func showMainControllerFromSetCityViewController()
+
+    func showMainController()
+
+    func showFirstController()
 
 
     

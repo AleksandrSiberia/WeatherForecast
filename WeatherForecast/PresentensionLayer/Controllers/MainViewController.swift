@@ -15,7 +15,13 @@ class MainViewController: UIViewController {
     var mainViewController: MainViewController?
     
 
+    private lazy var barButtonItemLocation: UIBarButtonItem = {
 
+
+        var barButtonItemLocation = UIBarButtonItem(image: UIImage(systemName:  "mappin.and.ellipse"), style: .done, target: self, action: #selector(actionBarButtonItemLocation))
+
+        return barButtonItemLocation
+    }()
 
 
     lazy var tableView: UITableView = {
@@ -41,6 +47,8 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationItem.setHidesBackButton(true, animated: false)
+
+        self.navigationItem.rightBarButtonItem = self.barButtonItemLocation
 
         self.navigationItem.title = self.coordinator?.locationService.currentCity
 
@@ -69,6 +77,12 @@ class MainViewController: UIViewController {
         super.viewDidLayoutSubviews()
     }
 
+
+    @objc func actionBarButtonItemLocation() {
+
+        self.coordinator?.showFirstController()
+        print("📩")
+    }
 
 
     func showDayDetailForecastViewController() {

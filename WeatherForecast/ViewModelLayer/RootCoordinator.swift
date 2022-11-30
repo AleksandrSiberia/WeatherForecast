@@ -47,16 +47,12 @@ class RootCoordinator: CoordinatorProtocol {
         self.weatherForecastService.coreDataService = self.coreDataService
 
 
-        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")?.count)
-
         if let folder = self.coreDataService.getFolder(name: "WeatherFolder") {
             if folder.isEmpty == true {
 
                 self.coreDataService.setFolder(name: "WeatherFolder")
             }
         }
-
-        print("📒", self.coreDataService.getFolder(name: "WeatherFolder")?.count)
 
 
         self.firstController = AssemblyFirstController.setFirstController(coordinator: self)
@@ -107,6 +103,13 @@ class RootCoordinator: CoordinatorProtocol {
     }
 
 
+    func showFirstController() {
+
+        let controller = AssemblyFirstController.setFirstController(coordinator: self)
+
+
+        self.mainController?.navigationController?.pushViewController(controller, animated: true)
+    }
 
 
     func showDayDetailForecastController() {

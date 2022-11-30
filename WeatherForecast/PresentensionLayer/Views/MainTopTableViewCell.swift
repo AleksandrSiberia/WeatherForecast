@@ -322,14 +322,16 @@ class MainTopTableViewCell: UITableViewCell {
         
         self.labelHumidity.text = String(nowWeather?.humidity ?? 0) + " %"
 
-        let secondUnixSunrise = TimeInterval((nowWeather?.sunrise ?? 0) - (nowWeather?.timezone ?? 0))
+        let secondUnixSunrise = TimeInterval(nowWeather?.sunrise ?? 0)
+                                             //- (nowWeather?.timezone ?? 0))
         let sunriseNSDate = NSDate(timeIntervalSince1970: secondUnixSunrise)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         let timeSunrise = dateFormatter.string(from: sunriseNSDate as Date)
         self.labelSunrise.text = timeSunrise
 
-        let secondUnixSunset = TimeInterval((nowWeather?.sunset ?? 0) - (nowWeather?.timezone ?? 0))
+        let secondUnixSunset = TimeInterval(nowWeather?.sunset ?? 0)
+                                            //- (nowWeather?.timezone ?? 0))
         let sunsetNSDate = NSDate(timeIntervalSince1970: secondUnixSunset)
         let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
         self.labelSunset.text = timeSunset

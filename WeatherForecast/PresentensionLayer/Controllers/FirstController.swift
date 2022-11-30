@@ -77,17 +77,20 @@ class FirstController: UIViewController {
 
         let action = UIAction() { action in
 
-            print("buttonAllowIdentifyLocation: UIButton")
 
-            
-            self.coordinator.locationService.requestPermission()
+            if self.coordinator?.locationService.locationManager.authorizationStatus == .authorizedWhenInUse || self.coordinator?.locationService.locationManager.authorizationStatus == .denied {
+                if let appSettings = URL(string: UIApplication.openSettingsURLString) {
+                    UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
+                }
+            }
+
+            else {
+                self.coordinator.locationService.requestPermission()
+            }
         }
 
         var buttonAllowIdentifyLocation = UIButton(primaryAction: action)
 
-//        if coordinator.locationService.locationManager.authorizationStatus == .authorizedWhenInUse {
-//            buttonAllowIdentifyLocation.isHidden = true
-//        }
 
         buttonAllowIdentifyLocation.translatesAutoresizingMaskIntoConstraints = false
         buttonAllowIdentifyLocation.backgroundColor = UIColor(named: "#F26E11")
@@ -109,8 +112,6 @@ class FirstController: UIViewController {
         let action = UIAction() { action in
 
             self.coordinator.showSetCityViewController()
-
-            print("disallow", self.coordinator.locationService.currentCity)
         }
 
         var buttonDisallowIdentifyLocation = UIButton(primaryAction: action)
@@ -137,13 +138,49 @@ class FirstController: UIViewController {
 
         [self.imageViewBanner, self.labelLetLocation, self.labelAnnotation, self.labelAnnotationStopLocation, self.buttonAllowIdentifyLocation, self.buttonDisallowIdentifyLocation].forEach { self.scrollView.addSubview($0) }
 
-        setupLayoutConstrains()
+        self.setupLayoutConstrains()
+
+        
+
     }
+
+
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+
+    }
+
+
+
+
+    func swipeFirstController() {
+
+        if  UserDefaults.standard.string(forKey: "latitude") != nil && UserDefaults.standard.string(forKey: "longitude") != nil {
+            self.coordinator.showMainController()
+        }
+
+        if self.coordinator.locationService.locationManager.authorizationStatus == .authorizedWhenInUse {
+            self.coordinator.showMainController()
+        }
+
+        if self.coordinator.coreDataService.getWeatherForecast(attribute: nil, value: nil) != nil {
+            self.coordinator.showMainController()
+
+        }
+
+    }
+
 
 
     func hidButtonAllowIdentifyLocation() {
         self.buttonAllowIdentifyLocation.isHidden = true
     }
+
+
+
 
     func setupLayoutConstrains() {
 
