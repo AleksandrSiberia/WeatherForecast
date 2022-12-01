@@ -42,7 +42,8 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
 
         tableView.separatorStyle = .none
-        tableView.allowsSelection = false
+
+  //      tableView.allowsSelection = false
 
         tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
         tableView.register( MainDetailedDayTableViewCell.self, forCellReuseIdentifier: MainDetailedDayTableViewCell.nameCell)
@@ -180,12 +181,17 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: MainTopTableViewCell.nameCell, for: indexPath) as? MainTopTableViewCell
 
+
             else {
                 print("‼️ indexPath.section == 0")
                 return UITableViewCell()
             }
 
+            cell.selectionStyle = .none
+
             if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
+
+
 
                 guard getForecastCoreData.isEmpty == false
 
@@ -194,6 +200,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 }
 
                 cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getForecastCoreData()?[0])
+
                 return cell
             }
             else {
@@ -206,6 +213,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
         if indexPath.section == 1 {
 
+
             guard let cell = tableView.dequeueReusableCell(withIdentifier:  MainDetailedDayTableViewCell.nameCell, for: indexPath) as? MainDetailedDayTableViewCell
 
             else {
@@ -213,6 +221,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 return UITableViewCell()
             }
 
+            cell.selectionStyle = .none
 
             if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
 
@@ -242,6 +251,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if indexPath.section == 2 {
 
             guard let cell = self.tableView.dequeueReusableCell(withIdentifier: AllDayForecastTableViewCell.nameCell, for: indexPath) as? AllDayForecastTableViewCell
+
             else {
                 print("‼️ error = as? AllDayForecastTableViewCell")
                 return UITableViewCell()
@@ -281,4 +291,16 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         3
     }
 
+
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+
+        if indexPath.section == 2 {
+
+
+            self.coordinator?.showOneDayDetailForecastViewController(day: indexPath.row)
+
+        }
+    }
 }

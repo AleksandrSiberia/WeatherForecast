@@ -185,6 +185,7 @@ class CoreDataService {
             weatherForecastCoreData.tempMax = date.main.tempMax
             weatherForecastCoreData.tepmMin = date.main.tempMin
             weatherForecastCoreData.speedWind = date.wind.speedWind
+            weatherForecastCoreData.dayOrNite = date.dayOrNite.pod
 
             weatherForecastCoreData.timezone = Int32(weatherModel.city.timezone)
             weatherForecastCoreData.sunset = Int32(weatherModel.city.sunset)

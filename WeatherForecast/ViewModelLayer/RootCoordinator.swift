@@ -147,4 +147,16 @@ class RootCoordinator: CoordinatorProtocol {
 
     }
 
+
+    
+    func showOneDayDetailForecastViewController(day: Int) {
+
+        let controller = OneDayDetailForecastViewController()
+
+        controller.dayForecast = self.weatherForecastService.getDayForecastCoreData(day: day)
+
+        controller.coordinator = self
+
+        self.mainController?.navigationController?.pushViewController(controller, animated: true)
+    }
 }

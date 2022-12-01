@@ -40,6 +40,8 @@ protocol CoordinatorProtocol {
 
     func showFirstController()
 
+    func showOneDayDetailForecastViewController(day: Int)
+
 
     
  

@@ -72,77 +72,96 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
             return 1
         }
 
+
+
         else {
-            return 9
-        }
-    }
-
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-  //      DayDetailTopForecastTableViewCell.nameCell
-
-
-        if indexPath.section == 0 {
-
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier:  DayDetailTopForecastTableViewCell.nameCell, for: indexPath) as?  DayDetailTopForecastTableViewCell
-            else {
-                return UITableViewCell()
-            }
-
 
             if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
 
                 guard forecastCoreData.isEmpty == false
                 else {
-                    return cell
+
+                    return 0
                 }
 
-                cell.setupCellCoreData(dayForecast: forecastCoreData)
-                return cell
-            }
-
-
-            else {
-                return cell
-            }
-        }
-        
-        
-
-
-        if indexPath.section == 1 {
-            guard let cell = self.tableView.dequeueReusableCell(withIdentifier: DayDetailForecastTableViewCell.nameCell, for: indexPath) as? DayDetailForecastTableViewCell
-            else {
-                return UITableViewCell()
-            }
-
-
-            if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
-                
-                guard forecastCoreData.isEmpty == false
+                if forecastCoreData.count >= 9 {
+                    return 9
+                }
                 else {
-                    return cell
+                    return forecastCoreData.count
                 }
-
-                cell.setupCell(dayForecast: forecastCoreData[indexPath.row])
-                return cell
             }
-
-
             else {
-                return cell
+                return 0
             }
         }
-
-
-
-        else {
-            return UITableViewCell()
-        }
-
     }
 
 
 
-}
+    
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+
+
+            if indexPath.section == 0 {
+
+                guard let cell = self.tableView.dequeueReusableCell(withIdentifier:  DayDetailTopForecastTableViewCell.nameCell, for: indexPath) as?  DayDetailTopForecastTableViewCell
+                else {
+                    return UITableViewCell()
+                }
+
+
+                if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
+
+                    guard forecastCoreData.isEmpty == false
+                    else {
+                        return cell
+                    }
+
+                    cell.setupCellCoreData(dayForecast: forecastCoreData)
+                    return cell
+                }
+                else {
+                    return cell
+                }
+            }
+
+
+
+
+            if indexPath.section == 1 {
+                guard let cell = self.tableView.dequeueReusableCell(withIdentifier: DayDetailForecastTableViewCell.nameCell, for: indexPath) as? DayDetailForecastTableViewCell
+                else {
+                    return UITableViewCell()
+                }
+
+
+                if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
+
+                    guard forecastCoreData.isEmpty == false
+                    else {
+                        return cell
+                    }
+
+                    cell.setupCell(dayForecast: forecastCoreData[indexPath.row])
+                    return cell
+                }
+
+
+                else {
+                    return cell
+                }
+            }
+
+
+
+            else {
+                return UITableViewCell()
+            }
+
+        }
+
+
+
+    }

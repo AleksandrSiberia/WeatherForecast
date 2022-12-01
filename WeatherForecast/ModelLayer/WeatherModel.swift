@@ -27,6 +27,13 @@ struct MainWeatherModel: Codable {
 
 
 
+struct DayOrNiteWeatherModel: Codable {
+
+    var pod: String
+}
+
+
+
 struct ImageAndTextWeatherModel: Codable {
 
     var descriptionWeather: String
@@ -67,12 +74,15 @@ struct WindWeatherModel: Codable {
 
 
 
+
+
 struct DateWeatherModel: Codable {
 
     var main: MainWeatherModel
     var weather: [ImageAndTextWeatherModel]
     var clouds: CloudsWeatherModel
     var wind: WindWeatherModel
+    var dayOrNite: DayOrNiteWeatherModel
     var date: String
 
     private enum CodingKeys: String, CodingKey {
@@ -80,9 +90,11 @@ struct DateWeatherModel: Codable {
         case weather
         case clouds
         case wind
+        case dayOrNite = "sys"
         case date = "dt_txt"
     }
 }
+
 
 
 

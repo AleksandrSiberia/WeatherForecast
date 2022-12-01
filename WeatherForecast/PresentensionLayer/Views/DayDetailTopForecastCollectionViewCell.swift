@@ -209,7 +209,6 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
         self.labelTime.text = dateString
 
 
-
         self.labelHumidity.text = String(forecast?.humidity ?? 0) + " %"
 
 
