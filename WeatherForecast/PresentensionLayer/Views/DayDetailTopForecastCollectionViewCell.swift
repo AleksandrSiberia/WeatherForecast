@@ -202,7 +202,7 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
         let dateDate = dateFormatter.date(from: forecast?.date ?? "") ?? Date()
 
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "\(SettingService.shared.changeDate()):mm"
 
         let dateString = dateFormatter.string(from: dateDate)
 

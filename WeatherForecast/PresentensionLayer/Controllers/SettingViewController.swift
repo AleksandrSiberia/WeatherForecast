@@ -134,16 +134,68 @@ class SettingViewController: UIViewController {
     }()
 
 
+    private lazy var labelSettingHour: UILabel = {
+
+        var labelSettingHour = UILabel()
+        labelSettingHour.textColor = UIColor(named: "#272722")
+        labelSettingHour.translatesAutoresizingMaskIntoConstraints = false
+        labelSettingHour.font = UIFont(name: "Rubik-Regular", size: 16)
+        labelSettingHour.numberOfLines = 0
+        labelSettingHour.text = "Формат времени, 12/24"
+        return labelSettingHour
+    }()
+
+
+
+
+    private lazy var switchSettingHour: UISwitch = {
+
+        var switchSettingHour = UISwitch()
+
+        switchSettingHour.translatesAutoresizingMaskIntoConstraints = false
+
+        if UserDefaults.standard.string(forKey: "switchHour" ) == nil || UserDefaults.standard.string(forKey: "switchHour") == "HH" {
+
+            switchSettingHour.isOn = true
+        }
+
+        if UserDefaults.standard.string(forKey: "switchHour") == "hh" {
+            switchSettingHour.isOn = false
+        }
+
+        let action = UIAction {_ in
+
+            if switchSettingHour.isOn == true {
+
+                UserDefaults.standard.set("HH", forKey: "switchHour")
+            }
+
+            if switchSettingHour.isOn == false {
+
+                UserDefaults.standard.set("hh", forKey: "switchHour")
+            }
+
+            self.coordinator?.dayDetailForecastController?.reloadTableView()
+            self.coordinator?.mainController?.reloadTableView()
+        }
+
+        switchSettingHour.addAction(action, for: .touchUpInside)
+
+        return switchSettingHour
+    }()
+
 
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        [self.viewCentre, self.labelSetting, self.labelSettingTemp, self.switchTemp, self.labelSettingWind, self.switchSettingWind ].forEach { self.view.addSubview( $0 )}
+        [self.viewCentre, self.labelSetting, self.labelSettingTemp, self.switchTemp, self.labelSettingWind, self.switchSettingWind, self.labelSettingHour, self.switchSettingHour ].forEach { self.view.addSubview( $0 )}
 
         setupLayoutConstrains()
     }
+
+
 
 
 
@@ -157,6 +209,8 @@ class SettingViewController: UIViewController {
 
 
 
+
+
     func setupLayoutConstrains() {
 
         NSLayoutConstraint.activate([
@@ -166,7 +220,7 @@ class SettingViewController: UIViewController {
             self.viewCentre.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -28),
             self.viewCentre.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -240),
 
-            self.labelSetting.topAnchor.constraint(equalTo: self.viewCentre.topAnchor, constant: 27),
+            self.labelSetting.topAnchor.constraint(equalTo: self.viewCentre.topAnchor, constant: 35),
             self.labelSetting.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
 
             self.labelSettingTemp.topAnchor.constraint(equalTo: self.labelSetting.bottomAnchor, constant: 20),
@@ -181,7 +235,11 @@ class SettingViewController: UIViewController {
             self.switchSettingWind.centerYAnchor.constraint(equalTo: self.labelSettingWind.centerYAnchor),
             self.switchSettingWind.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
 
+            self.labelSettingHour.topAnchor.constraint(equalTo: self.switchSettingWind.bottomAnchor, constant: 30),
+            self.labelSettingHour.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
 
+            self.switchSettingHour.centerYAnchor.constraint(equalTo: self.labelSettingHour.centerYAnchor),
+            self.switchSettingHour.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
 
         ])
     }

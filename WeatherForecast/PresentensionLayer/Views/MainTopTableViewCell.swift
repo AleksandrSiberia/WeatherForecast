@@ -194,10 +194,6 @@ class MainTopTableViewCell: UITableViewCell {
         labelDate.font = UIFont(name: "Rubik-Regular", size: 16)
         labelDate.numberOfLines = 0
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm, E dd MMMM"
-        labelDate.text = dateFormatter.string(from: Date())
-
         return labelDate
     }()
 
@@ -289,6 +285,8 @@ class MainTopTableViewCell: UITableViewCell {
     }
 
 
+
+
    
 
     func setupCellCoreData(nowWeather: WeatherForecastCoreData?) {
@@ -307,7 +305,7 @@ class MainTopTableViewCell: UITableViewCell {
 
         self.labelDescriptionWeather.text = String(nowWeather?.descriptionWeather ?? "")
 
-        self.labelSpeedWind.text = String(nowWeather?.speedWind ?? 0) + " м/с"
+        self.labelSpeedWind.text = SettingService.shared.changeSpeedWind(float: nowWeather?.speedWind)
 
         self.labelCloudsPercent.text = String(nowWeather?.cloudsPercent ?? 0) + " %"
         
@@ -317,7 +315,7 @@ class MainTopTableViewCell: UITableViewCell {
                                              //- (nowWeather?.timezone ?? 0))
         let sunriseNSDate = NSDate(timeIntervalSince1970: secondUnixSunrise)
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "\(SettingService.shared.changeDate()):mm"
         let timeSunrise = dateFormatter.string(from: sunriseNSDate as Date)
         self.labelSunrise.text = timeSunrise
 
@@ -327,10 +325,18 @@ class MainTopTableViewCell: UITableViewCell {
         let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
         self.labelSunset.text = timeSunset
 
+
+        dateFormatter.dateFormat = "\(SettingService.shared.changeDate()):mm, E dd MMMM"
+        self.labelDate.text = dateFormatter.string(from: Date())
+
         
         self.imageViewRainbow.isHidden = false
         self.imageViewSunrise.isHidden = false
         self.imageViewSunset.isHidden = false
+
+
+
+
     }
 }
 

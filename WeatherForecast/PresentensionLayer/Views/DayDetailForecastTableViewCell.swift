@@ -310,7 +310,7 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
 
 
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "\(SettingService.shared.changeDate()):mm"
 
         let labelTime = dateFormatter.string(from: dateDate)
 
@@ -323,16 +323,13 @@ class DayDetailForecastTableViewCell: UITableViewCell {
         self.labelFeelValue.text = SettingService.shared.changeTemp(temp: dayForecast?.feelsLike) + "°"
 
 
-        self.labelSpeedWindValue.text = String(Int(round(dayForecast?.speedWind ?? 0))) + " м/с"
+        self.labelSpeedWindValue.text = SettingService.shared.changeSpeedWind(float: dayForecast?.speedWind)
 
 
         self.labelHumidityValue.text = String(dayForecast?.humidity ?? 0 ) + " %"
 
 
         self.labelCloudsPercentValue.text = String(dayForecast?.cloudsPercent ?? 0) + " %"
-
-
-
 
     }
 }

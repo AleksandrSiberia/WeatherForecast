@@ -104,7 +104,7 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
             return
         }
 
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "\(SettingService.shared.changeDate()):mm"
         let time = dateFormatter.string(from: dateDate)
         self.labelTimeForecast.text = time
 
