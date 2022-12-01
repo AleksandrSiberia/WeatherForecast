@@ -59,7 +59,6 @@ struct CloudsWeatherModel: Codable {
 }
 
 
-
 struct WindWeatherModel: Codable {
 
     var speedWind: Float
@@ -71,8 +70,6 @@ struct WindWeatherModel: Codable {
         case degWind = "deg"
     }
 }
-
-
 
 
 

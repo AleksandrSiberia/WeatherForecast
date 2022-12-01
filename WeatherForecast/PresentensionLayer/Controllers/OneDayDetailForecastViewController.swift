@@ -12,7 +12,11 @@ class OneDayDetailForecastViewController: UIViewController {
 
     var coordinator: CoordinatorProtocol?
 
-    var dayForecast: [WeatherForecastCoreData]?
+    var dayForecast: [WeatherForecastCoreData]? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
 
     private lazy var tableView: UITableView = {

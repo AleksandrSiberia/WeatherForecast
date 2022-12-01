@@ -42,7 +42,7 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
         var imageFeel = UIImageView()
         imageFeel.translatesAutoresizingMaskIntoConstraints = false
-        imageFeel.image = UIImage(named: "crescent-moon 1")
+        imageFeel.image = UIImage(named: "feel")
         imageFeel.contentMode = .scaleAspectFit
         return imageFeel
     }()
@@ -205,6 +205,8 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+   //     self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
 
         [ self.labelDate, self.labelTame, self.labelTemp, self.imageFeel, self.labelFeel, self.labelFeelValue,  self.imageViewSpeedWind, self.labelSpeedWind, self.labelSpeedWindValue, self.imageViewHumidity, self.labelHumidity, self.labelHumidityValue, self.imageViewCloudsPercent, self.labelCloudsPercent, self.labelCloudsPercentValue, ].forEach { self.contentView.addSubview($0) }
 
