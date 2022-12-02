@@ -13,11 +13,7 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
     private var itemCount = 3.0
 
 
-    private var dayForecastCoreData: [WeatherForecastCoreData]? {
-        didSet {
-            self.collectionView.reloadData()
-        }
-    }
+    private var coordinator: CoordinatorProtocol?
 
 
     private var colorCollectionCell: UIColor?
@@ -74,11 +70,12 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
 
 
 
-    func setupCellCoreData(dayForecast: [WeatherForecastCoreData]?) {
+    func setupCellCoreData(coordinator: CoordinatorProtocol?) {
 
-        self.dayForecastCoreData = dayForecast
+        self.coordinator = coordinator
 
         self.collectionView.reloadData()
+
     }
 
 
@@ -87,6 +84,8 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
     func setupColorCollectionCell(colorCollectionCell: UIColor?) {
 
         self.colorCollectionCell = colorCollectionCell
+
+
 
     }
 
@@ -122,18 +121,15 @@ extension DayAndNiteTopTableViewCell: UICollectionViewDelegateFlowLayout, UIColl
 
 
 
-        guard self.dayForecastCoreData != nil && self.dayForecastCoreData?.isEmpty == false  else {
+        guard self.coordinator?.weatherForecastService.getForecastCoreData() != nil && self.coordinator?.weatherForecastService.getForecastCoreData()?.isEmpty == false  else {
 
             return 0
         }
 
-        guard (self.dayForecastCoreData?.count ?? 0) >= 9
-        else {
-            return self.dayForecastCoreData?.count ?? 0
-        }
-        return 9
+        return 5
 
     }
+
 
 
 
@@ -145,14 +141,13 @@ extension DayAndNiteTopTableViewCell: UICollectionViewDelegateFlowLayout, UIColl
         }
 
 
-        guard self.dayForecastCoreData != nil
+        guard self.coordinator?.weatherForecastService.getForecastCoreData() != nil && self.coordinator?.weatherForecastService.getForecastCoreData()?.isEmpty == false
 
         else {
             return cell
         }
 
-
-        cell.setupCollectionCellCoreData(forecast: self.dayForecastCoreData?[indexPath.row])
+        cell.setupCollectionCellCoreData(forecast: self.coordinator?.weatherForecastService.getDayForecastCoreData(day: indexPath.row))
 
         return cell
     }

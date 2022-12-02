@@ -60,7 +60,6 @@ class WeatherForecastService {
 
         let dateString = dateFormatter.string(from: day)
 
-        print("🪄", dateString)
 
         let todayForecast = self.coreDataService?.getWeatherForecast(attribute: "date", value: dateString)
 

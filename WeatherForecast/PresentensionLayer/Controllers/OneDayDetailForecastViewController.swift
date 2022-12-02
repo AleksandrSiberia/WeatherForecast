@@ -119,16 +119,16 @@ extension OneDayDetailForecastViewController: UITableViewDelegate, UITableViewDa
 
             guard let cell = tableView.dequeueReusableCell(withIdentifier: DayAndNiteTopTableViewCell.nameCell, for: indexPath) as? DayAndNiteTopTableViewCell
             else {
-
                 return UITableViewCell()
             }
 
-            if numberIndexPathRow == indexPath.row {
 
+            if numberIndexPathRow == indexPath.row {
                 cell.setupColorCollectionCell(colorCollectionCell: UIColor(named: "#204EC7"))
             }
 
-            cell.setupCellCoreData(dayForecast: self.dayForecast)
+            cell.setupCellCoreData(coordinator: self.coordinator)
+
             return cell
         }
 

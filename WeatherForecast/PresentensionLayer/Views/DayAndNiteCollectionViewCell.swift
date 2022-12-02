@@ -11,6 +11,18 @@ class DayAndNiteCollectionViewCell: UICollectionViewCell {
 
 
 
+    private lazy var labelDate: UILabel = {
+
+        var labelDate = UILabel()
+        labelDate.textColor = UIColor(named: "#272722")
+        labelDate.translatesAutoresizingMaskIntoConstraints = false
+        labelDate.font = UIFont(name: "Rubik-Regular", size: 18)
+        labelDate.numberOfLines = 0
+
+        return labelDate
+    }()
+
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +32,7 @@ class DayAndNiteCollectionViewCell: UICollectionViewCell {
         self.contentView.layer.borderWidth = 0.3
         self.contentView.layer.borderColor = UIColor.black.cgColor
 
-        [ ].forEach { self.contentView.addSubview($0) }
+        [self.labelDate].forEach { self.contentView.addSubview($0) }
 
         self.setupLayoutConstraints()
     }
@@ -32,16 +44,39 @@ class DayAndNiteCollectionViewCell: UICollectionViewCell {
     }
 
 
+
     func setupLayoutConstraints() {
         NSLayoutConstraint.activate([
 
+            self.labelDate.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            self.labelDate.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
         ])
     }
 
 
-    func setupCollectionCellCoreData(forecast: WeatherForecastCoreData?)  {
-        
-        
+
+    func setupCollectionCellCoreData(forecast: [WeatherForecastCoreData]?)  {
+
+        if let forecast {
+
+            if forecast.count >= 1 {
+
+                let dateString = forecast.first?.date ?? ""
+
+                let dateFormatter = DateFormatter()
+
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+                let dateDate = dateFormatter.date(from: dateString) ?? Date()
+
+                dateFormatter.dateFormat = "dd/MM E"
+
+                let labelString = dateFormatter.string(from: dateDate)
+
+                self.labelDate.text = labelString
+
+            }
+        }
     }
 
 }

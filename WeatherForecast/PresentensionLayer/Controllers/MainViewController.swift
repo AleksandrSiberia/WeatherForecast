@@ -156,7 +156,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 guard forecastCoreData.count >= 5
 
                 else {
-                    return 0
+                    return forecastCoreData.count
                 }
                 return 5
             }
