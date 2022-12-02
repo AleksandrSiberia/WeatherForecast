@@ -22,7 +22,7 @@ class NetworkService {
 
     func getURL() -> String {
 
-   
+
 
         if  let latitude = UserDefaults.standard.string(forKey: "latitude"), let longitude = UserDefaults.standard.string(forKey: "longitude")
 
@@ -37,19 +37,21 @@ class NetworkService {
 
         else {
 
-            if let latitude = self.locationService?.currentLatitude,
-               let longitude = self.locationService?.currentLongitude {
 
-                let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + String(describing: latitude) + "&lon=" + String(describing: longitude) + "&appid=c6a8cb66ecd2502365bcc7589784a114"
+                if let latitude = self.locationService?.currentLatitude,
+                   let longitude = self.locationService?.currentLongitude {
 
-                return url
-            }
+                    let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + String(describing: latitude) + "&lon=" + String(describing: longitude) + "&appid=c6a8cb66ecd2502365bcc7589784a114"
 
-            else  {
-                return ""
+                    return url
+                }
+
+                else  {
+                    return ""
+                }
             }
         }
-    }
+    
 
 
 

@@ -65,7 +65,7 @@ class MainViewController: UIViewController {
         self.setupLayoutConstrains()
 
 
-        self.coordinator?.locationService.getNameCurrentCityAndLocation() { string, clLocation in
+
 
             self.coordinator?.networkService.getData(completionHandler: { weatherModel in
                 if let weatherModel {
@@ -80,7 +80,7 @@ class MainViewController: UIViewController {
             })
         }
 
-    }
+    
 
 
 
@@ -89,6 +89,8 @@ class MainViewController: UIViewController {
         super.viewWillAppear(animated)
 
         self.navigationController?.navigationBar.backgroundColor = .white
+
+
     }
 
 

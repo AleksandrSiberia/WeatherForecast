@@ -39,6 +39,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         print(FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask))
         print(Bundle.main.bundleURL)
 
+        
+
         setting()
     }
 
@@ -63,10 +65,15 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
         if let currentLocation = self.locationManager.location {
 
-            self.currentLatitude = currentLocation.coordinate.latitude
-            self.currentLongitude = currentLocation.coordinate.longitude
 
-            print(self.currentLatitude!, self.currentLongitude!)
+            
+            let latitude = currentLocation.coordinate.latitude
+            let longitude = currentLocation.coordinate.longitude
+
+            UserDefaults.standard.set(latitude, forKey: "latitude")
+            UserDefaults.standard.set(longitude, forKey: "longitude")
+
+            
 
             geocoder.reverseGeocodeLocation(currentLocation) { [weak self] placemark, error in
                 if let error {
@@ -189,12 +196,16 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             
         case .authorizedWhenInUse:
 
+
+            self.getNameCurrentCityAndLocation() { string, clLocation in
+            }
+
             print("👍 authorizedWhenInUse")
 
-            if  UserDefaults.standard.string(forKey: "latitude") != nil && UserDefaults.standard.string(forKey: "longitude") != nil {
-                UserDefaults.standard.removeObject(forKey: "latitude")
-                UserDefaults.standard.removeObject(forKey: "longitude")
-            }
+//            if  UserDefaults.standard.string(forKey: "latitude") != nil && UserDefaults.standard.string(forKey: "longitude") != nil {
+//                UserDefaults.standard.removeObject(forKey: "latitude")
+//                UserDefaults.standard.removeObject(forKey: "longitude")
+//            }
 
            self.coordinator?.showMainController()
 
