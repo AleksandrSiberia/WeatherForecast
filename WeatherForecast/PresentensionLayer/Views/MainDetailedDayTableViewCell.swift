@@ -27,8 +27,6 @@ class MainDetailedDayTableViewCell: UITableViewCell {
     private let itemCount = 4.0
 
 
-
-
     private lazy var buttonDetailedDayForecast: UIButton = {
 
         let action = UIAction{  _ in

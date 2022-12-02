@@ -30,6 +30,8 @@ class OneDayDetailForecastViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
 
+  //      tableView.separatorStyle = .none
+
         tableView.register(DayAndNiteTableViewCell.self, forCellReuseIdentifier: DayAndNiteTableViewCell.nameCell)
         tableView.register(DayAndNiteTopTableViewCell.self, forCellReuseIdentifier: DayAndNiteTopTableViewCell.nameCell)
 
@@ -123,11 +125,7 @@ extension OneDayDetailForecastViewController: UITableViewDelegate, UITableViewDa
             }
 
 
-            if numberIndexPathRow == indexPath.row {
-                cell.setupColorCollectionCell(colorCollectionCell: UIColor(named: "#204EC7"))
-            }
-
-            cell.setupCellCoreData(coordinator: self.coordinator)
+            cell.setupCellCoreData(coordinator: self.coordinator, colorCollectionCellIndex: self.numberIndexPathRow)
 
             return cell
         }

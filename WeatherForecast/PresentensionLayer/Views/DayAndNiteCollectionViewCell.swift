@@ -27,10 +27,11 @@ class DayAndNiteCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        self.contentView.layer.masksToBounds = true
-        self.contentView.layer.cornerRadius = 22
-        self.contentView.layer.borderWidth = 0.3
-        self.contentView.layer.borderColor = UIColor.black.cgColor
+  
+        self.contentView.layer.cornerRadius = 12
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.borderWidth = 4
+        self.contentView.layer.borderColor = UIColor.white.cgColor
 
         [self.labelDate].forEach { self.contentView.addSubview($0) }
 
@@ -54,6 +55,12 @@ class DayAndNiteCollectionViewCell: UICollectionViewCell {
     }
 
 
+    func checkLabelColor() {
+
+        self.labelDate.textColor = .white
+    }
+
+    
 
     func setupCollectionCellCoreData(forecast: [WeatherForecastCoreData]?)  {
 

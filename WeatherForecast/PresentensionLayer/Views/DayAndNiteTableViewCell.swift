@@ -212,6 +212,12 @@ class DayAndNiteTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+//        self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
+//        self.contentView.layer.masksToBounds = true
+//        self.contentView.layer.cornerRadius = 22
+
+        
+
         [ self.labelDayOrNite, self.imageWeather, self.labelTemp, self.labelWeatherDescription, self.imageFeel, self.labelFeel, self.labelFeelValue, self.imageWind, self.labelWind, self.labelWindValue, self.imageHumidity, self.labelHumidity, self.labelHumidityValue, self.imageClouds, self.labelClouds, self.labelCloudsValue ].forEach { self.contentView.addSubview($0) }
 
         setupLayoutConstraints()

@@ -43,8 +43,6 @@ class MainViewController: UIViewController {
 
         tableView.separatorStyle = .none
 
-  //      tableView.allowsSelection = false
-
         tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
         tableView.register( MainDetailedDayTableViewCell.self, forCellReuseIdentifier: MainDetailedDayTableViewCell.nameCell)
         tableView.register(AllDayForecastTableViewCell.self, forCellReuseIdentifier: AllDayForecastTableViewCell.nameCell)

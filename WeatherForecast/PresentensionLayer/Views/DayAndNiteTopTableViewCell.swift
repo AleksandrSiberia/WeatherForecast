@@ -16,7 +16,7 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
     private var coordinator: CoordinatorProtocol?
 
 
-    private var colorCollectionCell: UIColor?
+    private var colorCollectionCellIndex: Int?
 
 
     private lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
@@ -70,7 +70,9 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
 
 
 
-    func setupCellCoreData(coordinator: CoordinatorProtocol?) {
+    func setupCellCoreData(coordinator: CoordinatorProtocol?, colorCollectionCellIndex: Int?) {
+
+        self.colorCollectionCellIndex = colorCollectionCellIndex
 
         self.coordinator = coordinator
 
@@ -78,16 +80,6 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
 
     }
 
-
-
-
-    func setupColorCollectionCell(colorCollectionCell: UIColor?) {
-
-        self.colorCollectionCell = colorCollectionCell
-
-
-
-    }
 
 
 
@@ -103,7 +95,7 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
         let itemWidth = (screenWidth - self.collectionViewFlowLayout.sectionInset.left - (itemSpacing * itemSpacingCount)) / self.itemCount
 
 
-        let itemCGSize = CGSize(width: itemWidth, height: itemWidth * 0.7)
+        let itemCGSize = CGSize(width: itemWidth, height: itemWidth * 0.5)
 
         return itemCGSize
 
@@ -149,8 +141,21 @@ extension DayAndNiteTopTableViewCell: UICollectionViewDelegateFlowLayout, UIColl
 
         cell.setupCollectionCellCoreData(forecast: self.coordinator?.weatherForecastService.getDayForecastCoreData(day: indexPath.row))
 
-        return cell
+
+        if indexPath.row == self.colorCollectionCellIndex {
+
+            cell.contentView.backgroundColor = UIColor(red: 0.125, green: 0.306, blue: 0.78, alpha: 1)
+            cell.checkLabelColor()
+            return cell
+        }
+        
+        else {
+            return cell
+        }
     }
+    
+    
+
 
 
 
