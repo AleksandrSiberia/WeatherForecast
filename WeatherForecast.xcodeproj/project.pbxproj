@@ -12,6 +12,8 @@
 		8B14079729377D380085DB43 /* SettingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14079629377D380085DB43 /* SettingService.swift */; };
 		8B14079929389D360085DB43 /* OneDayDetailForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14079829389D360085DB43 /* OneDayDetailForecastViewController.swift */; };
 		8B14079B2938A11A0085DB43 /* DayAndNiteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14079A2938A11A0085DB43 /* DayAndNiteTableViewCell.swift */; };
+		8B14079D2939F9B30085DB43 /* DayAndNiteTopTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14079C2939F9B30085DB43 /* DayAndNiteTopTableViewCell.swift */; };
+		8B14079F2939FC160085DB43 /* DayAndNiteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B14079E2939FC160085DB43 /* DayAndNiteCollectionViewCell.swift */; };
 		8B55D9DD2924F37200574A7F /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B55D9DC2924F37200574A7F /* Rubik-Medium.ttf */; };
 		8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9DF2924FB6600574A7F /* LocationService.swift */; };
 		8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B55D9E12925018D00574A7F /* RootCoordinator.swift */; };
@@ -49,6 +51,8 @@
 		8B14079629377D380085DB43 /* SettingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingService.swift; sourceTree = "<group>"; };
 		8B14079829389D360085DB43 /* OneDayDetailForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneDayDetailForecastViewController.swift; sourceTree = "<group>"; };
 		8B14079A2938A11A0085DB43 /* DayAndNiteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAndNiteTableViewCell.swift; sourceTree = "<group>"; };
+		8B14079C2939F9B30085DB43 /* DayAndNiteTopTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAndNiteTopTableViewCell.swift; sourceTree = "<group>"; };
+		8B14079E2939FC160085DB43 /* DayAndNiteCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayAndNiteCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B55D9DC2924F37200574A7F /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		8B55D9DF2924FB6600574A7F /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		8B55D9E12925018D00574A7F /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 				8B55DA0F2934AE2C00574A7F /* DayDetailTopForecastTableViewCell.swift */,
 				8B55DA112934B85C00574A7F /* DayDetailTopForecastCollectionViewCell.swift */,
 				8B14079A2938A11A0085DB43 /* DayAndNiteTableViewCell.swift */,
+				8B14079C2939F9B30085DB43 /* DayAndNiteTopTableViewCell.swift */,
+				8B14079E2939FC160085DB43 /* DayAndNiteCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -317,6 +323,7 @@
 				8B55D9F229277EFE00574A7F /* WeatherModel.swift in Sources */,
 				8B55D9E22925018D00574A7F /* RootCoordinator.swift in Sources */,
 				8B55DA0E29334C8F00574A7F /* DayDetailForecastTableViewCell.swift in Sources */,
+				8B14079F2939FC160085DB43 /* DayAndNiteCollectionViewCell.swift in Sources */,
 				8B55D9E02924FB6600574A7F /* LocationService.swift in Sources */,
 				8B55D9F029275EDE00574A7F /* AssemblyMainController.swift in Sources */,
 				8B14079729377D380085DB43 /* SettingService.swift in Sources */,
@@ -324,6 +331,7 @@
 				8B55D9F42927831D00574A7F /* CoreDataService.swift in Sources */,
 				8B857E4729239DC300ABD4A0 /* FirstController.swift in Sources */,
 				8B55DA082931E2E200574A7F /* AllDayForecastTableViewCell.swift in Sources */,
+				8B14079D2939F9B30085DB43 /* DayAndNiteTopTableViewCell.swift in Sources */,
 				8B55D9EE29275EA700574A7F /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

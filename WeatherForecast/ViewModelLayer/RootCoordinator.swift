@@ -157,6 +157,8 @@ class RootCoordinator: CoordinatorProtocol {
 
         controller.coordinator = self
 
+        controller.numberIndexPathRow = day
+
         self.mainController?.navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -23,6 +23,7 @@ class DayAndNiteTableViewCell: UITableViewCell {
 
 
 
+    
     private lazy var imageWeather: UIImageView = {
 
         var imageWeather = UIImageView()
@@ -134,10 +135,84 @@ class DayAndNiteTableViewCell: UITableViewCell {
 
 
 
+    private lazy var imageHumidity: UIImageView = {
+
+        var imageHumidity = UIImageView()
+        imageHumidity.translatesAutoresizingMaskIntoConstraints = false
+        imageHumidity.contentMode = .scaleAspectFit
+        imageHumidity.image = UIImage(named: "rain")
+        return imageHumidity
+    }()
+
+
+
+    private lazy var labelHumidity: UILabel = {
+
+        var labelHumidity = UILabel()
+        labelHumidity.textColor = UIColor(named: "#272722")
+        labelHumidity.translatesAutoresizingMaskIntoConstraints = false
+        labelHumidity.font = UIFont(name: "Rubik-Regular", size: 18)
+        labelHumidity.numberOfLines = 0
+        labelHumidity.text = "Влажность"
+
+        return labelHumidity
+    }()
+
+
+    private lazy var labelHumidityValue: UILabel = {
+
+        var labelHumidityValue = UILabel()
+        labelHumidityValue.textColor = UIColor(named: "#272722")
+        labelHumidityValue.translatesAutoresizingMaskIntoConstraints = false
+        labelHumidityValue.font = UIFont(name: "Rubik-Regular", size: 18)
+        labelHumidityValue.numberOfLines = 0
+
+        return labelHumidityValue
+    }()
+
+
+    private lazy var imageClouds: UIImageView = {
+
+        var imageClouds = UIImageView()
+        imageClouds.translatesAutoresizingMaskIntoConstraints = false
+        imageClouds.contentMode = .scaleAspectFit
+        imageClouds.image = UIImage(named: "clouds")
+        return imageClouds
+    }()
+
+
+
+    private lazy var labelClouds: UILabel = {
+
+        var labelClouds = UILabel()
+        labelClouds.textColor = UIColor(named: "#272722")
+        labelClouds.translatesAutoresizingMaskIntoConstraints = false
+        labelClouds.font = UIFont(name: "Rubik-Regular", size: 18)
+        labelClouds.numberOfLines = 0
+        labelClouds.text = "Облачность"
+
+        return labelClouds
+    }()
+
+
+
+    private lazy var labelCloudsValue: UILabel = {
+
+        var labelCloudsValue = UILabel()
+        labelCloudsValue.textColor = UIColor(named: "#272722")
+        labelCloudsValue.translatesAutoresizingMaskIntoConstraints = false
+        labelCloudsValue.font = UIFont(name: "Rubik-Regular", size: 18)
+        labelCloudsValue.numberOfLines = 0
+
+        return labelCloudsValue
+    }()
+
+
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-        [ self.labelDayOrNite, self.imageWeather, self.labelTemp, self.labelWeatherDescription, self.imageFeel, self.labelFeel, self.labelFeelValue, self.imageWind, self.labelWind, self.labelWindValue ].forEach { self.contentView.addSubview($0) }
+        [ self.labelDayOrNite, self.imageWeather, self.labelTemp, self.labelWeatherDescription, self.imageFeel, self.labelFeel, self.labelFeelValue, self.imageWind, self.labelWind, self.labelWindValue, self.imageHumidity, self.labelHumidity, self.labelHumidityValue, self.imageClouds, self.labelClouds, self.labelCloudsValue ].forEach { self.contentView.addSubview($0) }
 
         setupLayoutConstraints()
 
@@ -157,7 +232,6 @@ class DayAndNiteTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
 
-        self.contentView.heightAnchor.constraint(equalToConstant: 300),
 
         self.labelDayOrNite.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 21),
         self.labelDayOrNite.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
@@ -184,7 +258,7 @@ class DayAndNiteTableViewCell: UITableViewCell {
         self.labelFeelValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
         self.labelFeelValue.centerYAnchor.constraint(equalTo: self.labelFeel.centerYAnchor),
 
-        self.imageWind.topAnchor.constraint(equalTo: self.imageFeel.bottomAnchor, constant: 30),
+        self.imageWind.topAnchor.constraint(equalTo: self.imageFeel.bottomAnchor, constant: 25),
         self.imageWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
         self.imageWind.heightAnchor.constraint(equalToConstant: 25),
         self.imageWind.widthAnchor.constraint(equalToConstant: 25),
@@ -195,7 +269,29 @@ class DayAndNiteTableViewCell: UITableViewCell {
         self.labelWindValue.centerYAnchor.constraint(equalTo: self.labelWind.centerYAnchor),
         self.labelWindValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
 
+        self.imageHumidity.topAnchor.constraint(equalTo: self.imageWind.bottomAnchor, constant: 25),
+        self.imageHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+        self.imageHumidity.heightAnchor.constraint(equalToConstant: 20),
+        self.imageHumidity.widthAnchor.constraint(equalToConstant: 20),
 
+        self.labelHumidity.centerYAnchor.constraint(equalTo: self.imageHumidity.centerYAnchor),
+        self.labelHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
+
+        self.labelHumidityValue.centerYAnchor.constraint(equalTo: self.labelHumidity.centerYAnchor),
+        self.labelHumidityValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+
+        self.imageClouds.topAnchor.constraint(equalTo: self.imageHumidity.bottomAnchor, constant: 25),
+        self.imageClouds.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+        self.imageClouds.heightAnchor.constraint(equalToConstant: 20),
+        self.imageClouds.widthAnchor.constraint(equalToConstant: 20),
+
+        self.labelClouds.centerYAnchor.constraint(equalTo: self.imageClouds.centerYAnchor),
+        self.labelClouds.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
+
+        self.labelCloudsValue.centerYAnchor.constraint(equalTo: self.imageClouds.centerYAnchor),
+        self.labelCloudsValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+
+        self.labelCloudsValue.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -30),
 
 
         ])
@@ -229,6 +325,10 @@ class DayAndNiteTableViewCell: UITableViewCell {
 
                     self.labelWindValue.text = SettingService.shared.changeSpeedWind(float: forecast.speedWind)
 
+                    self.labelHumidityValue.text = String(forecast.humidity) + " %"
+
+                    self.labelCloudsValue.text = String(forecast.cloudsPercent) + " %"
+
                 }
             }
         }
@@ -255,6 +355,10 @@ class DayAndNiteTableViewCell: UITableViewCell {
                     self.labelFeelValue.text = SettingService.shared.changeTemp(temp: forecast.temp)
 
                     self.labelWindValue.text = SettingService.shared.changeSpeedWind(float: forecast.speedWind)
+
+                    self.labelHumidityValue.text = String(forecast.humidity) + " %"
+
+                    self.labelCloudsValue.text = String(forecast.cloudsPercent) + " %"
 
 
                 }

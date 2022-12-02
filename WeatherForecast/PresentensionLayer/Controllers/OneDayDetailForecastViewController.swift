@@ -19,6 +19,9 @@ class OneDayDetailForecastViewController: UIViewController {
     }
 
 
+    var numberIndexPathRow: Int?
+
+
     private lazy var tableView: UITableView = {
 
         var tableView = UITableView()
@@ -28,6 +31,7 @@ class OneDayDetailForecastViewController: UIViewController {
         tableView.allowsSelection = false
 
         tableView.register(DayAndNiteTableViewCell.self, forCellReuseIdentifier: DayAndNiteTableViewCell.nameCell)
+        tableView.register(DayAndNiteTopTableViewCell.self, forCellReuseIdentifier: DayAndNiteTopTableViewCell.nameCell)
 
         return tableView
     }()
@@ -51,6 +55,13 @@ class OneDayDetailForecastViewController: UIViewController {
             self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
         ])
+    }
+
+
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
     }
 
 
@@ -104,10 +115,21 @@ extension OneDayDetailForecastViewController: UITableViewDelegate, UITableViewDa
 
         if indexPath.section == 0 {
 
-            let cell = UITableViewCell()
 
+
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: DayAndNiteTopTableViewCell.nameCell, for: indexPath) as? DayAndNiteTopTableViewCell
+            else {
+
+                return UITableViewCell()
+            }
+
+            if numberIndexPathRow == indexPath.row {
+
+                cell.setupColorCollectionCell(colorCollectionCell: UIColor(named: "#204EC7"))
+            }
+
+            cell.setupCellCoreData(dayForecast: self.dayForecast)
             return cell
-
         }
 
 
