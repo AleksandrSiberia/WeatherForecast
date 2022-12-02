@@ -73,8 +73,9 @@ class MainViewController: UIViewController {
                     self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
                     DispatchQueue.main.async {
                         self.navigationItem.title = weatherModel.city.nameCity
+
                         self.tableView.reloadData()
-                        print("🍒 self.tableView.reloadData()")
+
                     }
                 }
             })
@@ -199,7 +200,13 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                     return cell
                 }
 
-                cell.setupCellCoreData(nowWeather: self.coordinator?.weatherForecastService.getForecastCoreData()?[0])
+                let forecast = self.coordinator?.weatherForecastService.getForecastCoreData()?[0]
+
+                self.navigationItem.title = forecast?.nameCity
+
+                cell.setupCellCoreData(nowWeather: forecast)
+
+
 
                 return cell
             }

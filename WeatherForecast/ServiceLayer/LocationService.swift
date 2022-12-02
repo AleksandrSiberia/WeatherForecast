@@ -24,9 +24,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     lazy var authorizationStatus = self.locationManager.authorizationStatus
 
-    var currentLatitude: CLLocationDegrees?
-
-    var currentLongitude: CLLocationDegrees?
 
     lazy var currentCity: String? = nil
 
@@ -73,7 +70,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             UserDefaults.standard.set(latitude, forKey: "latitude")
             UserDefaults.standard.set(longitude, forKey: "longitude")
 
-            
+
 
             geocoder.reverseGeocodeLocation(currentLocation) { [weak self] placemark, error in
                 if let error {
