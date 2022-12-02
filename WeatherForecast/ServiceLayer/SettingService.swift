@@ -16,7 +16,6 @@ final class SettingService {
     private init() {}
 
 
-
     func changeTemp(temp: Float?) -> String {
 
         if UserDefaults.standard.string(forKey: "switchTemp") == "C" || UserDefaults.standard.string(forKey: "switchTemp") == nil {
@@ -53,9 +52,7 @@ final class SettingService {
 
 
 
-
     func changeSpeedWind(float: CFloat?) -> String {
-
 
         if UserDefaults.standard.string(forKey: "switchWind") == "Km" ||
             UserDefaults.standard.string(forKey: "switchWind") == nil {
@@ -82,7 +79,6 @@ final class SettingService {
         }
 
     }
-
 
 
     func changeDate() -> String {

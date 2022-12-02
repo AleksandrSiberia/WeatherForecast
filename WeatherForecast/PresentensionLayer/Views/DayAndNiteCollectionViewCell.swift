@@ -10,7 +10,6 @@ import UIKit
 class DayAndNiteCollectionViewCell: UICollectionViewCell {
 
 
-
     private lazy var labelDate: UILabel = {
 
         var labelDate = UILabel()
@@ -27,7 +26,6 @@ class DayAndNiteCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-  
         self.contentView.layer.cornerRadius = 12
         self.contentView.clipsToBounds = true
         self.contentView.layer.borderWidth = 4

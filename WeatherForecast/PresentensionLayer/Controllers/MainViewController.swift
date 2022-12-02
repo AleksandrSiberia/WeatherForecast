@@ -65,26 +65,21 @@ class MainViewController: UIViewController {
         self.setupLayoutConstrains()
 
 
+        self.coordinator?.networkService.getData(completionHandler: { weatherModel in
+            if let weatherModel {
 
+                self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
+                DispatchQueue.main.async {
+                    self.navigationItem.title = weatherModel.city.nameCity
 
-            self.coordinator?.networkService.getData(completionHandler: { weatherModel in
-                if let weatherModel {
+                    self.tableView.reloadData()
 
-                    self.coordinator?.coreDataService.setWeatherForecast(weatherModel: weatherModel)
-                    DispatchQueue.main.async {
-                        self.navigationItem.title = weatherModel.city.nameCity
-
-                        self.tableView.reloadData()
-
-                    }
                 }
-            })
-        }
+            }
+        })
+    }
 
     
-
-
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

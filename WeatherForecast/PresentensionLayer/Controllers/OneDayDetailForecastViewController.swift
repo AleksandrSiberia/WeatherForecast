@@ -18,9 +18,7 @@ class OneDayDetailForecastViewController: UIViewController {
         }
     }
 
-
     var numberIndexPathRow: Int?
-
 
     private lazy var tableView: UITableView = {
 
@@ -29,8 +27,6 @@ class OneDayDetailForecastViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
-
-  //      tableView.separatorStyle = .none
 
         tableView.register(DayAndNiteTableViewCell.self, forCellReuseIdentifier: DayAndNiteTableViewCell.nameCell)
         tableView.register(DayAndNiteTopTableViewCell.self, forCellReuseIdentifier: DayAndNiteTopTableViewCell.nameCell)
@@ -162,7 +158,5 @@ extension OneDayDetailForecastViewController: UITableViewDelegate, UITableViewDa
         }
 
     }
-
-
 
 }

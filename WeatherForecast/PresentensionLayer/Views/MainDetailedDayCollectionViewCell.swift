@@ -112,7 +112,6 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
         self.imageViewIconWeather.image = UIImage(named: forecast?.icon ?? "")
 
         self.labelTempForecast.text = SettingService.shared.changeTemp(temp: forecast?.temp) + "°"
-      
 
     }
 }

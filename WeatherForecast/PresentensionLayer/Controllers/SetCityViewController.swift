@@ -10,7 +10,6 @@ import UIKit
 class SetCityViewController: UIViewController {
 
 
-
     var coordinator: CoordinatorProtocol?
 
 
@@ -19,17 +18,12 @@ class SetCityViewController: UIViewController {
         let action = UIAction { uiAction in
             print("buttonSetCity: UIButton")
 
-
-
             let alertWriteNameCity = UIAlertController(title: "Напешите город", message: nil, preferredStyle: .alert)
-
-
 
             alertWriteNameCity.addTextField { textField in
 
                 textField.clearButtonMode = .whileEditing
             }
-
 
 
             let actionOk = UIAlertAction(title: "Добавить", style: .default) { _ in
@@ -55,11 +49,9 @@ class SetCityViewController: UIViewController {
                     alertResult.addAction(actionResult)
 
                     self.navigationController?.present(alertResult, animated: true)
-                 }
-
-
-
+                }
             }
+
             alertWriteNameCity.addAction(actionOk)
 
             let actionCancel = UIAlertAction(title: "Отмена", style: .cancel
@@ -120,8 +112,5 @@ class SetCityViewController: UIViewController {
 
         self.navigationController?.navigationBar.backgroundColor = .white
     }
-
-
-
 
 }

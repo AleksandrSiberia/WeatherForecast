@@ -9,12 +9,9 @@ import UIKit
 
 class DayAndNiteTopTableViewCell: UITableViewCell {
 
-
     private var itemCount = 3.0
 
-
     private var coordinator: CoordinatorProtocol?
-
 
     private var colorCollectionCellIndex: Int?
 
@@ -82,8 +79,6 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
 
 
 
-
-
     func getSizeItem() -> CGSize {
 
         let screenWidth = UIScreen.main.bounds.width
@@ -100,8 +95,6 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
         return itemCGSize
 
     }
-
-
 }
 
 
@@ -119,9 +112,7 @@ extension DayAndNiteTopTableViewCell: UICollectionViewDelegateFlowLayout, UIColl
         }
 
         return 5
-
     }
-
 
 
 
@@ -165,7 +156,6 @@ extension DayAndNiteTopTableViewCell: UICollectionViewDelegateFlowLayout, UIColl
         return self.getSizeItem()
     }
 
-
 }
 
 
@@ -174,7 +164,6 @@ extension DayAndNiteTopTableViewCell: CellNameProtocol {
     static var nameCell: String {
         String(describing: self)
     }
-
 
 }
 

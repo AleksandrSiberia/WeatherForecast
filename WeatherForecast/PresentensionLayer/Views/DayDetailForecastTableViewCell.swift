@@ -10,8 +10,6 @@ import UIKit
 class DayDetailForecastTableViewCell: UITableViewCell {
 
 
-    
-
     private lazy var labelDate: UILabel = {
 
         var labelDate = UILabel()
@@ -186,7 +184,6 @@ class DayDetailForecastTableViewCell: UITableViewCell {
 
 
 
-
     private lazy var labelTemp: UILabel = {
 
         var labelTemp = UILabel()
@@ -206,7 +203,6 @@ class DayDetailForecastTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
- //       self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
 
         [ self.labelDate, self.labelTame, self.labelTemp, self.imageFeel, self.labelFeel, self.labelFeelValue,  self.imageViewSpeedWind, self.labelSpeedWind, self.labelSpeedWindValue, self.imageViewHumidity, self.labelHumidity, self.labelHumidityValue, self.imageViewCloudsPercent, self.labelCloudsPercent, self.labelCloudsPercentValue, ].forEach { self.contentView.addSubview($0) }
 
@@ -277,10 +273,9 @@ class DayDetailForecastTableViewCell: UITableViewCell {
             self.labelCloudsPercentValue.centerYAnchor.constraint(equalTo: self.labelCloudsPercent.centerYAnchor),
             self.labelCloudsPercentValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -15),
 
-
-
         ])
     }
+
 
 
     func changeTemp(temp: Float?) -> String {
@@ -343,7 +338,5 @@ extension DayDetailForecastTableViewCell: CellNameProtocol {
     static var nameCell: String {
         String(describing: self)
     }
-
-
 
 }

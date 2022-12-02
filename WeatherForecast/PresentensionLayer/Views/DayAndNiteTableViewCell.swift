@@ -212,9 +212,9 @@ class DayAndNiteTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
-//        self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
-//        self.contentView.layer.masksToBounds = true
-//        self.contentView.layer.cornerRadius = 22
+        //        self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
+        //        self.contentView.layer.masksToBounds = true
+        //        self.contentView.layer.cornerRadius = 22
 
         
 
@@ -239,66 +239,65 @@ class DayAndNiteTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
 
 
-        self.labelDayOrNite.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 21),
-        self.labelDayOrNite.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+            self.labelDayOrNite.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 21),
+            self.labelDayOrNite.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
 
-        self.imageWeather.centerYAnchor.constraint(equalTo: self.labelDayOrNite.centerYAnchor),
-        self.imageWeather.heightAnchor.constraint(equalToConstant: 50),
-        self.imageWeather.widthAnchor.constraint(equalToConstant: 50),
+            self.imageWeather.centerYAnchor.constraint(equalTo: self.labelDayOrNite.centerYAnchor),
+            self.imageWeather.heightAnchor.constraint(equalToConstant: 50),
+            self.imageWeather.widthAnchor.constraint(equalToConstant: 50),
 
-        self.labelTemp.centerYAnchor.constraint(equalTo: self.imageWeather.centerYAnchor),
-        self.labelTemp.leadingAnchor.constraint(equalTo: self.imageWeather.trailingAnchor, constant: 8),
-        self.labelTemp.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor, constant: 20),
+            self.labelTemp.centerYAnchor.constraint(equalTo: self.imageWeather.centerYAnchor),
+            self.labelTemp.leadingAnchor.constraint(equalTo: self.imageWeather.trailingAnchor, constant: 8),
+            self.labelTemp.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor, constant: 20),
 
-        self.labelWeatherDescription.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-        self.labelWeatherDescription.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 70),
+            self.labelWeatherDescription.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            self.labelWeatherDescription.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 70),
 
-        self.imageFeel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 110),
-        self.imageFeel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
-        self.imageFeel.heightAnchor.constraint(equalToConstant: 25),
-        self.imageFeel.widthAnchor.constraint(equalToConstant: 25),
+            self.imageFeel.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 110),
+            self.imageFeel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+            self.imageFeel.heightAnchor.constraint(equalToConstant: 25),
+            self.imageFeel.widthAnchor.constraint(equalToConstant: 25),
 
-        self.labelFeel.centerYAnchor.constraint(equalTo: self.imageFeel.centerYAnchor),
-        self.labelFeel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
+            self.labelFeel.centerYAnchor.constraint(equalTo: self.imageFeel.centerYAnchor),
+            self.labelFeel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
 
-        self.labelFeelValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
-        self.labelFeelValue.centerYAnchor.constraint(equalTo: self.labelFeel.centerYAnchor),
+            self.labelFeelValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.labelFeelValue.centerYAnchor.constraint(equalTo: self.labelFeel.centerYAnchor),
 
-        self.imageWind.topAnchor.constraint(equalTo: self.imageFeel.bottomAnchor, constant: 25),
-        self.imageWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
-        self.imageWind.heightAnchor.constraint(equalToConstant: 25),
-        self.imageWind.widthAnchor.constraint(equalToConstant: 25),
+            self.imageWind.topAnchor.constraint(equalTo: self.imageFeel.bottomAnchor, constant: 25),
+            self.imageWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 12),
+            self.imageWind.heightAnchor.constraint(equalToConstant: 25),
+            self.imageWind.widthAnchor.constraint(equalToConstant: 25),
 
-        self.labelWind.centerYAnchor.constraint(equalTo: self.imageWind.centerYAnchor),
-        self.labelWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
+            self.labelWind.centerYAnchor.constraint(equalTo: self.imageWind.centerYAnchor),
+            self.labelWind.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
 
-        self.labelWindValue.centerYAnchor.constraint(equalTo: self.labelWind.centerYAnchor),
-        self.labelWindValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.labelWindValue.centerYAnchor.constraint(equalTo: self.labelWind.centerYAnchor),
+            self.labelWindValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
 
-        self.imageHumidity.topAnchor.constraint(equalTo: self.imageWind.bottomAnchor, constant: 25),
-        self.imageHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
-        self.imageHumidity.heightAnchor.constraint(equalToConstant: 20),
-        self.imageHumidity.widthAnchor.constraint(equalToConstant: 20),
+            self.imageHumidity.topAnchor.constraint(equalTo: self.imageWind.bottomAnchor, constant: 25),
+            self.imageHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+            self.imageHumidity.heightAnchor.constraint(equalToConstant: 20),
+            self.imageHumidity.widthAnchor.constraint(equalToConstant: 20),
 
-        self.labelHumidity.centerYAnchor.constraint(equalTo: self.imageHumidity.centerYAnchor),
-        self.labelHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
+            self.labelHumidity.centerYAnchor.constraint(equalTo: self.imageHumidity.centerYAnchor),
+            self.labelHumidity.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
 
-        self.labelHumidityValue.centerYAnchor.constraint(equalTo: self.labelHumidity.centerYAnchor),
-        self.labelHumidityValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.labelHumidityValue.centerYAnchor.constraint(equalTo: self.labelHumidity.centerYAnchor),
+            self.labelHumidityValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
 
-        self.imageClouds.topAnchor.constraint(equalTo: self.imageHumidity.bottomAnchor, constant: 25),
-        self.imageClouds.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
-        self.imageClouds.heightAnchor.constraint(equalToConstant: 20),
-        self.imageClouds.widthAnchor.constraint(equalToConstant: 20),
+            self.imageClouds.topAnchor.constraint(equalTo: self.imageHumidity.bottomAnchor, constant: 25),
+            self.imageClouds.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 15),
+            self.imageClouds.heightAnchor.constraint(equalToConstant: 20),
+            self.imageClouds.widthAnchor.constraint(equalToConstant: 20),
 
-        self.labelClouds.centerYAnchor.constraint(equalTo: self.imageClouds.centerYAnchor),
-        self.labelClouds.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
+            self.labelClouds.centerYAnchor.constraint(equalTo: self.imageClouds.centerYAnchor),
+            self.labelClouds.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 55),
 
-        self.labelCloudsValue.centerYAnchor.constraint(equalTo: self.imageClouds.centerYAnchor),
-        self.labelCloudsValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
+            self.labelCloudsValue.centerYAnchor.constraint(equalTo: self.imageClouds.centerYAnchor),
+            self.labelCloudsValue.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),
 
-        self.labelCloudsValue.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -30),
-
+            self.labelCloudsValue.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -30),
 
         ])
     }
@@ -366,12 +365,9 @@ class DayAndNiteTableViewCell: UITableViewCell {
 
                     self.labelCloudsValue.text = String(forecast.cloudsPercent) + " %"
 
-
                 }
             }
         }
-
-
     }
 
 }
@@ -383,7 +379,5 @@ extension DayAndNiteTableViewCell: CellNameProtocol {
 
         String(describing: self)
     }
-
-
 
 }

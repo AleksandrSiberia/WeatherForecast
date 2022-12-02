@@ -134,6 +134,7 @@ class SettingViewController: UIViewController {
     }()
 
 
+    
     private lazy var labelSettingHour: UILabel = {
 
         var labelSettingHour = UILabel()
@@ -243,7 +244,4 @@ class SettingViewController: UIViewController {
 
         ])
     }
-
-
-
 }

@@ -49,8 +49,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
 
         if self.authorizationStatus != .notDetermined || self.authorizationStatus != .denied  {
-                self.locationManager.startUpdatingLocation()
-            }
+            self.locationManager.startUpdatingLocation()
+        }
     }
 
 
@@ -80,7 +80,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 else {
 
                     if let firstLocation = placemark?[0],
-                        let currentCity = firstLocation.locality {
+                       let currentCity = firstLocation.locality {
                         
                         completion(currentCity, currentLocation)
                     }
@@ -125,7 +125,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
         if self.authorizationStatus == .notDetermined  {
             self.locationManager.requestWhenInUseAuthorization()
-            }
+        }
 
         if  self.authorizationStatus == .denied  {
             if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
@@ -149,12 +149,11 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
 
 
-
         switch self.locationManager.authorizationStatus {
+
 
         case .notDetermined:
             print("notDetermined")
-
 
             if  UserDefaults.standard.string(forKey: "latitude") != nil &&  UserDefaults.standard.string(forKey: "longitude") != nil {
 
@@ -162,19 +161,12 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             }
 
 
-//            if self.coordinator?.coreDataService.getWeatherForecast(attribute: nil, value: nil) != nil {
-//
-//                self.coordinator?.showMainController()
-//            }
-
 
         case .restricted:
             print("restricted")
 
 
         case .denied:
-
-     //       print(UserDefaults.standard.string(forKey: "latitude"), UserDefaults.standard.string(forKey: "longitude"))
 
             if  UserDefaults.standard.string(forKey: "latitude") != nil &&  UserDefaults.standard.string(forKey: "longitude") != nil {
 
@@ -193,19 +185,10 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             
         case .authorizedWhenInUse:
 
-
             self.getNameCurrentCityAndLocation() { string, clLocation in
             }
 
-            print("👍 authorizedWhenInUse")
-
-//            if  UserDefaults.standard.string(forKey: "latitude") != nil && UserDefaults.standard.string(forKey: "longitude") != nil {
-//                UserDefaults.standard.removeObject(forKey: "latitude")
-//                UserDefaults.standard.removeObject(forKey: "longitude")
-//            }
-
-           self.coordinator?.showMainController()
-
+            self.coordinator?.showMainController()
 
 
         @unknown default:

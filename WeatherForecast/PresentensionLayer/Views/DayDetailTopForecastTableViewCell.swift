@@ -11,11 +11,9 @@ class DayDetailTopForecastTableViewCell: UITableViewCell {
 
     var dayForecastCoreData: [WeatherForecastCoreData]?
 
-
-    
     var itemCount = 5.0
 
-
+    
     private lazy var collectionViewFlowLayout: UICollectionViewFlowLayout = {
         var collectionViewFlowLayout = UICollectionViewFlowLayout()
         collectionViewFlowLayout.scrollDirection = .horizontal
@@ -49,11 +47,11 @@ class DayDetailTopForecastTableViewCell: UITableViewCell {
 
         NSLayoutConstraint.activate([
 
-        self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 24),
-        self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
-        self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
-        self.collectionView.heightAnchor.constraint(equalToConstant: self.getSizeItem().height + self.collectionViewFlowLayout.sectionInset.bottom),
-        self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
+            self.collectionView.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 24),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
+            self.collectionView.heightAnchor.constraint(equalToConstant: self.getSizeItem().height + self.collectionViewFlowLayout.sectionInset.bottom),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor),
 
         ])
     }
@@ -117,7 +115,6 @@ extension DayDetailTopForecastTableViewCell: UICollectionViewDelegateFlowLayout,
 
         return 9
 
-
     }
 
 
@@ -159,8 +156,5 @@ extension DayDetailTopForecastTableViewCell: CellNameProtocol {
     static var nameCell: String {
         String(describing: self)
     }
-
-
-
 
 }

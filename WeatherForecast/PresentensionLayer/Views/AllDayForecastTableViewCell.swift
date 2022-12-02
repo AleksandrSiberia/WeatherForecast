@@ -97,9 +97,7 @@ class AllDayForecastTableViewCell: UITableViewCell {
 
         setupLayoutConstrains()
 
-
     }
-
 
 
 
@@ -135,11 +133,8 @@ class AllDayForecastTableViewCell: UITableViewCell {
             self.labeDisclosureIndicator.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -4),
             self.labeDisclosureIndicator.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor, constant: -1),
 
-
-
         ])
     }
-
 
 
 
@@ -185,10 +180,7 @@ class AllDayForecastTableViewCell: UITableViewCell {
             print("‼️ error -> func setupCell(dayForecast: [WeatherForecastCoreData]? )")
         }
 
-
-
     }
-
 }
 
 
@@ -197,7 +189,5 @@ extension AllDayForecastTableViewCell: CellNameProtocol {
     static var nameCell: String {
         String(describing: self)
     }
-
-
 
 }

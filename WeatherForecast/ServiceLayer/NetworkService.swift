@@ -10,9 +10,8 @@ import Foundation
 
 class NetworkService {
 
-
+    
     var locationService: LocationService?
-
 
 
     init() {
@@ -38,18 +37,6 @@ class NetworkService {
 
     }
     
-
-
-
-//        else {
-//            // Иркутск по дефолту
-//            let latitude = "52.2978"
-//            let longitude = "104.296"
-//
-//            let url =  "https://api.openweathermap.org/data/2.5/forecast?lang=ru&lat=" + latitude + "&lon=" + longitude + "&appid=c6a8cb66ecd2502365bcc7589784a114"
-//            return url
-//        }
-
 
 
 
@@ -100,8 +87,4 @@ class NetworkService {
         }
         task.resume()
     }
-
-  
-
-
 }

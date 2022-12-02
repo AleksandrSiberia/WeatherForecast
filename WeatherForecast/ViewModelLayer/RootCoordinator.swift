@@ -9,8 +9,6 @@ import Foundation
 import UIKit
 
 
-
-
 class RootCoordinator: CoordinatorProtocol {
 
 
@@ -23,7 +21,6 @@ class RootCoordinator: CoordinatorProtocol {
     var weatherForecastService = WeatherForecastService()
 
 
-
     weak var firstController: FirstController?
 
     weak var mainController: MainViewController?
@@ -33,7 +30,6 @@ class RootCoordinator: CoordinatorProtocol {
     weak var dayDetailForecastController: DayDetailForecastViewController?
 
     weak var settingViewController: SettingViewController?
-
 
 
 
@@ -57,7 +53,7 @@ class RootCoordinator: CoordinatorProtocol {
             }
         }
 
-        var controller = AssemblyFirstController.setFirstController(coordinator: self)
+        let controller = AssemblyFirstController.setFirstController(coordinator: self)
 
         self.firstController = controller
 
@@ -68,10 +64,8 @@ class RootCoordinator: CoordinatorProtocol {
 
 
 
-
     
     func showMainController() {
-
 
         let controller =  AssemblyMainController.setMainController(coordinator: self)
 
@@ -79,7 +73,6 @@ class RootCoordinator: CoordinatorProtocol {
 
         self.firstController?.navigationController?.pushViewController(self.mainController!, animated: false)
     }
-
 
 
 
@@ -113,11 +106,8 @@ class RootCoordinator: CoordinatorProtocol {
 
         let controller = AssemblyFirstController.setFirstController(coordinator: self)
 
-
         self.mainController?.navigationController?.pushViewController(controller, animated: true)
     }
-
-
 
 
 
@@ -134,7 +124,6 @@ class RootCoordinator: CoordinatorProtocol {
 
 
     
-
     func showSettingViewController() {
 
         let controller = SettingViewController()

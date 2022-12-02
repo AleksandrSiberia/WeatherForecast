@@ -12,7 +12,7 @@ class FirstController: UIViewController {
 
 
     var coordinator: CoordinatorProtocol!
-        
+
 
 
     private lazy var scrollView: UIScrollView = {
@@ -147,7 +147,6 @@ class FirstController: UIViewController {
 
 
 
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -221,7 +220,4 @@ class FirstController: UIViewController {
         ])
     }
     
-
-
-
 }

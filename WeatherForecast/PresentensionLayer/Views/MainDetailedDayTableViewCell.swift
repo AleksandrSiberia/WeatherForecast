@@ -31,7 +31,7 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
         let action = UIAction{  _ in
 
-        self.mainViewController?.showDayDetailForecastViewController()
+            self.mainViewController?.showDayDetailForecastViewController()
 
             print("buttonDetailedDayForecast")
         }
@@ -83,7 +83,6 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
 
     
-
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -107,12 +106,9 @@ class MainDetailedDayTableViewCell: UITableViewCell {
             self.labelEverydayForecast.leadingAnchor.constraint(equalTo: self.collectionView.leadingAnchor, constant: 15),
 
             self.labelEverydayForecast.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10),
-
-
-
-
         ])
     }
+
 
 
     required init?(coder: NSCoder) {
@@ -137,9 +133,7 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
     func setupCell(mainController: MainViewController?) {
 
-
         self.mainViewController = mainController
-
     }
 
 
@@ -160,7 +154,6 @@ class MainDetailedDayTableViewCell: UITableViewCell {
 
     }
 }
-
 
 
 
@@ -193,14 +186,12 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
             return UICollectionViewCell()
         }
 
-
         guard self.dayForecastCoreData != nil
 
         else {
             return cell
         }
 
-        
         cell.setupCollectionCellCoreData(forecast: self.dayForecastCoreData?[indexPath.row])
         
         return cell
@@ -212,8 +203,6 @@ extension MainDetailedDayTableViewCell: UICollectionViewDelegateFlowLayout, UICo
 
         return self.getSizeItem()
     }
-
-
 }
 
 
@@ -221,6 +210,5 @@ extension MainDetailedDayTableViewCell: CellNameProtocol {
     static var nameCell: String {
         String(describing: self)
     }
-
 
 }

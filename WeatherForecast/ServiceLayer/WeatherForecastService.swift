@@ -9,18 +9,13 @@ import Foundation
 
 class WeatherForecastService {
 
+
     var coreDataService: CoreDataService?
-
-
 
 
     init() {
 
-
-    //    getDayForecastCoreData(indexPath: IndexPath())
     }
-
-
 
     func getForecastCoreData() -> [WeatherForecastCoreData]? {
 
@@ -28,8 +23,6 @@ class WeatherForecastService {
 
         return todayForecast
     }
-
-
 
 
 
@@ -51,7 +44,6 @@ class WeatherForecastService {
         dateFormatter.dateFormat = "dd"
         dateComponents.day  = (Int(dateFormatter.string(from: currentDate)) ?? 0) + (indexPathRow ?? 0)
 
-        
 
         let day = Calendar.current.date(from: dateComponents) ?? Date()
 

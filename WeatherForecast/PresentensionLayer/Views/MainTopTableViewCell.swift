@@ -10,8 +10,6 @@ import UIKit
 class MainTopTableViewCell: UITableViewCell {
 
 
-
-
     private lazy var activityIndicator: UIActivityIndicatorView = {
         var activityIndicator = UIActivityIndicatorView()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
@@ -161,10 +159,6 @@ class MainTopTableViewCell: UITableViewCell {
 
 
 
- 
-
-
-
     private lazy var imageViewHumidity: UIImageView = {
 
         var imageViewHumidity = UIImageView()
@@ -196,10 +190,6 @@ class MainTopTableViewCell: UITableViewCell {
 
         return labelDate
     }()
-
-
-
-
 
 
 
@@ -286,9 +276,6 @@ class MainTopTableViewCell: UITableViewCell {
 
 
 
-
-   
-
     func setupCellCoreData(nowWeather: WeatherForecastCoreData?) {
 
 
@@ -312,7 +299,7 @@ class MainTopTableViewCell: UITableViewCell {
         self.labelHumidity.text = String(nowWeather?.humidity ?? 0) + " %"
 
         let secondUnixSunrise = TimeInterval(nowWeather?.sunrise ?? 0)
-                                             //- (nowWeather?.timezone ?? 0))
+        //- (nowWeather?.timezone ?? 0))
         let sunriseNSDate = NSDate(timeIntervalSince1970: secondUnixSunrise)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "\(SettingService.shared.changeDate()):mm"
@@ -320,7 +307,7 @@ class MainTopTableViewCell: UITableViewCell {
         self.labelSunrise.text = timeSunrise
 
         let secondUnixSunset = TimeInterval(nowWeather?.sunset ?? 0)
-                                            //- (nowWeather?.timezone ?? 0))
+        //- (nowWeather?.timezone ?? 0))
         let sunsetNSDate = NSDate(timeIntervalSince1970: secondUnixSunset)
         let timeSunset = dateFormatter.string(from: sunsetNSDate as Date)
         self.labelSunset.text = timeSunset
@@ -333,9 +320,6 @@ class MainTopTableViewCell: UITableViewCell {
         self.imageViewRainbow.isHidden = false
         self.imageViewSunrise.isHidden = false
         self.imageViewSunset.isHidden = false
-
-
-
 
     }
 }

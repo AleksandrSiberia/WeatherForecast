@@ -12,7 +12,6 @@ import CoreData
 class CoreDataService {
 
 
-
     lazy var persistentContainer: NSPersistentContainer = {
 
         var persistentContainer = NSPersistentContainer(name: "CoreDataModel")
@@ -25,40 +24,17 @@ class CoreDataService {
 
         persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
 
-
         return persistentContainer
     }()
-
-
 
 
     lazy var backgroundContext = self.persistentContainer.newBackgroundContext()
 
 
 
-
-//    lazy var fetchedResultsControllerWeatherForecast: NSFetchedResultsController = {
-//
-//        let request = WeatherForecastCoreData.fetchRequest()
-//
-//        request.sortDescriptors = [NSSortDescriptor(key: "date", ascending: true)]
-//
-//        var fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.backgroundContext, sectionNameKeyPath: nil, cacheName: nil)
-//
-//        return fetchedResultsController
-//    }()
-
-
-
-
-
     init() {
 
-  //      self.performFetchFetchedResultsControllerWeatherForecast()
-
     }
-
-
 
 
     func saveBackgroundContext() {
@@ -71,19 +47,6 @@ class CoreDataService {
         }
 
     }
-
-
-    
-//    func performFetchFetchedResultsControllerWeatherForecast() {
-//
-//
-//        do {
-//            try self.fetchedResultsControllerWeatherForecast.performFetch()
-//        }
-//        catch {
-//            print("‼️ error self.fetchedResultsController.performFetch()", error.localizedDescription)
-//        }
-//    }
 
 
 
@@ -131,7 +94,7 @@ class CoreDataService {
 
                 self.saveBackgroundContext()
 
-         //     self.performFetchFetchedResultsControllerWeatherForecast()
+
             }
         }
     }
@@ -193,8 +156,6 @@ class CoreDataService {
             weatherForecastCoreData.nameCity = weatherModel.city.nameCity
 
             self.saveBackgroundContext()
-
-   //         self.performFetchFetchedResultsControllerWeatherForecast()
 
         }
     }

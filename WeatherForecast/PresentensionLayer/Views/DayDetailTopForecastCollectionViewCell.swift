@@ -9,7 +9,6 @@ import UIKit
 
 class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
-
     var temp: Float = 0
 
 
@@ -78,8 +77,6 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
 
 
-
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -109,8 +106,6 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
         if self.temp > 0 {
 
-            
-
             self.viewTempIndicator.backgroundColor = UIColor(named: "beige")
 
             NSLayoutConstraint.activate([
@@ -122,7 +117,7 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
                 self.viewTempIndicator.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
 
 
-                ])
+            ])
         }
         else {
 
@@ -136,10 +131,8 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
                 self.viewTempIndicator.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
                 self.viewTempIndicator.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
 
-                ])
+            ])
         }
-
-
     }
     
 
@@ -147,8 +140,6 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
     func setupLayoutConstraints() {
 
         _ = self.layer.frame.height
-
-
 
         NSLayoutConstraint.activate([
 
@@ -171,9 +162,6 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
             self.labelTemp.topAnchor.self.constraint(equalTo: self.imageIcon.bottomAnchor, constant: 2),
             self.labelTemp.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-
-
-
 
         ])
     }

@@ -94,7 +94,6 @@ struct DateWeatherModel: Codable {
 
 
 
-
 struct CityWeatherModel: Codable {
 
     var timezone: Int
@@ -110,7 +109,6 @@ struct CityWeatherModel: Codable {
     }
 
 }
-
 
 
 
