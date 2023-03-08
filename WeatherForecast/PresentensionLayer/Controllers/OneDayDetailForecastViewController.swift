@@ -28,6 +28,8 @@ class OneDayDetailForecastViewController: UIViewController {
         tableView.dataSource = self
         tableView.allowsSelection = false
 
+        tableView.backgroundColor = .white
+
         tableView.register(DayAndNiteTableViewCell.self, forCellReuseIdentifier: DayAndNiteTableViewCell.nameCell)
         tableView.register(DayAndNiteTopTableViewCell.self, forCellReuseIdentifier: DayAndNiteTopTableViewCell.nameCell)
 
@@ -120,6 +122,7 @@ extension OneDayDetailForecastViewController: UITableViewDelegate, UITableViewDa
                 return UITableViewCell()
             }
 
+            cell.backgroundColor = .white
 
             cell.setupCellCoreData(coordinator: self.coordinator, colorCollectionCellIndex: self.numberIndexPathRow)
 
@@ -135,6 +138,8 @@ extension OneDayDetailForecastViewController: UITableViewDelegate, UITableViewDa
             else {
                 return UITableViewCell()
             }
+
+            cell.backgroundColor = .white
 
             if let forecastCoreData = self.dayForecast {
 

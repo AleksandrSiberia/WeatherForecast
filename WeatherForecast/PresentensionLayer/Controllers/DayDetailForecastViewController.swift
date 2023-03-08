@@ -20,7 +20,8 @@ class DayDetailForecastViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
-        
+
+        tableView.backgroundColor = .white
         tableView.register(DayDetailForecastTableViewCell.self, forCellReuseIdentifier: DayDetailForecastTableViewCell.nameCell)
         tableView.register(DayDetailTopForecastTableViewCell.self, forCellReuseIdentifier: DayDetailTopForecastTableViewCell.nameCell)
 
@@ -119,6 +120,7 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
                 return UITableViewCell()
             }
 
+            cell.backgroundColor = .white
 
             if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
 
@@ -142,7 +144,7 @@ extension DayDetailForecastViewController: UITableViewDelegate, UITableViewDataS
             else {
                 return UITableViewCell()
             }
-
+            cell.backgroundColor = .white
 
             if let forecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData() {
 

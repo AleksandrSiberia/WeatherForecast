@@ -29,6 +29,8 @@ class DayDetailTopForecastTableViewCell: UITableViewCell {
         var collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: self.collectionViewFlowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        collectionView.backgroundColor = .white
         collectionView.register(DayDetailTopForecastCollectionViewCell.self , forCellWithReuseIdentifier: DayDetailTopForecastCollectionViewCell.nameCell)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 

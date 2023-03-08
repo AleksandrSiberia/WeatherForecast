@@ -227,7 +227,7 @@ class MainTopTableViewCell: UITableViewCell {
             self.imageViewSunrise.widthAnchor.constraint(equalToConstant: 20),
 
             self.labelSunrise.topAnchor.constraint(equalTo: self.imageViewSunrise.bottomAnchor, constant: 7),
-            self.labelSunrise.centerXAnchor.constraint(equalTo: self.imageViewSunrise.centerXAnchor),
+            self.labelSunrise.leadingAnchor.constraint(equalTo: self.imageViewSunrise.leadingAnchor),
 
             self.imageViewSunset.topAnchor.constraint(equalTo: self.imageViewRainbow.bottomAnchor, constant: 2),
             self.imageViewSunset.centerXAnchor.constraint(equalTo: self.imageViewRainbow.trailingAnchor),
@@ -235,7 +235,7 @@ class MainTopTableViewCell: UITableViewCell {
             self.imageViewSunset.widthAnchor.constraint(equalToConstant: 20),
 
             self.labelSunset.topAnchor.constraint(equalTo: self.imageViewSunset.bottomAnchor, constant: 7),
-            self.labelSunset.centerXAnchor.constraint(equalTo: self.imageViewSunset.centerXAnchor),
+            self.labelSunset.trailingAnchor.constraint(equalTo: self.imageViewSunset.trailingAnchor),
 
             self.labelMinMaxTemp.topAnchor.constraint(equalTo: self.topAnchor, constant: 40),
             self.labelMinMaxTemp.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -253,7 +253,7 @@ class MainTopTableViewCell: UITableViewCell {
             self.imageViewSpeedWind.centerYAnchor.constraint(equalTo: self.labelSpeedWind.centerYAnchor),
             self.imageViewSpeedWind.heightAnchor.constraint(equalToConstant: 15),
 
-            self.labelCloudsPercent.trailingAnchor.constraint(equalTo: self.imageViewSpeedWind.leadingAnchor, constant: -10),
+            self.labelCloudsPercent.trailingAnchor.constraint(equalTo: self.imageViewSpeedWind.leadingAnchor, constant: -1),
             self.labelCloudsPercent.centerYAnchor.constraint(equalTo: self.labelSpeedWind.centerYAnchor),
 
             self.imageViewCloudsPercent.trailingAnchor.constraint(equalTo: self.labelCloudsPercent.leadingAnchor),
@@ -264,7 +264,7 @@ class MainTopTableViewCell: UITableViewCell {
             self.imageViewHumidity.centerYAnchor.constraint(equalTo: self.labelSpeedWind.centerYAnchor),
             self.imageViewHumidity.heightAnchor.constraint(equalToConstant: 15),
 
-            self.labelHumidity.leadingAnchor.constraint(equalTo: self.imageViewHumidity.trailingAnchor, constant: 5),
+            self.labelHumidity.leadingAnchor.constraint(equalTo: self.imageViewHumidity.trailingAnchor, constant: 2),
             self.labelHumidity.centerYAnchor.constraint(equalTo: self.labelSpeedWind.centerYAnchor),
 
             self.labelDate.topAnchor.constraint(equalTo: self.topAnchor, constant: 190),

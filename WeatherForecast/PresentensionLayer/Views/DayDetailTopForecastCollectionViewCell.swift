@@ -81,6 +81,9 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
 
+        contentView.backgroundColor = .white
+        layer.masksToBounds = true
+
         [self.viewTempIndicator, self.viewBlackLine, self.labelTime, self.labelHumidity, self.imageIcon, self.labelTemp ].forEach { self.contentView.addSubview($0) }
 
         self.contentView.layer.masksToBounds = true
@@ -108,7 +111,10 @@ class DayDetailTopForecastCollectionViewCell: UICollectionViewCell {
 
             self.viewTempIndicator.backgroundColor = UIColor(named: "beige")
 
+
             NSLayoutConstraint.activate([
+
+
 
                 self.viewTempIndicator.bottomAnchor.constraint(equalTo: self.contentView.topAnchor, constant: heightItem / 2),
                 self.viewTempIndicator.heightAnchor.constraint(equalToConstant: CGFloat(self.temp * 2.4)),

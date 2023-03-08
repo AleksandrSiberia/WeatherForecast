@@ -36,8 +36,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         print(FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask))
         print(Bundle.main.bundleURL)
 
-        
-
         setting()
     }
 
@@ -121,12 +119,14 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
 
 
+
     func requestPermission() {
 
         if self.authorizationStatus == .notDetermined  {
             self.locationManager.requestWhenInUseAuthorization()
         }
 
+        
         if  self.authorizationStatus == .denied  {
             if let appSettings = URL(string: UIApplication.openSettingsURLString), UIApplication.shared.canOpenURL(appSettings) {
                 UIApplication.shared.open(appSettings)
@@ -159,7 +159,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
                 self.coordinator?.showMainController()
             }
-
 
 
         case .restricted:

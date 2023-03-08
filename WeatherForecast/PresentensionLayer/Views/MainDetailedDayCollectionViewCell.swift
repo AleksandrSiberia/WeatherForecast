@@ -48,6 +48,8 @@ class MainDetailedDayCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        backgroundColor = .white
+
         self.contentView.layer.masksToBounds = true
         self.contentView.layer.cornerRadius = 22
         self.contentView.layer.borderWidth = 0.3

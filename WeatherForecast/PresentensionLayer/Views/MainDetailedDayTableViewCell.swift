@@ -75,6 +75,9 @@ class MainDetailedDayTableViewCell: UITableViewCell {
         var collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: self.collectionViewFlowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        collectionView.backgroundColor = .white
+
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(MainDetailedDayCollectionViewCell.self, forCellWithReuseIdentifier: MainDetailedDayCollectionViewCell.nameCell)
         return collectionView

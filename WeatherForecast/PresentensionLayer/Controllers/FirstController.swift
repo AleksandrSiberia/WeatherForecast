@@ -94,7 +94,7 @@ class FirstController: UIViewController {
 
         buttonAllowIdentifyLocation.translatesAutoresizingMaskIntoConstraints = false
         buttonAllowIdentifyLocation.backgroundColor = UIColor(named: "#F26E11")
-        buttonAllowIdentifyLocation.setTitle("ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА", for: .normal)
+        buttonAllowIdentifyLocation.setTitle("  ИСПОЛЬЗОВАТЬ МЕСТОПОЛОЖЕНИЕ  УСТРОЙСТВА  ", for: .normal)
         buttonAllowIdentifyLocation.setTitleColor(.white, for: .normal)
         buttonAllowIdentifyLocation.layer.cornerRadius = 12
         buttonAllowIdentifyLocation.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -139,7 +139,7 @@ class FirstController: UIViewController {
 
         self.view.addSubview(self.scrollView)
 
-        [self.imageViewBanner, self.labelLetLocation, self.labelAnnotation, self.labelAnnotationStopLocation, self.buttonAllowIdentifyLocation, self.buttonDisallowIdentifyLocation].forEach { self.scrollView.addSubview($0) }
+        [ self.labelLetLocation, self.labelAnnotation, self.labelAnnotationStopLocation, self.buttonAllowIdentifyLocation, self.buttonDisallowIdentifyLocation].forEach { self.scrollView.addSubview($0) }
 
         self.setupLayoutConstrains()
 
@@ -186,18 +186,20 @@ class FirstController: UIViewController {
 
     func setupLayoutConstrains() {
 
+        
+
         NSLayoutConstraint.activate([
 
             self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor),
 
-            self.imageViewBanner.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 30),
-            self.imageViewBanner.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
-            self.imageViewBanner.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
+//            self.imageViewBanner.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
+//            self.imageViewBanner.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 30),
+//            self.imageViewBanner.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -30),
 
-            self.labelLetLocation.topAnchor.constraint(equalTo: self.imageViewBanner.bottomAnchor, constant: 20),
+            self.labelLetLocation.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 20),
             self.labelLetLocation.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 26),
             self.labelLetLocation.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -26),
 

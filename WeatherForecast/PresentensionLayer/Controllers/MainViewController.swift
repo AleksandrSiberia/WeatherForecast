@@ -41,6 +41,8 @@ class MainViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
 
+        tableView.backgroundColor = .white
+
         tableView.separatorStyle = .none
 
         tableView.register(MainTopTableViewCell.self, forCellReuseIdentifier: MainTopTableViewCell.nameCell)
@@ -55,6 +57,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .white
+
+        navigationController?.navigationBar.tintColor = .gray
+
+
         self.navigationItem.setHidesBackButton(true, animated: false)
 
         self.navigationItem.rightBarButtonItem = self.barButtonItemLocation
@@ -63,6 +70,7 @@ class MainViewController: UIViewController {
         self.view.addSubview(self.tableView)
 
         self.setupLayoutConstrains()
+
 
 
         self.coordinator?.networkService.getData(completionHandler: { weatherModel in
@@ -92,13 +100,15 @@ class MainViewController: UIViewController {
 
 
     func setupLayoutConstrains() {
+
+
         
         NSLayoutConstraint.activate([
 
             self.tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            self.tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            self.tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            self.tableView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
+            self.tableView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
 
         ])
     }
@@ -185,6 +195,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
             cell.selectionStyle = .none
 
+            cell.backgroundColor = .white
+
             if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
 
 
@@ -201,10 +213,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 
                 cell.setupCellCoreData(nowWeather: forecast)
 
-
-
                 return cell
             }
+
+
             else {
                 return cell
             }
@@ -224,6 +236,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             }
 
             cell.selectionStyle = .none
+
+            cell.backgroundColor = .white
 
             if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {
 
@@ -258,6 +272,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
                 print("‼️ error = as? AllDayForecastTableViewCell")
                 return UITableViewCell()
             }
+
+            cell.selectionStyle = .none
+            cell.backgroundColor = .white
 
 
             if let getForecastCoreData = self.coordinator?.weatherForecastService.getForecastCoreData()  {

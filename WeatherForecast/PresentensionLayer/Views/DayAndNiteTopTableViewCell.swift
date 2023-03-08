@@ -9,7 +9,7 @@ import UIKit
 
 class DayAndNiteTopTableViewCell: UITableViewCell {
 
-    private var itemCount = 3.0
+    private var itemCount = 2.5
 
     private var coordinator: CoordinatorProtocol?
 
@@ -31,6 +31,8 @@ class DayAndNiteTopTableViewCell: UITableViewCell {
         var collectionView = UICollectionView(frame: CGRect(), collectionViewLayout: self.collectionViewFlowLayout)
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        collectionView.backgroundColor = .white
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(DayAndNiteCollectionViewCell.self, forCellWithReuseIdentifier: DayAndNiteCollectionViewCell.nameCell)
         return collectionView

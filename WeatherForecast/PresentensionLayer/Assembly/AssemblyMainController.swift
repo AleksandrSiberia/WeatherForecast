@@ -18,7 +18,6 @@ class AssemblyMainController {
 
         controller.coordinator = coordinator
 
-        controller.view.backgroundColor = .white
         return controller
     }
 }

@@ -86,6 +86,7 @@ class AllDayForecastTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
+
         self.contentView.backgroundColor = UIColor(named: "#E9EEFA")
         self.contentView.layer.cornerRadius = 12
         self.contentView.clipsToBounds = true
@@ -126,6 +127,8 @@ class AllDayForecastTableViewCell: UITableViewCell {
 
             self.labelDescriptionWeather.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             self.labelDescriptionWeather.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
+            labelDescriptionWeather.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -80),
+
 
             self.labelMinMaxTemp.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor),
             self.labelMinMaxTemp.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -20),

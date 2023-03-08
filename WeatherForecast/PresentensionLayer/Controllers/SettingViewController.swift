@@ -219,7 +219,7 @@ class SettingViewController: UIViewController {
             self.viewCentre.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 240),
             self.viewCentre.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 28),
             self.viewCentre.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -28),
-            self.viewCentre.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -240),
+            self.viewCentre.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -180),
 
             self.labelSetting.topAnchor.constraint(equalTo: self.viewCentre.topAnchor, constant: 35),
             self.labelSetting.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
@@ -227,17 +227,22 @@ class SettingViewController: UIViewController {
             self.labelSettingTemp.topAnchor.constraint(equalTo: self.labelSetting.bottomAnchor, constant: 20),
             self.labelSettingTemp.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
 
+
             self.switchTemp.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
             self.switchTemp.centerYAnchor.constraint(equalTo: self.labelSettingTemp.centerYAnchor),
 
             self.labelSettingWind.topAnchor.constraint(equalTo: self.labelSettingTemp.bottomAnchor, constant: 30),
             self.labelSettingWind.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
+            labelSettingWind.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120),
 
             self.switchSettingWind.centerYAnchor.constraint(equalTo: self.labelSettingWind.centerYAnchor),
             self.switchSettingWind.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
 
             self.labelSettingHour.topAnchor.constraint(equalTo: self.switchSettingWind.bottomAnchor, constant: 30),
             self.labelSettingHour.leadingAnchor.constraint(equalTo: self.viewCentre.leadingAnchor, constant: 20),
+
+            labelSettingHour.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -120),
+
 
             self.switchSettingHour.centerYAnchor.constraint(equalTo: self.labelSettingHour.centerYAnchor),
             self.switchSettingHour.trailingAnchor.constraint(equalTo: self.viewCentre.trailingAnchor, constant: -20),
