@@ -50,6 +50,10 @@ https://user-images.githubusercontent.com/103641721/224263101-6ae2bd33-9db1-4a4b
 https://user-images.githubusercontent.com/103641721/224263614-b38642c5-2584-40f6-b0d5-27bad3dffeb0.mp4
 
 3. Сложный по своей структуре и количеству данных Json файл парсится с помощью протокола Codable 
+
 4. Для быстрого отображения представлений при следующем входе информация кэшируется в CoreData
+
+https://user-images.githubusercontent.com/103641721/224281315-525553b3-d196-4e49-87bf-808f3f177a3f.mp4
+
 5. Для определения местоположения и названия города используется CoreLocation
 6. Api для загрузки прогнозов погоды - https://api.openweathermap.org
