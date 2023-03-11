@@ -22,7 +22,6 @@ class NetworkService {
     func getURL() -> String {
 
 
-
         if  let latitude = UserDefaults.standard.string(forKey: "latitude"), let longitude = UserDefaults.standard.string(forKey: "longitude")
 
         {
